@@ -19,6 +19,12 @@ php artisan migrate --seed
 ```
 to import tables name and default data
 
+## Test Running
+````
+php artisan serve
+````
+Or you can run in htdocs or www folder with change parameter on apache. You can search on google how to do it.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
