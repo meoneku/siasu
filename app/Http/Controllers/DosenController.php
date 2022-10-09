@@ -32,16 +32,20 @@ class DosenController extends Controller
      */
     public function create()
     {
-        $jabatan = ["Dekan", "Wakil Dekan", "Kaprodi", "Dosen"];
-        $jafung  = ["Dosen", "Asisten Ahli", "Lektor", "Lektor Kepala", "Guru Besar"];
-        $golongan = ["IVA", "IVB", "IVC", "IIIA", "IIIB", "IIIC"];
+        $jabatan    = ["Tenaga Pengajar", "Dekan", "Wakil Dekan", "Kaprodi", "GPM", "Pembina Ormawa"];
+        $jafung     = ["Dosen", "Asisten Ahli", "Lektor", "Lektor Kepala", "Guru Besar"];
+        $golongan   = ["III/a", "III/b", "III/c", "III/d", "IV/a", "IV/b", "IV/c", "IV/d"];
+        $status     = ["Dosen Tetap", "Dosen Tidak Tetap"];
+        $pendidikan = ["S1", "S2", "S3"];
 
         return view('dashboard.dosen.create', [
             'title'     => 'Dosen | Data Dosen',
             'jurusan'   => Jurusan::all(),
             'jabatan'   => $jabatan,
             'jafung'    => $jafung,
-            'golongan'  => $golongan
+            'golongan'  => $golongan,
+            'status'    => $status,
+            'pendidikan'=> $pendidikan
         ]);
     }
 
@@ -57,11 +61,15 @@ class DosenController extends Controller
             'niy'           => 'required|max:20',
             'nidn'          => 'required|max:15',
             'nama'          => 'required|max:200',
+            'rekening'      => 'required|max:50',
             'jurusan_id'    => 'required',
             'tmt'           => 'required',
             'jabatan'       => 'required',
             'jafung'        => 'required',
             'golongan'      => 'required',
+            'pendidikan'    => 'required',
+            'status'        => 'required',
+            'email'         => 'required|email:rfc,dns',
             'foto'          => 'image|file'
         ]);
 
@@ -93,9 +101,11 @@ class DosenController extends Controller
      */
     public function edit(Dosen $dosen)
     {
-        $jabatan = ["Dekan", "Wakil Dekan", "Kaprodi", "Dosen"];
-        $jafung  = ["Dosen", "Asisten Ahli", "Lektor", "Lektor Kepala", "Guru Besar"];
-        $golongan = ["IVA", "IVB", "IVC", "IIIA", "IIIB", "IIIC"];
+        $jabatan    = ["Tenaga Pengajar", "Dekan", "Wakil Dekan", "Kaprodi", "GPM", "Pembina Ormawa"];
+        $jafung     = ["Dosen", "Asisten Ahli", "Lektor", "Lektor Kepala", "Guru Besar"];
+        $golongan   = ["III/a", "III/b", "III/c", "III/d", "IV/a", "IV/b", "IV/c", "IV/d"];
+        $status     = ["Dosen Tetap", "Dosen Tidak Tetap"];
+        $pendidikan = ["S1", "S2", "S3"];
 
         return view('dashboard.dosen.edit', [
             'title'     => 'Dosen | Data Dosen',
@@ -103,7 +113,9 @@ class DosenController extends Controller
             'jabatan'   => $jabatan,
             'jafung'    => $jafung,
             'golongan'  => $golongan,
-            'dosen'     => $dosen
+            'dosen'     => $dosen,
+            'status'    => $status,
+            'pendidikan'=> $pendidikan
         ]);
     }
 
@@ -120,11 +132,15 @@ class DosenController extends Controller
             'niy'           => 'required|max:20',
             'nidn'          => 'required|max:15',
             'nama'          => 'required|max:200',
+            'rekening'      => 'required|max:50',
             'jurusan_id'    => 'required',
             'tmt'           => 'required',
             'jabatan'       => 'required',
             'jafung'        => 'required',
             'golongan'      => 'required',
+            'pendidikan'    => 'required',
+            'status'        => 'required',
+            'email'         => 'required|email:rfc,dns',
             'foto'          => 'image|file'
         ]);
 

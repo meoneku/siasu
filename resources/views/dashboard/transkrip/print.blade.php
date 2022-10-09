@@ -110,12 +110,20 @@
                             <tr>
                                 <td width="150px">Nomor Transkrip</td>
                                 <td>:</td>
-                                <td>{{ $lulusan->nomorijazah }}</td>
+                                @if (request('pin') == 'hide')
+                                    <td>xxxxxxx</td>
+                                @else
+                                    <td>{{ $lulusan->nomorijazah }}</td>
+                                @endif
                             </tr>
                             <tr>
                                 <td width="150px">Nomor Ijazah Nasional</td>
                                 <td>:</td>
-                                <td>{{ $lulusan->pin }}</td>
+                                @if (request('pin') == 'hide')
+                                    <td>xxxxxxxxxxxxxxxxxx</td>
+                                @else
+                                    <td>{{ $lulusan->pin }}</td>
+                                @endif
                             </tr>
                         @endif
                     </table>
@@ -178,7 +186,7 @@
                 <td colspan="3">&nbsp;<strong><span style="font-size:10px">{{ $Yudisium }}</span></strong></td>
             </tr>
             <tr>
-                <td colspan="6" colspan="6" valign="top">&nbsp;Ekuivalen Hasil Penilaian:
+                <td colspan="6" valign="top">&nbsp;Ekuivalen Hasil Penilaian:
                     <table border="0" style="font-size:12px; font-family:Arial;" width="435" class="noneline" cellpadding="0">
                         <tr>
                             <td width="10px">A</td>
@@ -217,21 +225,44 @@
                 </td>
                 <td colspan="6" valign="top">&nbsp; Predikat Kelulusan : <br>
                     <table border="1" style="font-size:12px; font-family:Arial;" width="435" class="noneline" cellpadding="0">
-                        <tr>
-                            <td width="63">&nbsp;2.00 - 2.75</td>
-                            <td width="5">=</td>
-                            <td>Memuaskan</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;2.76 - 3.50</td>
-                            <td>=</td>
-                            <td>Sangat Memuaskan</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;3.51 - 4.00</td>
-                            <td>=</td>
-                            <td>Dengan Pujian</td>
-                        </tr>
+                        @if (request('predikat') == 'useCumlaude')
+                            <tr>
+                                <td width="63">&nbsp;3.76 - 4.00</td>
+                                <td width="5">=</td>
+                                <td>Cumlaude</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;3.51 - 3.75</td>
+                                <td>=</td>
+                                <td>Sangat Memuaskan</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;3.01 - 3.50</td>
+                                <td>=</td>
+                                <td>Memuaskan</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;2.51 - 3.00</td>
+                                <td>=</td>
+                                <td>Cukup</td>
+                            </tr>
+                        @else
+                            <tr>
+                                <td width="63">&nbsp;2.00 - 2.75</td>
+                                <td width="5">=</td>
+                                <td>Memuaskan</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;2.76 - 3.50</td>
+                                <td>=</td>
+                                <td>Sangat Memuaskan</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;3.51 - 4.00</td>
+                                <td>=</td>
+                                <td>Dengan Pujian</td>
+                            </tr>
+                        @endif
                     </table>
                 </td>
             </tr>

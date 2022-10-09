@@ -104,8 +104,12 @@ class TranskripController extends Controller
         }
         //dd($countNilai);
         $IPK = number_format(round($jumlahNilai / $jumlahSKS, 2), 2);
-        $Yudisium = $this->cariYudisium($IPK);
-
+        if ($request->predikat == 'useCumlaude') {
+            $Yudisium = $this->cariYudisium($IPK);
+        } else {
+            $Yudisium = $this->cariYudisiumOld($IPK);
+        }
+        
         $nilai = [];
         $count = $countNilai->count();
 
@@ -271,12 +275,30 @@ class TranskripController extends Controller
 
     public function cariYudisium($ipk)
     {
-        if ($ipk <= 2.75) {
+        if ($ipk >= 2.51 AND $ipk <= 3.00) {
+            $result = "Cukup";
+        } elseif ($ipk >= 3.01 AND $ipk <= 3.50) {
             $result = "Memuaskan";
-        } elseif ($ipk <= 3.5) {
+        } elseif ($ipk >= 3.51 AND $ipk <= 3.75) {
             $result = "Sangat Memuaskan";
-        } elseif ($ipk >= 3.51) {
+        } elseif ($ipk >= 3.76) {
+            $result = "Cumlaude";
+        } else {
+            $result = "Error";
+        }
+        return $result;
+    }
+
+    public function cariYudisiumOld($ipk)
+    {
+        if ($ipk >= 2.00 AND $ipk <= 2.75) {
+            $result = "Memuaskan";
+        } elseif ($ipk >= 2.76 AND $ipk <= 3.50) {
+            $result = "Sangat Memuaskan";
+        } elseif ($ipk >= 3.51 AND $ipk <= 4.00) {
             $result = "Dengan Pujian";
+        } else {
+            $result = "Error";
         }
         return $result;
     }

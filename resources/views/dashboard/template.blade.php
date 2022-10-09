@@ -4,12 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>🐶</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ url('plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- JQuery UI -->
+    <link rel="stylesheet" href="{{ url('plugins/jquery/jquery-ui.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('css/adminlte.min.css') }}">
 
@@ -60,6 +63,7 @@
                             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dosen</a>
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                 <li><a href="{{ url('webmin/dosen') }}" class="dropdown-item">Data Dosen</a></li>
+                                <li><a href="{{ url('webmin/ajar?semester=') . App\Helpers\Codes::getSemesterNow() }}" class="dropdown-item">Pengajaran</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -192,7 +196,8 @@
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
-    <script src="{{ url('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url('plugins/jquery/jquery.js') }}"></script>
+    <script src="{{ url('plugins/jquery/jquery-ui.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ url('plugins/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
@@ -228,6 +233,36 @@
                     form.submit();
                 }
             })
+        });
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $(document).ready(function() {
+
+            $("#searchdosen").autocomplete({
+                source: function(request, response) {
+                    // Fetch data
+                    $.ajax({
+                        url: "{{ url('api/getDosen') }}",
+                        type: 'post',
+                        dataType: "json",
+                        data: {
+                            _token: CSRF_TOKEN,
+                            search: request.term
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
+                select: function(event, ui) {
+                    // Set selection
+                    $('#searchdosen').val(ui.item.label);
+                    $('#niy').val(ui.item.niy);
+                    $('#nama').val(ui.item.nama);
+                    $('#jurusan_id').val(ui.item.jurusan);
+                    $('#nidn').val(ui.item.nidn);
+                    return false;
+                }
+            });
         });
     </script>
 </body>

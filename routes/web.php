@@ -12,6 +12,8 @@ use App\Http\Controllers\KataController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\TranskripController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\AjarController;
+use App\Http\Controllers\UjiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,4 +106,13 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::post('webmin/password', [SettingController::class, 'passwordStore'])->name('setting.password.store');
     Route::get('webmin/profil', [SettingController::class, 'profil'])->name('setting.profil');
     Route::post('webmin/profil', [SettingController::class, 'profilStore'])->name('setting.profil.store');
+    //Ajar Route
+    Route::get('webmin/ajar', [AjarController::class, 'index'])->name('ajar.index');
+    Route::get('webmin/ajar/create', [AjarController::class, 'create'])->name('ajar.create');
+    Route::post('webmin/ajar', [AjarController::class, 'store'])->name('ajar.store');
+    Route::get('webmin/ajar/{ajar}/edit', [AjarController::class, 'edit'])->name('ajar.edit');
+    Route::put('webmin/ajar/{ajar}', [AjarController::class, 'update'])->name('ajar.update');
+    Route::delete('webmin/ajar/{ajar}', [AjarController::class, 'destroy'])->name('ajar.destroy');
 });
+
+Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

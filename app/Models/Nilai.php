@@ -43,26 +43,16 @@ class Nilai extends Model
             });
         });
 
-        $query->when(
-            $filters['jurusan'] ?? false,
-            fn ($query, $jurusan) =>
-            $query->whereHas(
-                'mahasiswa',
-                fn ($query) =>
-                $query->whereHas(
-                    'jurusan',
-                    fn ($query) =>
+        $query->when($filters['jurusan'] ?? false, fn ($query, $jurusan) =>
+            $query->whereHas('mahasiswa', fn ($query) =>
+                $query->whereHas('jurusan', fn ($query) =>
                     $query->where('jurusan_id', $jurusan)
                 )
             )
         );
 
-        $query->when(
-            $filters['nama'] ?? false,
-            fn ($query, $nama) =>
-            $query->whereHas(
-                'mahasiswa',
-                fn ($query) =>
+        $query->when($filters['nama'] ?? false, fn ($query, $nama) =>
+            $query->whereHas('mahasiswa', fn ($query) =>
                 $query->where('nama', 'like', '%' . $nama . '%')
             )
         );

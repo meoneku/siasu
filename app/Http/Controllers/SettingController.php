@@ -21,6 +21,8 @@ class SettingController extends Controller
         $this->setEnv('GRADUATION_YEAR_BEGIN', $request->tahunlulus);
         $this->setEnv('SEMESTER_YEAR_BEGIN', $request->semester);
         $this->setEnv('SEPARATOR', $request->separator);
+        $this->setEnv('PREDIKAT', $request->predikat);
+        $this->setEnv('PIN', $request->pin);
 
         return redirect('webmin/parameter')->with('success', 'Konfigurasi Berhasil Di Rubah');
     }

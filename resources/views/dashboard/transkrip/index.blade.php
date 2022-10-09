@@ -66,8 +66,8 @@
                                     <td>{{ $data->jurusan->jurusan }}</td>
                                     <td><a href="/webmin/lulusan/{{ $data->id }}/edit" class="badge bg-info me-1" title="Edit Data Lulusan"><i class="fas fa-user-graduate"></i></a>
                                         <a href="/webmin/transkrip/edit?nim={{ $data->nim }}" class="badge bg-danger me-1" title="Edit Nilai"><i class="fas fa-file-invoice"></i></a>
-                                        <a href="/webmin/transkrip/print?nim={{ $data->nim }}&separator={{ env('SEPARATOR') }}&kurikulum={{ $kuri }}&final=false" class="badge bg-primary me-1" title="Transkrip Sementara" target="_blank"><i class="fas fa-sad-cry"></i></a>
-                                        <a href="/webmin/transkrip/print?nim={{ $data->nim }}&separator={{ env('SEPARATOR') }}&kurikulum={{ $kuri }}&final=true" class="badge bg-success me-1" title="Transkrip Akhir" target="_blank"><i class="fas fa-print"></i></a>
+                                        <a href="/webmin/transkrip/print?nim={{ $data->nim }}&separator={{ env('SEPARATOR') }}&kurikulum={{ $kuri }}&final=false&predikat={{ env('PREDIKAT') }}&pin={{ env('PIN') }}" class="badge bg-primary me-1" title="Transkrip Sementara" target="_blank"><i class="fas fa-sad-cry"></i></a>
+                                        <a href="/webmin/transkrip/print?nim={{ $data->nim }}&separator={{ env('SEPARATOR') }}&kurikulum={{ $kuri }}&final=true&predikat={{ env('PREDIKAT') }}&pin={{ env('PIN') }}" class="badge bg-success me-1" title="Transkrip Akhir" target="_blank"><i class="fas fa-print"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

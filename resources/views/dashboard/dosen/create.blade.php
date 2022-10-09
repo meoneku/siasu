@@ -27,6 +27,18 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="rekening" class="col-sm-2 col-form-label">Nomor Rekening</label>
+                        <div class="col-sm-5">
+                            <input type="number" class="form-control @error('rekening') is-invalid @enderror" id="rekening" name="rekening" placeholder="Nomor Rekening Bank" value="{{ old('rekening') }}" maxlength="50" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">Alamat Email</label>
+                        <div class="col-sm-4">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Alamat Email @" value="{{ old('email') }}" maxlength="128" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="jurusan" class="col-sm-2 col-form-label">Jurusan/Prodi</label>
                         <div class="col-sm-8">
                             <select id="jurusan" name="jurusan_id" class="form-control" required>
@@ -73,7 +85,27 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="foto" class="col-sm-2 col-form-label">foto</label>
+                        <label for="pendidikan" class="col-sm-2 col-form-label">Pendidikan Terakhir</label>
+                        <div class="col-sm-3">
+                            <select id="pendidikan" name="pendidikan" class="form-control" required>
+                                @foreach ($pendidikan as $pendidik)
+                                    <option value="{{ $pendidik }}">{{ $pendidik }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status" class="col-sm-2 col-form-label">Status Dosen</label>
+                        <div class="col-sm-3">
+                            <select id="status" name="status" class="form-control" required>
+                                @foreach ($status as $stat)
+                                    <option value="{{ $stat }}">{{ $stat }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="foto" class="col-sm-2 col-form-label">Foto</label>
                         <div class="col-sm-6">
                             <input type="file" name="foto" id="foto" class="form-control @error('foto') is-invalid @enderror" accept="image/*" onchange="preview()">
                             <small class="text-muted"><i>* Maksimum Ukuran Foto 2 MB (2048 KB)</i></small><br>

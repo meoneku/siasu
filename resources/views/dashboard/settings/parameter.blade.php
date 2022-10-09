@@ -33,6 +33,32 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="predikat" class="col-sm-3 col-form-label">Gunakan Predikat Cumlaude</label>
+                        <div class="row align-items-center col-sm-8">
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="predikat-true" name="predikat" value="useCumlaude" @if (env('PREDIKAT') == 'useCumlaude') checked @endif>
+                                <label class="form-check-label" for="predikat-true">Aktif</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="predikat-false" name="predikat" value="none" @if (env('PREDIKAT') == 'none') checked @endif>
+                                <label class="form-check-label" for="predikat-false">Non Aktif</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="pin" class="col-sm-3 col-form-label">Tampilkan PIN</label>
+                        <div class="row align-items-center col-sm-8">
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="pin-true" name="pin" value="useCumlaude" @if (env('PIN') == 'show') checked @endif>
+                                <label class="form-check-label" for="pin-true">Tampilkan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" id="pin-false" name="pin" value="none" @if (env('PIN') == 'hide') checked @endif>
+                                <label class="form-check-label" for="pin-false">Sembunyikan</label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
                     </div>

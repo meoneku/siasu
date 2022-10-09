@@ -4,6 +4,10 @@
 /public/storage
 /storage/*.key
 /vendor
+/public/uploads/dosen/*.*
+/public/uploads/import-file/*.*
+/public/uploads/lulusan/*.*
+/public/uploads/mahasiswa/*.*
 .env
 .env.backup
 .phpunit.result.cache

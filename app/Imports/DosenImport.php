@@ -17,11 +17,15 @@ class DosenImport implements ToModel, WithHeadingRow
             'niy'           => $row['niy'],
             'nidn'          => $row['nidn'],
             'nama'          => $row['nama'],
+            'rekening'      => $row['rekening'],
+            'email'         => $row['email'],
             'jurusan_id'    => $row['jurusan'],
             'tmt'           => date('Y-m-d', ($row['tmt'] - 25569) * 86400),
             'jabatan'       => $row['jabatan'],
             'jafung'        => $row['jafung'],
             'golongan'      => $row['golongan'],
+            'pendidikan'    => $row['pendidikan'],
+            'status'        => $row['status'],
         ]);
     }
 }
