@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DosenController;
+use App\Http\Controllers\Api\MahasiswaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/getDosen', [DosenController::class, 'getDosen'])->name('getdosen.api');
+Route::post('/getMahasiswa', [MahasiswaController::class, 'getMahasiswa'])->name('getMahasiswa.api');

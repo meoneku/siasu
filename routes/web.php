@@ -13,6 +13,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\TranskripController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\AjarController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UjiController;
 
 /*
@@ -26,9 +27,11 @@ use App\Http\Controllers\UjiController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+Route::get('/', [IndexController::class, 'index'])->name('home.index');
+Route::get('/skripsi', [IndexController::class, 'skripsi'])->name('home.skripsi');
 
 Route::get('/webmin/prank', function () {
     return view('hello');
