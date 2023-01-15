@@ -10,9 +10,4 @@ class IndexController extends Controller
     {
         return view('index');
     }
-
-    public function skripsi()
-    {
-        return view('skripsi');
-    }
 }

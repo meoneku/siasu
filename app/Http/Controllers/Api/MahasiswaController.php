@@ -17,19 +17,20 @@ class MahasiswaController extends Controller
     {
         $search     = $request->search;
 
-        if($search == ''){
-            $datas    = Mahasiswa::orderby('nama','asc')->with('jurusan')->limit(10)->get();
+        if ($search == '') {
+            $datas    = Mahasiswa::orderby('nama', 'asc')->with('jurusan')->limit(10)->get();
         } else {
-            $datas    = Mahasiswa::orderby('nama','asc')->where('nama', 'like', '%'. $search .'%')->with('jurusan')->limit(10)->get();
+            $datas    = Mahasiswa::orderby('nama', 'asc')->where('nama', 'like', '%' . $search . '%')->with('jurusan')->limit(10)->get();
         }
 
         $response = array();
         foreach ($datas as $mahasiswa) {
             $response[] = array(
                 "nim"       => $mahasiswa->nim,
-                "label"     => $mahasiswa->nim .' | '. $mahasiswa->nama .' | '. $mahasiswa->jurusan->jurusan,
+                "label"     => $mahasiswa->nim . ' | ' . $mahasiswa->nama . ' | ' . $mahasiswa->jurusan->jurusan,
                 "nama"      => $mahasiswa->nama,
-                "jurusan"   => $mahasiswa->jurusan->jenjang . ' ' .$mahasiswa->jurusan->jurusan,
+                "jurusan"   => $mahasiswa->jurusan->jenjang . ' ' . $mahasiswa->jurusan->jurusan,
+                "id"        => $mahasiswa->id
             );
         }
 
