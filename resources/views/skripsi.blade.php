@@ -12,10 +12,10 @@
     </nav>
     @if (!$batch->count())
         <div class="d-flex justify-content-center">
-            <img src="img/svg/undraw_taken.svg" alt="Alien Go" class="img-fluid">
+            <h2>Pendaftaran Di Tutup</h2>
         </div>
         <div class="d-flex justify-content-center">
-            <h2>Pendaftaran Belum Di Buka Untuk Skripsi</h2>
+            <img src="img/svg/undraw_taken.svg" alt="Alien Go Away" class="img-fluid">
         </div>
         <a href="/" class="btn btn-warning"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
     @else

@@ -3,7 +3,7 @@
     <div class="col-lg-12">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="card-title m-0">Data Lulusan</h5>
+                <h5 class="card-title m-0">Data Dosen</h5>
             </div>
 
             <div class="card-body">

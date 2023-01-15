@@ -16,6 +16,8 @@ use App\Http\Controllers\AjarController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\UjiController;
+use App\Http\Controllers\KegiatanController;
+use App\http\Controllers\BatchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +122,10 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::get('webmin/ajar/{ajar}/edit', [AjarController::class, 'edit'])->name('ajar.edit');
     Route::put('webmin/ajar/{ajar}', [AjarController::class, 'update'])->name('ajar.update');
     Route::delete('webmin/ajar/{ajar}', [AjarController::class, 'destroy'])->name('ajar.destroy');
+    //Kegiatan Route
+    Route::resources(['webmin/kegiatan' => KegiatanController::class]);
+    //Batch Route
+    Route::resources(['webmin/batch' => BatchController::class]);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

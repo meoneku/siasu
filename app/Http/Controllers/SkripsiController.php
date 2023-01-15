@@ -16,9 +16,9 @@ class SkripsiController extends Controller
      */
     public function index()
     {
-        // $now = date('Y-m-d');
-        $now = '2023-01-30';
-        $batch = Batch::where('kegiatan', 'Pendaftaran Skripsi')->whereRaw('? between mulai and selesai', $now)->get();
+        $now = date('Y-m-d');
+        // $now = '2023-01-30';
+        $batch = Batch::where('kegiatan_id', 4)->whereRaw('? between mulai and selesai', $now)->first();
         return view('skripsi', [
             'batch'     => $batch
         ]);
@@ -49,7 +49,8 @@ class SkripsiController extends Controller
             'nomor_handphone'   => 'required',
             'email'             => 'required',
             'sks'               => 'required',
-            'ipk'               => 'required'
+            'ipk'               => 'required',
+            'batch_id'          => 'required'
         ]);
 
         // $validateData['tanggal_daftar'] = date('Y-m-d');
