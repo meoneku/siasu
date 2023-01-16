@@ -21,7 +21,7 @@
                             @endforeach
                         </select>
                         <select name="batch" class="form-control w-25">
-                            <option value="">Semua Jurusan</option>
+                            <option value="">Semua Batch</option>
                             @foreach ($batchs as $batch)
                                 @if (request('batch') == $batch->id)
                                     <option value="{{ $batch->id }}" selected>{{ $batch->nama }}</option>
@@ -53,14 +53,17 @@
                                     <td>{{ $skripsi->firstItem() + $loop->index }}</td>
                                     <td>{{ $data->mahasiswa->nama }}</td>
                                     <td>{{ $data->mahasiswa->jurusan->jurusan }}</td>
-                                    <td>{{ tanggal_indonesia($data->tanggal_daftar) }}</td>
+                                    <td>{{ tanggal_indonesia($data->created_at) }}</td>
                                     <td>{{ $data->batch->nama }}</td>
-                                    <td><a href="/webmin/skripsi/{{ $data->id }}/edit" class="badge bg-info me-1" title="Edit Data Pendaftaran Skripsi"><i class="fas fa-edit"></i></a>
-                                        <form action="/webmin/skripsi/{{ $batch->id }}" method="post" class="d-inline">
+                                    <td><a href="/webmin/skripsi/{{ $data->id }}" class="badge bg-primary me-1" title="Cetak Form Pendaftaran"><i class="fas fa-file-pdf"></i></a>
+                                        <a href="/webmin/skripsi/{{ $data->id }}" class="badge bg-success me-1" title="Set Dosen Pembimbing"><i class="fas fa-user-graduate"></i></a>
+                                        <a href="/webmin/skripsi/{{ $data->id }}" class="badge bg-warning me-1" title="Cetak Surat Penugasan"><i class="fas fa-file-signature"></i></a>
+                                        <a href="/webmin/skripsi/{{ $data->id }}/edit" class="badge bg-info me-1" title="Edit Data Pendaftaran Skripsi"><i class="fas fa-edit"></i></a>
+                                        <form action="/webmin/skripsi/{{ $data->id }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                            <button class="badge bg-danger border-0 button-delete" data-message="Data Batch Kegiatan {{ $data->mahasiswa->nama }}"><i class="fas fa-trash"></i></button>
+                                            <button class="badge bg-danger border-0 button-delete" data-message="Data Pendaftar Skripsi {{ $data->mahasiswa->nama }}"><i class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>

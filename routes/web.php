@@ -36,7 +36,7 @@ use App\http\Controllers\BatchController;
 
 // Front Page
 Route::get('/', [IndexController::class, 'index'])->name('home.index');
-Route::get('/skripsi', [SkripsiController::class, 'index'])->name('home.skripsi.index');
+Route::get('/skripsi', [IndexController::class, 'skripsi'])->name('home.skripsi.index');
 Route::post('/skripsi', [SkripsiController::class, 'store'])->name('home.skripsi.store');
 
 Route::get('/webmin/prank', function () {
@@ -126,6 +126,8 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::resources(['webmin/kegiatan' => KegiatanController::class]);
     //Batch Route
     Route::resources(['webmin/batch' => BatchController::class]);
+    //Daftar Skripsi Route
+    Route::resources(['webmin/skripsi' => SkripsiController::class]);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

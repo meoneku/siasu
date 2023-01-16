@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Batch;
 use App\Models\Skripsi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Jurusan;
 
 class SkripsiController extends Controller
 {
@@ -16,11 +16,11 @@ class SkripsiController extends Controller
      */
     public function index()
     {
-        $now = date('Y-m-d');
-        // $now = '2023-01-30';
-        $batch = Batch::where('kegiatan_id', 4)->whereRaw('? between mulai and selesai', $now)->first();
-        return view('skripsi', [
-            'batch'     => $batch
+        return view('dashboard.skripsi.daftar.index', [
+            'title'     => 'Mahasiswa | Data Pendaftar Skripsi',
+            'skripsi'   => Skripsi::with('mahasiswa')->with('batch')->filter(request(['nama', 'jurusan', 'batch']))->paginate(10)->withQueryString(),
+            'jurusan'   => Jurusan::all(),
+            'batchs'    => Batch::latest()->get()
         ]);
     }
 
@@ -31,7 +31,10 @@ class SkripsiController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.skripsi.daftar.create', [
+            'title'     => 'Mahasiswa | Data Pendaftar Skripsi',
+            'batchs'    => Batch::all()
+        ]);
     }
 
     /**
@@ -56,7 +59,7 @@ class SkripsiController extends Controller
         // $validateData['tanggal_daftar'] = date('Y-m-d');
 
         Skripsi::create($validateData);
-        return redirect('/skripsi')->with('success', 'Data Berhasil Di Simpan');
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Simpan');
     }
 
     /**

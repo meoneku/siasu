@@ -37,6 +37,7 @@
         @endif
         <form class="form-control" method="post" action="/skripsi" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="redirect_to" value="{{ url('skripsi') }}">
             <div class="mb-3 mt-3 row">
                 <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                 <div class="col-sm-10">

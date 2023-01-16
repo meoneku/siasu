@@ -209,7 +209,7 @@
 
     <!-- jQuery -->
     <script src="{{ url('plugins/jquery/jquery.js') }}"></script>
-    <script src="{{ url('plugins/jquery/jquery-ui.js') }}"></script>
+    <script src="{{ url('plugins/jquery/jquery-ui.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ url('plugins/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
@@ -277,6 +277,7 @@
             });
         });
     </script>
+    @yield('addjs')
 </body>
 
 </html>
