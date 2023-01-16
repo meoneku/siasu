@@ -2,6 +2,10 @@
 /public/build
 /public/hot
 /public/storage
+/public/uploads/dosen
+/public/uploads/import-file
+/public/uploads/lulusan
+/public/uploads/mahasiswa
 /storage/*.key
 /vendor
 .env
