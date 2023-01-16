@@ -81,7 +81,11 @@ class SkripsiController extends Controller
      */
     public function edit(Skripsi $skripsi)
     {
-        //
+        return view('dashboard.skripsi.daftar.edit', [
+            'title'     => 'Mahasiswa | Data Pendaftar Skripsi',
+            'batchs'    => Batch::all(),
+            'skripsi'   => $skripsi
+        ]);
     }
 
     /**
@@ -93,7 +97,22 @@ class SkripsiController extends Controller
      */
     public function update(Request $request, Skripsi $skripsi)
     {
-        //
+        $validateData   = $request->validate([
+            'mahasiswa_id'      => 'required',
+            'judul_skripsi'     => 'required',
+            'lokasi_penelitian' => 'required',
+            'nomor_handphone'   => 'required',
+            'email'             => 'required',
+            'sks'               => 'required',
+            'ipk'               => 'required',
+            'batch_id'          => 'required'
+        ]);
+
+        // $validateData['tanggal_daftar'] = date('Y-m-d');
+
+        Skripsi::where('id', $skripsi->id)
+            ->update($validateData);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Ubah');
     }
 
     /**
@@ -102,8 +121,9 @@ class SkripsiController extends Controller
      * @param  \App\Models\Skripsi  $skripsi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skripsi $skripsi)
+    public function destroy(Skripsi $skripsi, Request $request)
     {
-        //
+        Skripsi::destroy($skripsi->id);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Hapus');
     }
 }
