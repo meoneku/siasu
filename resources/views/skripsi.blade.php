@@ -10,7 +10,7 @@
             <li class="breadcrumb-item active" aria-current="page">Pendaftaran Skripsi</li>
         </ol>
     </nav>
-    @if (!$batch->count())
+    @if (empty($batch))
         <div class="d-flex justify-content-center">
             <h2>Pendaftaran Di Tutup</h2>
         </div>

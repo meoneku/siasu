@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batch;
+use App\Models\Jabatan;
+use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 
 class BatchController extends Controller
@@ -27,7 +29,10 @@ class BatchController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.batch.create', [
+            'title'     => 'Master | Data Batch',
+            'kegiatans' => Kegiatan::all()
+        ]);
     }
 
     /**
@@ -38,7 +43,16 @@ class BatchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData   = $request->validate([
+            'nama'          => 'required',
+            'kegiatan_id'   => 'required',
+            'mulai'         => 'required',
+            'selesai'       => 'required',
+            'tahun'         => 'required'
+        ]);
+
+        Batch::create($validateData);
+        return redirect('webmin/batch')->with('success', 'Data Berhasil Di Simpan');
     }
 
     /**
@@ -60,7 +74,11 @@ class BatchController extends Controller
      */
     public function edit(Batch $batch)
     {
-        //
+        return view('dashboard.batch.edit', [
+            'title'     => 'Master | Data Batch',
+            'kegiatans' => Kegiatan::all(),
+            'batch'     => $batch
+        ]);
     }
 
     /**
@@ -72,7 +90,17 @@ class BatchController extends Controller
      */
     public function update(Request $request, Batch $batch)
     {
-        //
+        $validateData   = $request->validate([
+            'nama'          => 'required',
+            'kegiatan_id'   => 'required',
+            'mulai'         => 'required',
+            'selesai'       => 'required',
+            'tahun'         => 'required'
+        ]);
+
+        Batch::where('id', $batch->id)
+            ->update($validateData);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Ubah');
     }
 
     /**
@@ -81,8 +109,9 @@ class BatchController extends Controller
      * @param  \App\Models\Batch  $batch
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Batch $batch)
+    public function destroy(Batch $batch, Request $request)
     {
-        //
+        Batch::destroy($batch->id);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Hapus');
     }
 }

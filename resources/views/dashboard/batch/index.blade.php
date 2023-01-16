@@ -21,8 +21,8 @@
                             @endfor
                         </select>
                         <button class="btn btn-danger btn-flat" type="submit"><i class="fas fa-search"></i></button>
-                        <a href="/webmin/ajar" class="btn btn-info btn-flat"><i class="fas fa-circle-notch"></i></a>
-                        <a href="/webmin/ajar/create" class="btn btn-primary btn-flat"><i class="fas fa-plus"></i></a>
+                        <a href="/webmin/batch" class="btn btn-info btn-flat"><i class="fas fa-circle-notch"></i></a>
+                        <a href="/webmin/batch/create" class="btn btn-primary btn-flat"><i class="fas fa-plus"></i></a>
                     </div>
                 </form>
                 <div class="row mt-4">
