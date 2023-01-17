@@ -127,7 +127,13 @@ Route::group(['middleware' => 'adminauth'], function () {
     //Batch Route
     Route::resources(['webmin/batch' => BatchController::class]);
     //Daftar Skripsi Route
-    Route::resources(['webmin/skripsi' => SkripsiController::class]);
+    Route::get('webmin/skripsi', [SkripsiController::class, 'index'])->name('skripsi.index');
+    Route::get('webmin/skripsi/create', [SkripsiController::class, 'create'])->name('skripsi.create');
+    Route::post('webmin/skripsi', [SkripsiController::class, 'store'])->name('skripsi.store');
+    Route::get('webmin/skripsi/{skripsi}/edit', [SkripsiController::class, 'edit'])->name('skripsi.edit');
+    Route::put('webmin/skripsi/{skripsi}', [SkripsiController::class, 'update'])->name('skripsi.update');
+    Route::delete('webmin/skripsi/{skripsi}', [SkripsiController::class, 'destroy'])->name('skripsi.destroy');
+    Route::get('webmin/skripsi/{skripsi}/form', [SkripsiController::class, 'form'])->name('skripsi.form');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

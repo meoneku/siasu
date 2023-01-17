@@ -55,7 +55,7 @@
                                     <td>{{ $data->mahasiswa->jurusan->jurusan }}</td>
                                     <td>{{ tanggal_indonesia($data->created_at) }}</td>
                                     <td>{{ $data->batch->nama }}</td>
-                                    <td><a href="/webmin/skripsi/{{ $data->id }}" class="badge bg-primary me-1" title="Cetak Form Pendaftaran"><i class="fas fa-file-pdf"></i></a>
+                                    <td><a href="/webmin/skripsi/{{ $data->id }}/form" class="badge bg-primary me-1" target="_blank" title="Cetak Form Pendaftaran"><i class="fas fa-file-pdf"></i></a>
                                         <a href="/webmin/skripsi/{{ $data->id }}" class="badge bg-success me-1" title="Set Dosen Pembimbing"><i class="fas fa-user-graduate"></i></a>
                                         <a href="/webmin/skripsi/{{ $data->id }}" class="badge bg-warning me-1" title="Cetak Surat Penugasan"><i class="fas fa-file-signature"></i></a>
                                         <a href="/webmin/skripsi/{{ $data->id }}/edit" class="badge bg-info me-1" title="Edit Data Pendaftaran Skripsi"><i class="fas fa-edit"></i></a>

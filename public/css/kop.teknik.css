@@ -1,0 +1,65 @@
+.kop {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.kontent {
+    font-family: "Times New Roman", Times, serif;
+    padding: 0px 50px 0px 50px;
+}
+
+.address-kop {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: rgb(49, 93, 175);
+}
+
+.univ-kop {
+    font-size: 24px;
+    font-weight: bolder;
+    color: rgb(49, 93, 175);
+}
+
+.fak-kop {
+    font-size: 28px;
+    font-weight: bolder;
+    color: rgb(49, 93, 175);
+}
+
+.prodi-kop {
+    font-size: 14px;
+    color: rgb(49, 93, 175);
+}
+
+.img-lgo {
+    margin: auto;
+}
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    border-spacing: 0px;
+    padding: 0px;
+}
+
+.doubleUnderline {
+    text-decoration: underline;
+    border-bottom: 2px solid rgb(49, 93, 175);
+    padding-bottom: 1px;
+}
+
+.paragraf {
+    font-size: 20px;
+}
+
+.paragraf td {
+    padding: 0px 0px 8px 0px;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.ttd {
+    font-size: 20px;
+}

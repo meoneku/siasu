@@ -32,7 +32,7 @@ class DosenController extends Controller
      */
     public function create()
     {
-        $jabatan    = ["Tenaga Pengajar", "Dekan", "Wakil Dekan", "Kaprodi", "GPM", "Pembina Ormawa"];
+        $jabatan    = ["Tenaga Pengajar", "Dekan", "Wakil Dekan", "Kaprodi", "GPM", "Pembina Ormawa", "Koordinator Skripsi"];
         $jafung     = ["Dosen", "Asisten Ahli", "Lektor", "Lektor Kepala", "Guru Besar"];
         $golongan   = ["III/a", "III/b", "III/c", "III/d", "IV/a", "IV/b", "IV/c", "IV/d"];
         $status     = ["Dosen Tetap", "Dosen Tidak Tetap"];
@@ -45,7 +45,7 @@ class DosenController extends Controller
             'jafung'    => $jafung,
             'golongan'  => $golongan,
             'status'    => $status,
-            'pendidikan'=> $pendidikan
+            'pendidikan' => $pendidikan
         ]);
     }
 
@@ -101,7 +101,7 @@ class DosenController extends Controller
      */
     public function edit(Dosen $dosen)
     {
-        $jabatan    = ["Tenaga Pengajar", "Dekan", "Wakil Dekan", "Kaprodi", "GPM", "Pembina Ormawa"];
+        $jabatan    = ["Tenaga Pengajar", "Dekan", "Wakil Dekan", "Kaprodi", "GPM", "Pembina Ormawa", "Koordinator Skripsi"];
         $jafung     = ["Dosen", "Asisten Ahli", "Lektor", "Lektor Kepala", "Guru Besar"];
         $golongan   = ["III/a", "III/b", "III/c", "III/d", "IV/a", "IV/b", "IV/c", "IV/d"];
         $status     = ["Dosen Tetap", "Dosen Tidak Tetap"];
@@ -115,7 +115,7 @@ class DosenController extends Controller
             'golongan'  => $golongan,
             'dosen'     => $dosen,
             'status'    => $status,
-            'pendidikan'=> $pendidikan
+            'pendidikan' => $pendidikan
         ]);
     }
 

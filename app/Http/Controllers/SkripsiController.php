@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Batch;
 use App\Models\Skripsi;
+use App\Models\Dosen;
 use Illuminate\Http\Request;
 use App\Models\Jurusan;
 
@@ -125,5 +126,14 @@ class SkripsiController extends Controller
     {
         Skripsi::destroy($skripsi->id);
         return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Hapus');
+    }
+
+    public function form(Skripsi $skripsi)
+    {
+        return view('dashboard.skripsi.daftar.formulir', [
+            'skripsi'       => $skripsi,
+            'kaprodi'       => Dosen::where('jabatan', 'Kaprodi')->where('jurusan_id', $skripsi->mahasiswa->jurusan->id)->first(),
+            'koord'         => Dosen::where('jabatan', 'Koordinator Skripsi')->where('jurusan_id', $skripsi->mahasiswa->jurusan->id)->first()
+        ]);
     }
 }
