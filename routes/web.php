@@ -134,6 +134,12 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::put('webmin/skripsi/{skripsi}', [SkripsiController::class, 'update'])->name('skripsi.update');
     Route::delete('webmin/skripsi/{skripsi}', [SkripsiController::class, 'destroy'])->name('skripsi.destroy');
     Route::get('webmin/skripsi/{skripsi}/form', [SkripsiController::class, 'form'])->name('skripsi.form');
+    Route::get('webmin/skripsi/{skripsi}/setbimbing', [SkripsiController::class, 'setpembimbing'])->name('skripsi.set.pembimbing');
+    Route::get('webmin/skripsi/{skripsi}/formbimbing', [SkripsiController::class, 'formpembimbing'])->name('skripsi.form.pembimbing');
+    Route::get('webmin/skripsi/{skripsi}/tugas', [SkripsiController::class, 'surattugas'])->name('skripsi.surat.tugas');
+    Route::put('webmin/skripsi/setbimbing/{skripsi}', [SkripsiController::class, 'updatebimbing'])->name('skripsi.update.bimbing');
+    Route::put('webmin/skripsi/tolak/{skripsi}', [SkripsiController::class, 'tolak'])->name('skripsi.tolak');
+    Route::put('webmin/skripsi/undotolak/{skripsi}', [SkripsiController::class, 'undotolak'])->name('skripsi.tolak');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

@@ -35,7 +35,8 @@ class DosenController extends Controller
                 "label"     => $dosen->niy .'| '. $dosen->nama .'| '. $dosen->jurusan->jurusan,
                 "nama"      => $dosen->nama,
                 "jurusan"   => $dosen->jurusan->jenjang . ' ' .$dosen->jurusan->jurusan,
-                "nidn"      => $dosen->nidn
+                "nidn"      => $dosen->nidn,
+                "id"        => $dosen->id
             );
         }
 

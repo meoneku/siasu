@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ url('plugins/jquery/jquery-ui.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('css/adminlte.min.css') }}">
+    <!-- Custom CSS -->
+    @yield('addcss')
 
 </head>
 

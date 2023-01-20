@@ -19,7 +19,7 @@ class SkripsiController extends Controller
     {
         return view('dashboard.skripsi.daftar.index', [
             'title'     => 'Mahasiswa | Data Pendaftar Skripsi',
-            'skripsi'   => Skripsi::with('mahasiswa')->with('batch')->filter(request(['nama', 'jurusan', 'batch']))->paginate(10)->withQueryString(),
+            'skripsi'   => Skripsi::with('mahasiswa')->with('batch')->filter(request(['nama', 'jurusan', 'batch']))->latest()->paginate(10)->withQueryString(),
             'jurusan'   => Jurusan::all(),
             'batchs'    => Batch::latest()->get()
         ]);
@@ -135,5 +135,63 @@ class SkripsiController extends Controller
             'kaprodi'       => Dosen::where('jabatan', 'Kaprodi')->where('jurusan_id', $skripsi->mahasiswa->jurusan->id)->first(),
             'koord'         => Dosen::where('jabatan', 'Koordinator Skripsi')->where('jurusan_id', $skripsi->mahasiswa->jurusan->id)->first()
         ]);
+    }
+
+    public function setpembimbing(Skripsi $skripsi)
+    {
+        return view('dashboard.skripsi.daftar.setbimbing', [
+            'title'     => 'Mahasiswa | Data Pendaftar Skripsi',
+            'batchs'    => Batch::all(),
+            'skripsi'   => $skripsi,
+            'dosens'    => Dosen::all()
+        ]);
+    }
+
+    public function updatebimbing(Request $request, Skripsi $skripsi)
+    {
+        $validateData   = $request->validate([
+            'dosen_id'          => 'required',
+            'awal_penugasan'    => 'required',
+            'akhir_penugasan'   => 'required',
+        ]);
+
+        $validateData['status'] = 1;
+
+        Skripsi::where('id', $skripsi->id)
+            ->update($validateData);
+        return redirect($request->redirect_to)->with('success', 'Dosen Pembimbing Berhasil Di Set');
+    }
+
+    public function tolak(Request $request, Skripsi $skripsi)
+    {
+        $validateData['status'] = 2;
+
+        Skripsi::where('id', $skripsi->id)
+            ->update($validateData);
+        return redirect($request->redirect_to)->with('success', 'Pendaftaran Skripsi Mahasiswa ' . $skripsi->mahasiswa->nama . ' Berhasil Di Tolak');
+    }
+
+    public function undotolak(Request $request, Skripsi $skripsi)
+    {
+        $validateData['status'] = 0;
+
+        Skripsi::where('id', $skripsi->id)
+            ->update($validateData);
+        return redirect($request->redirect_to)->with('success', 'Pendaftaran Skripsi Mahasiswa ' . $skripsi->mahasiswa->nama . ' Berhasil Dikembalikan');
+    }
+
+    public static function getStatusPendaftaran($id)
+    {
+        if ($id == 0) {
+            $result = '<button class="btn btn-primary btn-xs">Baru</button>';
+        } elseif ($id == 1) {
+            $result = '<button class="btn btn-success btn-xs">Diterima</button>';
+        } elseif ($id == 2) {
+            $result = '<button class="btn btn-danger btn-xs">Ditolak</button>';
+        } else {
+            $result = 'Error';
+        }
+
+        return $result;
     }
 }

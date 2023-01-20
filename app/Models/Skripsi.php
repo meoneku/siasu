@@ -19,7 +19,7 @@ class Skripsi extends Model
 
     public function dosen()
     {
-        return $this->belongsTo(Dosen::class)->withDefault(['nama' => 'Dosen Pembimbing Belum Di Set']);
+        return $this->belongsTo(Dosen::class)->withDefault(['nama' => '']);
     }
 
     public function batch()

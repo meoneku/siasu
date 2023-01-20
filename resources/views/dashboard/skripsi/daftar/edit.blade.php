@@ -3,7 +3,7 @@
     <div class="col-lg-12">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="card-title m-0">Data Pendaftar Skripsi | Tambah</h5>
+                <h5 class="card-title m-0">Data Pendaftar Skripsi | Edit</h5>
             </div>
             <div class="card-body">
                 <form class="form-horizontal" method="post" action="{{ url('webmin/skripsi') . '/' . $skripsi->id }}" enctype="multipart/form-data">
