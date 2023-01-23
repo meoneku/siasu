@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>🐶</title>
+    <title>Sistem Layanan Satu Pintu Fakultas Teknik</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -28,7 +28,7 @@
             <div class="container">
                 <a href="#" class="navbar-brand">
                     <img src="{{ url('img/UNHASY.png') }}" alt="Guguk" class="brand-image img-circle elevation-3" style="opacity: .8">
-                    <span class="brand-text font-weight-light">SI 🐶</span>
+                    <span class="brand-text font-weight-light">OSSFT</span>
                 </a>
 
                 <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
                     <!-- Left navbar links -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="index3.html" class="nav-link">Beranda</a>
+                            <a href="/webmin/dashboard" class="nav-link">Beranda</a>
                         </li>
                         {{-- <li class="nav-item">
                             <a href="#" class="nav-link">Contact</a>
@@ -194,7 +194,7 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-
+        
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
@@ -206,7 +206,7 @@
         </footer>
     </div>
     <!-- ./wrapper -->
-
+    @yield('addmodal')
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->

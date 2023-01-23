@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     @yield('css')
 
-    <title>👩🏽‍🚀</title>
+    <title>Fakultas Teknik</title>
 </head>
 
 <body class="p-3 mb-2 bg-success text-white">
@@ -19,7 +19,7 @@
         <div class="text-left">
             <div class="row">
                 <div class="col-md-4"><img src="img/UNHASY.png" class="rounded" alt="UNHASY" width="32px" height="32px" /> <span class="navbar-brand mb-0 h1">Fakultas Teknik</span></div>
-                <div class="col-md-4 ms-auto d-flex justify-content-end align-items-center"><span class="navbar-brand h1">Sistem Informasi 🐶</span></div>
+                <div class="col-md-4 ms-auto d-flex justify-content-end align-items-center"><span class="navbar-brand h1">Layanan Satu Pintu</span></div>
             </div>
         </div>
         <div class="mt-3">
@@ -31,7 +31,7 @@
         </div>
         <footer class="mt-3">
             <div class="d-flex justify-content-end">
-                <p>🐶 <span class="text-muted fst-italic fw-semibold">&#169; 2023 Fakultas Teknik Universitas Hasyim Asy'ari Tebuireng Jombang</span></p>
+                <p><strong>OSS FT</strong> &#169; 2023 Fakultas Teknik Universitas Hasyim Asy'ari Tebuireng Jombang</p>
             </div>
         </footer>
     </main>

@@ -49,7 +49,7 @@
                     </div>
                 </form>
                 <div class="row mt-4">
-                    <table class="table table-hover text-nowrap">
+                    <table class="table table-hover responsive">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -78,7 +78,8 @@
                                             </button>
                                             <div class="dropdown-menu" role="menu">
                                                 <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/edit"><i class="fas fa-edit"></i> Edit / Lihat</a>
-                                                @if ($data->status == 0)
+                                                <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/approve"><i class="far fa-check-circle"></i> Status Pendaftar</a>
+                                                {{-- @if ($data->status == 0)
                                                     <form action="/webmin/skripsi/tolak/{{ $data->id }}" method="post" class="d-inline">
                                                         @method('put')
                                                         @csrf
@@ -93,16 +94,15 @@
                                                         <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
                                                         <button class="btn-link button-undo dropdown-item" data-message="Menerima Kembali Pendaftaran Skripsi {{ $data->mahasiswa->nama }}"><i class="fas fa-undo"></i> Undo Penolakan</button>
                                                     </form>
-                                                @endif
-                                                @if ($data->status != 2)
+                                                @endif --}}
+                                                <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/form" target="_blank"><i class="fas fa-file-pdf"></i> Form Pendaftaran</a>
+                                                @if ($data->status == 3 or $data->status == 5)
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/form" target="_blank"><i class="fas fa-file-pdf"></i> Form Pendaftaran</a>
                                                     <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/setbimbing"><i class="fas fa-user-graduate"></i> Set Dosen Pembimbing</a>
-                                                @endif
-                                                @if ($data->status == 1)
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/formbimbing"><i class="fas fa-sticky-note"></i> Form Pembimbing</a>
-                                                    <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/tugas"><i class="fas fa-file-signature"></i> Surat Penugasan</a>
+                                                    @if ($data->status == 5)
+                                                        <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/formbimbing" target="_blank"><i class="fas fa-sticky-note"></i> Form Pembimbing</a>
+                                                        <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/tugas"><i class="fas fa-file-signature"></i> Surat Penugasan</a>
+                                                    @endif
                                                 @endif
                                                 <div class="dropdown-divider"></div>
                                                 <form action="/webmin/skripsi/{{ $data->id }}" method="post" class="d-inline">

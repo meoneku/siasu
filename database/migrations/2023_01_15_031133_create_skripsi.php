@@ -28,6 +28,7 @@ return new class extends Migration
             $table->date('akhir_penugasan')->nullable();
             $table->string('no_surat', 128)->nullable();
             $table->smallInteger('status')->default('0');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
 
             $table->foreign('mahasiswa_id')->references('id')->on('mahasiswa');

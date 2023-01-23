@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('surat', function (Blueprint $table) {
-            $table->id();
-            $table->string('no_surat', 128);
-            $table->unsignedBigInteger('jurusan_id');
-            $table->string('jenis_surat', 128);
-            $table->integer('tahun');
-            $table->timestamps();
+        Schema::table('jurusan', function (Blueprint $table) {
+            $table->string('kode_surat', 2);
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surat');
+        Schema::table('jurusan', function (Blueprint $table) {
+            //
+        });
     }
 };

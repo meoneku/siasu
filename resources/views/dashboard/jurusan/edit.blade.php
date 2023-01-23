@@ -46,6 +46,12 @@
                             <input type="text" class="form-control @error('nomor_akreditasi') is-invalid @enderror" id="nomor" name="nomor_akreditasi" placeholder="xxxx/xx/x/xxxx" value="{{ old('nomor_akreditasi', $jurusan->nomor_akreditasi) }}" maxlength="50" required>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="kode_surat" class="col-sm-2 col-form-label">Kode Surat</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control @error('kode_surat') is-invalid @enderror" id="nomor" name="kode_surat" placeholder="x" value="{{ old('kode_surat', $jurusan->kode_surat) }}" maxlength="2" required>
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-warning" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali</button>&nbsp;
                         <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>

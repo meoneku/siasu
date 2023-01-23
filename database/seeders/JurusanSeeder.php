@@ -21,7 +21,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Agama Islam',
             'akreditasi'        => 'B',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'A',
         ]);
 
         Jurusan::create([
@@ -30,7 +31,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Agama Islam',
             'akreditasi'        => 'B',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'A',
         ]);
 
         Jurusan::create([
@@ -39,7 +41,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Agama Islam',
             'akreditasi'        => 'B',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'A',
         ]);
 
         Jurusan::create([
@@ -48,7 +51,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Agama Islam',
             'akreditasi'        => 'B',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'A',
         ]);
 
         Jurusan::create([
@@ -57,7 +61,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Agama Islam',
             'akreditasi'        => 'B',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'A',
         ]);
 
         Jurusan::create([
@@ -66,7 +71,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Agama Islam',
             'akreditasi'        => 'B',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'A',
         ]);
 
         Jurusan::create([
@@ -75,7 +81,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Teknik',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => '217/SK/BAN-PT/Akred/S/I/2018'
+            'nomor_akreditasi'  => '217/SK/BAN-PT/Akred/S/I/2018',
+            'kode_surat'        => 'F',
         ]);
 
         Jurusan::create([
@@ -84,7 +91,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Teknik',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => '1856/SK/BAN-PT/Akred/S/VII/2018'
+            'nomor_akreditasi'  => '1856/SK/BAN-PT/Akred/S/VII/2018',
+            'kode_surat'        => 'F',
         ]);
 
         Jurusan::create([
@@ -93,7 +101,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Teknik',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => '1973/SK/BAN-PT/Akred/S/VII/2018'
+            'nomor_akreditasi'  => '1973/SK/BAN-PT/Akred/S/VII/2018',
+            'kode_surat'        => 'F',
         ]);
 
         Jurusan::create([
@@ -102,7 +111,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Teknik',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => '2469/SK/BAN-PT/Akred/S/IX/2018'
+            'nomor_akreditasi'  => '2469/SK/BAN-PT/Akred/S/IX/2018',
+            'kode_surat'        => 'F',
         ]);
 
         Jurusan::create([
@@ -111,7 +121,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Teknologi Informasi',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'G',
         ]);
 
         Jurusan::create([
@@ -120,7 +131,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Teknologi Informasi',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'G',
         ]);
 
         Jurusan::create([
@@ -129,7 +141,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'D3',
             'fakultas'          => 'Fakultas Teknologi Informasi',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'G',
         ]);
 
         Jurusan::create([
@@ -138,7 +151,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Ekonomi',
             'akreditasi'        => 'Baik',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'H',
         ]);
 
         Jurusan::create([
@@ -147,7 +161,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Ekonomi',
             'akreditasi'        => 'Baik',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'H',
         ]);
 
         Jurusan::create([
@@ -156,7 +171,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Ekonomi',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'H',
         ]);
 
         Jurusan::create([
@@ -165,7 +181,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Ilmu Pendidikan',
             'akreditasi'        => 'Baik',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'I',
         ]);
 
         Jurusan::create([
@@ -174,7 +191,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Ilmu Pendidikan',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'I',
         ]);
 
         Jurusan::create([
@@ -183,7 +201,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Ilmu Pendidikan',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'I',
         ]);
 
         Jurusan::create([
@@ -192,7 +211,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Ilmu Pendidikan',
             'akreditasi'        => 'Baik',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'I',
         ]);
 
         Jurusan::create([
@@ -201,7 +221,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Ilmu Pendidikan',
             'akreditasi'        => 'Baik',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'I',
         ]);
 
         Jurusan::create([
@@ -210,7 +231,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S2',
             'fakultas'          => 'Pascasarjana',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'B',
         ]);
 
         Jurusan::create([
@@ -219,7 +241,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S2',
             'fakultas'          => 'Pascasarjana',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'B',
         ]);
 
         Jurusan::create([
@@ -228,7 +251,8 @@ class JurusanSeeder extends Seeder
             'jenjang'           => 'S1',
             'fakultas'          => 'Fakultas Agama Islam',
             'akreditasi'        => 'C',
-            'nomor_akreditasi'  => 'Uknown'
+            'nomor_akreditasi'  => 'Uknown',
+            'kode_surat'        => 'A',
         ]);
     }
 }

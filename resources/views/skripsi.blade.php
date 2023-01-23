@@ -24,10 +24,10 @@
             <p>
                 1. Telah Melunasi Pembayaran Semester Berjalan<br />
                 2. Telah Melunasi Pembayaran Proposal Skripsi<br />
-                3. Menyertakan foto kopi Kartu Rencana Studi (KRS) Semester Berjalan
+                3. Tidak memiliki nilai D Dan E pada transkrip
             </p>
             <hr>
-            <p class="mb-0"><i>* Harap membawa bukti-bukti di atas</i></p>
+            <p class="mb-0"><i>* Pastikan semua persyaratan di atas terpenuhi</i></p>
         </div>
         @if (session()->has('success'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">

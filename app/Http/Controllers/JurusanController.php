@@ -46,7 +46,8 @@ class JurusanController extends Controller
             'jenjang'           => 'required|max:2',
             'fakultas'          => 'required|max:30',
             'akreditasi'        => 'required|max:20',
-            'nomor_akreditasi'  => 'required|max:50'
+            'nomor_akreditasi'  => 'required|max:50',
+            'kode_surat'        => 'required|max:2',
         ]);
 
         Jurusan::create($validateData);
@@ -93,7 +94,8 @@ class JurusanController extends Controller
             'jenjang'           => 'required|max:2',
             'fakultas'          => 'required|max:30',
             'akreditasi'        => 'required|max:20',
-            'nomor_akreditasi'  => 'required|max:50'
+            'nomor_akreditasi'  => 'required|max:50',
+            'kode_surat'        => 'required|max:2',
         ]);
 
         Jurusan::where('id', $jurusan->id)

@@ -191,7 +191,7 @@ class TranskripController extends Controller
         ]);
     }
 
-    public function gantiKata($kalimat)
+    public static function gantiKata($kalimat)
     {
         $kataCari  = [];
         $kataGanti = [];
@@ -249,7 +249,7 @@ class TranskripController extends Controller
         return $result;
     }
 
-    public function cariNilaiHuruf($nilai)
+    public static function cariNilaiHuruf($nilai)
     {
         if ($nilai == 4) {
             $result = "A";

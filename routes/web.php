@@ -138,8 +138,8 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::get('webmin/skripsi/{skripsi}/formbimbing', [SkripsiController::class, 'formpembimbing'])->name('skripsi.form.pembimbing');
     Route::get('webmin/skripsi/{skripsi}/tugas', [SkripsiController::class, 'surattugas'])->name('skripsi.surat.tugas');
     Route::put('webmin/skripsi/setbimbing/{skripsi}', [SkripsiController::class, 'updatebimbing'])->name('skripsi.update.bimbing');
-    Route::put('webmin/skripsi/tolak/{skripsi}', [SkripsiController::class, 'tolak'])->name('skripsi.tolak');
-    Route::put('webmin/skripsi/undotolak/{skripsi}', [SkripsiController::class, 'undotolak'])->name('skripsi.tolak');
+    Route::get('webmin/skripsi/{skripsi}/approve', [SkripsiController::class, 'persetujuan'])->name('skripsi.persetujuan');
+    Route::put('webmin/skripsi/status/{skripsi}', [SkripsiController::class, 'updatestatus'])->name('skripsi.update.status');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');
