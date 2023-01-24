@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('seminar_id');
             $table->unsignedBigInteger('dosen_id');
+            $table->string('sebagai', 128);
             $table->timestamps();
 
             $table->foreign('seminar_id')->references('id')->on('seminar');

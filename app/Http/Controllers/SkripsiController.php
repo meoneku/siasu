@@ -170,7 +170,7 @@ class SkripsiController extends Controller
                 'jurusan_id'    => $skripsi->mahasiswa->jurusan_id,
                 'jenis_surat'   => 'Penugasan Pembimbing Skripsi',
                 'tahun'         => date('Y')
-                ];
+            ];
             Surat::create($data);
         }
 
@@ -225,14 +225,16 @@ class SkripsiController extends Controller
             $jumlahSKS += $sorted['sks'];
             // $jumlahNilai += $sorted['nilai'] * $sorted['sks'];
             // $no++;
+            //echo $jumlahSKS . '<br/>';
+            echo $stringMataKuliah . '<br/>';
         }
-
+        die;
         $NilaiDE = $countNilai->where('nilai', '<=', 1);
 
         $phone = $skripsi->nomor_handphone;
         if (preg_match('/^0/', $phone)) {
-            $str = ltrim ($phone, '0');
-            $phonenumber ='+62'. $str;
+            $str = ltrim($phone, '0');
+            $phonenumber = '+62' . $str;
         } else {
             $phonenumber = $phone;
         }
@@ -256,6 +258,13 @@ class SkripsiController extends Controller
         Skripsi::where('id', $skripsi->id)
             ->update($validateData);
         return redirect($request->redirect_to)->with('success', 'Status Berhasil Di Update');
+    }
+
+    public function surattugas(Skripsi $skripsi)
+    {
+        return view('dashboard.skripsi.daftar.st', [
+            'skripsi'   => $skripsi
+        ]);
     }
 
     public static function getStatusPendaftaran($id)
@@ -313,13 +322,13 @@ class SkripsiController extends Controller
 
     public static function NoSurat($id_jurusan, $jurusan, $kode_surat)
     {
-        $begin = 'UNHASY/' . $jurusan . '/' . $kode_surat;
+        $begin = 'UNHASY/EL/' . $jurusan . '/' . $kode_surat;
         $roma = array("", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII");
         $surat = Surat::latest()->where('tahun', date('Y'))->where('jurusan_id', $id_jurusan)->first();
         $number = 1;
-        if($surat) {
-            $lastNumber= substr($surat->no_surat, 0, 3);
-            $intNumber =  preg_replace('/[0]/','',$lastNumber);
+        if ($surat) {
+            $lastNumber = substr($surat->no_surat, 0, 3);
+            $intNumber =  preg_replace('/[0]/', '', $lastNumber);
             $autonumber = sprintf("%03s", abs($intNumber + 1)) . '/' . $begin . '/' . $roma[date('n')] . '/' . date('Y');
         } else {
             $autonumber = sprintf("%03s", $number) . '/' . $begin . '/' . $roma[date('n')] . '/' . date('Y');

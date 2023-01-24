@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('lokasi_penelitian', 255);
             $table->unsignedBigInteger('batch_id');
             $table->dateTime('waktu_ujian')->nullable();
+            $table->string('no_surat', 128)->nullable();
+            $table->smallInteger('status')->default('0');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
 
             $table->foreign('mahasiswa_id')->references('id')->on('mahasiswa');
