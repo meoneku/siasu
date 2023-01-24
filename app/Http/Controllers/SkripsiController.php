@@ -164,10 +164,10 @@ class SkripsiController extends Controller
         $validateData['status'] = 5;
 
         if (!$skripsi->no_surat) {
-            $validateData['no_surat'] = $this->NoSurat($skripsi->mahasiswa->jurusan_id, $skripsi->mahasiswa->jurusan->singkatan, $skripsi->mahasiswa->jurusan->kode_surat);
+            $validateData['no_surat'] = $this->NoSurat('94', 'A', $skripsi->mahasiswa->jurusan->kode_surat);
             $data = [
                 'no_surat'      => $validateData['no_surat'],
-                'jurusan_id'    => $skripsi->mahasiswa->jurusan_id,
+                'jurusan_id'    => 94,
                 'jenis_surat'   => 'Penugasan Pembimbing Skripsi',
                 'tahun'         => date('Y')
             ];
@@ -226,9 +226,7 @@ class SkripsiController extends Controller
             // $jumlahNilai += $sorted['nilai'] * $sorted['sks'];
             // $no++;
             //echo $jumlahSKS . '<br/>';
-            echo $stringMataKuliah . '<br/>';
         }
-        die;
         $NilaiDE = $countNilai->where('nilai', '<=', 1);
 
         $phone = $skripsi->nomor_handphone;
@@ -263,7 +261,8 @@ class SkripsiController extends Controller
     public function surattugas(Skripsi $skripsi)
     {
         return view('dashboard.skripsi.daftar.st', [
-            'skripsi'   => $skripsi
+            'skripsi'   => $skripsi,
+            'dekan'     => Dosen::where('jabatan', 'Dekan')->first()
         ]);
     }
 

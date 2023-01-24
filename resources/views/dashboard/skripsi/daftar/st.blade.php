@@ -46,7 +46,7 @@
             <tr>
                 <td colspan="3" style="text-align:center;">
                     <strong><u><span style="font-size: 28px">SURAT TUGAS</u></strong><br />
-                    Nomor : ST.20311/UNHASY/I/2023
+                    Nomor : {{ $skripsi->no_surat }}
                 </td>
             </tr>
             <tr>
@@ -100,7 +100,7 @@
             <tr>
                 <td width="150px" class="top-text">Kepada</td>
                 <td width="10px" class="top-text">:</td>
-                <td class="top-text"><strong>Dosen A</strong></td>
+                <td class="top-text"><strong>{{ $skripsi->dosen->nama }}</strong></td>
             </tr>
             <tr>
                 <td width="150px" class="top-text">Untuk</td>
@@ -112,7 +112,7 @@
                         <li>Kegiatan bimbingan dilaksanakan sejak tanggal dikeluarkannya Surat Tugas ini dan agar mahasiswa menghubungi dan berkonsultasi dengan pembimbing.</li>
                         <li>Pelaksanaan penulisan proposal skripsi dan penelitian dimulai sejak ditanda tangani Surat Tugas ini.</li>
                         <li>Melaksanakan bimbingan proposal 3 (tiga) kali dan bimbingan skripsi minimal 6 (enam) kali sampai selesai penyusunan skripsi</li>
-                        <li>Surat Tugas ini berlaku sampai tanggal ................................</li>
+                        <li>Surat Tugas ini berlaku sampai tanggal <strong>{{ tanggal_indonesia($skripsi->akhir_penugasan, false) }}</strong></li>
                     </ol>
                 </td>
             </tr>
@@ -127,7 +127,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Pada Tanggal : 26 Januari 2023</td>
+                <td>Pada Tanggal : {{ tanggal_indonesia($skripsi->surat->created_at, false) }}</td>
             </tr>
             <tr>
                 <td></td>
@@ -141,12 +141,12 @@
             </tr>
             <tr>
                 <td colspan="2"></td>
-                <td><u>Dr. Nur Kholis, S.T.,M.T.</u></td>
+                <td><u><strong>{{ $dekan->nama }}</strong></u></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
-                <td>NIY : UHA. 01.0369</td>
+                <td><strong>NIY : {{ $dekan->niy }}</strong></td>
             </tr>
         </table>
     </div>
