@@ -15,9 +15,17 @@ class IndexController extends Controller
     public function skripsi()
     {
         $now = date('Y-m-d');
-        // $now = '2023-01-30';
         $batch = Batch::where('kegiatan_id', 4)->whereRaw('? between mulai and selesai', $now)->first();
         return view('skripsi', [
+            'batch'     => $batch
+        ]);
+    }
+
+    public function seminar()
+    {
+        $now = date('Y-m-d');
+        $batch = Batch::where('kegiatan_id', 5)->whereRaw('? between mulai and selesai', $now)->first();
+        return view('seminar', [
             'batch'     => $batch
         ]);
     }

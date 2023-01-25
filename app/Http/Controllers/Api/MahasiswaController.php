@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
+use App\Models\Skripsi;
 
 class MahasiswaController extends Controller
 {
@@ -31,6 +32,35 @@ class MahasiswaController extends Controller
                 "nama"      => $mahasiswa->nama,
                 "jurusan"   => $mahasiswa->jurusan->jenjang . ' ' . $mahasiswa->jurusan->jurusan,
                 "id"        => $mahasiswa->id
+            );
+        }
+
+        return response()->json($response);
+    }
+
+    public function getDataSkripsi(Request $request)
+    {
+        $search     = $request->search;
+
+        if ($search == '') {
+            $datas    = Skripsi::orderby('nama', 'asc')->with('mahasiswa')->limit(10)->get();
+        } else {
+            $datas    = Skripsi::orderby('id', 'asc')->whereHas('mahasiswa', function ($q, $search) {
+                $q->where('nama', 'like', '%' . $search . '%');
+            })->with('jurusan')->limit(10)->get();
+        }
+
+        $response = array();
+        foreach ($datas as $data) {
+            $response[] = array(
+                "nim"       => $data->mahasiswa->nim,
+                "label"     => $data->mahasiswa->nim . ' | ' . $data->getMahasiswa->nama . ' | ' . $data->mahasiswa->jurusan->jurusan,
+                "nama"      => $data->mahasiswa->nama,
+                "jurusan"   => $data->mahasiswa->jurusan->jenjang . ' ' . $data->mahasiswa->jurusan->jurusan,
+                "id"        => $data->mahasiswa->id,
+                "dosen_id"  => $data->dosen_id,
+                "dosen"     => $data->dosen->nama,
+                "lokasi"    => $data->lokasi_penelitian,
             );
         }
 

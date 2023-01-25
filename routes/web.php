@@ -38,6 +38,7 @@ use App\http\Controllers\BatchController;
 Route::get('/', [IndexController::class, 'index'])->name('home.index');
 Route::get('/skripsi', [IndexController::class, 'skripsi'])->name('home.skripsi.index');
 Route::post('/skripsi', [SkripsiController::class, 'store'])->name('home.skripsi.store');
+Route::get('/seminar', [IndexController::class, 'seminar'])->name('home.seminar.index');
 
 Route::get('/webmin/prank', function () {
     return view('hello');
