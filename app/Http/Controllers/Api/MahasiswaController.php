@@ -43,24 +43,23 @@ class MahasiswaController extends Controller
         $search     = $request->search;
 
         if ($search == '') {
-            $datas    = Skripsi::orderby('nama', 'asc')->with('mahasiswa')->limit(10)->get();
+            $datas    = Skripsi::orderby('mahasiswa_id', 'asc')->with('mahasiswa')->limit(10)->get();
         } else {
-            $datas    = Skripsi::orderby('id', 'asc')->whereHas('mahasiswa', function ($q, $search) {
-                $q->where('nama', 'like', '%' . $search . '%');
-            })->with('jurusan')->limit(10)->get();
+            $datas    = Skripsi::with('mahasiswa')->with('batch')->filter(request(['search']))->where('status', '!=', 4)->limit(10)->get();
         }
 
         $response = array();
         foreach ($datas as $data) {
             $response[] = array(
                 "nim"       => $data->mahasiswa->nim,
-                "label"     => $data->mahasiswa->nim . ' | ' . $data->getMahasiswa->nama . ' | ' . $data->mahasiswa->jurusan->jurusan,
+                "label"     => $data->mahasiswa->nim . ' | ' . $data->mahasiswa->nama . ' | ' . $data->mahasiswa->jurusan->jurusan,
                 "nama"      => $data->mahasiswa->nama,
                 "jurusan"   => $data->mahasiswa->jurusan->jenjang . ' ' . $data->mahasiswa->jurusan->jurusan,
                 "id"        => $data->mahasiswa->id,
                 "dosen_id"  => $data->dosen_id,
                 "dosen"     => $data->dosen->nama,
                 "lokasi"    => $data->lokasi_penelitian,
+                "judul"     => $data->judul_skripsi
             );
         }
 

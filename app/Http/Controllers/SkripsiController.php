@@ -153,14 +153,41 @@ class SkripsiController extends Controller
         ]);
     }
 
+    public function addpembimbing(Skripsi $skripsi)
+    {
+        if ($skripsi->status <= 2 or $skripsi->status == 4) {
+            return redirect(url('webmin/skripsi'))->with('success', 'Error 501');
+        }
+
+        return view('dashboard.skripsi.daftar.addbimbing', [
+            'title'     => 'Mahasiswa | Data Pendaftar Skripsi',
+            'dosens'    => Dosen::all(),
+            'skripsi'   => $skripsi
+        ]);
+    }
+
     public function updatebimbing(Request $request, Skripsi $skripsi)
     {
         $validateData   = $request->validate([
-            'dosen_id'          => 'required',
-            'awal_penugasan'    => 'required',
-            'akhir_penugasan'   => 'required',
+            'dosen_id'      => 'required',
+            'pembimbing'    => 'required',
+            'mulai'         => 'required',
+            'selesai'       => 'required',
         ]);
 
+        Skripsi::find($skripsi->id)->dosen()->attach($validateData['dosen_id'], ['pembimbing' => $validateData['pembimbing'], 'mulai' => $validateData['mulai'], 'selesai' => $validateData['selesai']]);
+
+        return redirect($request->redirect_to)->with('success', 'Dosen Pembimbing Berhasil Di Tambahkan');
+    }
+
+    public function destroybimbing(Request $request, Skripsi $skripsi)
+    {
+        Skripsi::find($skripsi->id)->dosen()->detach($request->dosen_id);
+        return redirect($request->redirect_to)->with('success', 'Data Pembimbing Berhasil Di Hapus');
+    }
+
+    public function penerbitan(Skripsi $skripsi, Request $request)
+    {
         $validateData['status'] = 5;
 
         if (!$skripsi->no_surat) {
@@ -175,8 +202,9 @@ class SkripsiController extends Controller
         }
 
         Skripsi::where('id', $skripsi->id)
-            ->update($validateData);
-        return redirect($request->redirect_to)->with('success', 'Dosen Pembimbing Berhasil Di Set');
+             ->update($validateData);
+
+        return redirect($request->redirect_to)->with('success', 'Surat Penugasan Sudah Berhasil Diterbitkan');
     }
 
     public function persetujuan(Skripsi $skripsi)
@@ -260,9 +288,15 @@ class SkripsiController extends Controller
 
     public function surattugas(Skripsi $skripsi)
     {
+
+        $tanggal = [];
+        foreach($skripsi->dosen as $dosen) {
+            array_push($tanggal, $dosen->pivot->selesai);
+        }
         return view('dashboard.skripsi.daftar.st', [
             'skripsi'   => $skripsi,
-            'dekan'     => Dosen::where('jabatan', 'Dekan')->first()
+            'dekan'     => Dosen::where('jabatan', 'Dekan')->first(),
+            'selesai'   => $tanggal[0]
         ]);
     }
 

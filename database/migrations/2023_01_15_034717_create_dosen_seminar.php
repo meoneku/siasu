@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ujianskripsi_dosen', function (Blueprint $table) {
+        Schema::create('dosen_seminar', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ujianskripsi_id');
+            $table->unsignedBigInteger('seminar_id');
             $table->unsignedBigInteger('dosen_id');
-            $table->string('sebagai', 128);
             $table->timestamps();
 
-            $table->foreign('ujianskripsi_id')->references('id')->on('ujianskripsi');
+            $table->foreign('seminar_id')->references('id')->on('seminar');
             $table->foreign('dosen_id')->references('id')->on('dosen');
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ujianskripsi_dosen');
+        Schema::dropIfExists('seminar_dosen');
     }
 };

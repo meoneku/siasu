@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('sks');
             $table->float('ipk');
             $table->unsignedBigInteger('batch_id');
-            $table->unsignedBigInteger('dosen_id')->nullable();
             $table->date('awal_penugasan')->nullable();
             $table->date('akhir_penugasan')->nullable();
             $table->string('no_surat', 128)->nullable();

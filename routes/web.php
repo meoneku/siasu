@@ -18,6 +18,7 @@ use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\UjiController;
 use App\Http\Controllers\KegiatanController;
 use App\http\Controllers\BatchController;
+use App\Http\Controllers\SeminarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::get('/', [IndexController::class, 'index'])->name('home.index');
 Route::get('/skripsi', [IndexController::class, 'skripsi'])->name('home.skripsi.index');
 Route::post('/skripsi', [SkripsiController::class, 'store'])->name('home.skripsi.store');
 Route::get('/seminar', [IndexController::class, 'seminar'])->name('home.seminar.index');
+Route::post('/seminar', [SeminarController::class, 'store'])->name('home.seminar.store');
 
 Route::get('/webmin/prank', function () {
     return view('hello');
@@ -136,11 +138,17 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::delete('webmin/skripsi/{skripsi}', [SkripsiController::class, 'destroy'])->name('skripsi.destroy');
     Route::get('webmin/skripsi/{skripsi}/form', [SkripsiController::class, 'form'])->name('skripsi.form');
     Route::get('webmin/skripsi/{skripsi}/setbimbing', [SkripsiController::class, 'setpembimbing'])->name('skripsi.set.pembimbing');
+    Route::get('webmin/skripsi/{skripsi}/addbimbing', [SkripsiController::class, 'addpembimbing'])->name('skripsi.add.pembimbing');
     Route::get('webmin/skripsi/{skripsi}/formbimbing', [SkripsiController::class, 'formpembimbing'])->name('skripsi.form.pembimbing');
     Route::get('webmin/skripsi/{skripsi}/tugas', [SkripsiController::class, 'surattugas'])->name('skripsi.surat.tugas');
-    Route::put('webmin/skripsi/setbimbing/{skripsi}', [SkripsiController::class, 'updatebimbing'])->name('skripsi.update.bimbing');
+    Route::post('webmin/skripsi/penerbitan/{skripsi}', [SkripsiController::class, 'penerbitan'])->name('skripsi.surat.penerbitan');
+    Route::delete('webmin/skripsi/pembimbing/{skripsi}', [SkripsiController::class, 'destroybimbing'])->name('skripsi.destroy.pembimbing');
+    // Route::put('webmin/skripsi/setbimbing/{skripsi}', [SkripsiController::class, 'updatebimbing'])->name('skripsi.update.bimbing');
+    Route::post('webmin/skripsi/setbimbing/{skripsi}', [SkripsiController::class, 'updatebimbing'])->name('skripsi.update.bimbing');
     Route::get('webmin/skripsi/{skripsi}/approve', [SkripsiController::class, 'persetujuan'])->name('skripsi.persetujuan');
     Route::put('webmin/skripsi/status/{skripsi}', [SkripsiController::class, 'updatestatus'])->name('skripsi.update.status');
+    //Seminar Skripsi Route
+    Route::resources(['webmin/seminar' => SeminarController::class]);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

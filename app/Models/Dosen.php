@@ -18,6 +18,11 @@ class Dosen extends Model
         return $this->belongsTo(Jurusan::class);
     }
 
+    public function seminar()
+    {
+        return $this->belongsToMany(Seminar::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['nama'] ?? false, function ($query, $nama) {

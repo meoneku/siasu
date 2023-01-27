@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
+use App\Models\Jurusan;
 use App\Models\Seminar;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,12 @@ class SeminarController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.skripsi.seminar.index', [
+            'title'     => 'Mahasiswa | Data Seminar Skripsi',
+            'seminar'   => Seminar::with('mahasiswa')->with('batch')->filter(request(['nama', 'jurusan', 'batch']))->latest()->paginate(10)->withQueryString(),
+            'jurusan'   => Jurusan::all(),
+            'batchs'    => Batch::where('kegiatan_id', 5)->latest()->limit(5)->get()
+        ]);
     }
 
     /**
@@ -35,7 +42,16 @@ class SeminarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData   = $request->validate([
+            'mahasiswa_id'      => 'required',
+            'judul_skripsi'     => 'required',
+            'lokasi_penelitian' => 'required',
+            'batch_id'          => 'required'
+        ]);
+
+        $seminar = Seminar::create($validateData);
+        // $seminar->dosen()->attach($request->dosen_id, ['sebagai' => 'Pembimbing Utama']);
+        return redirect($request->redirect_to)->with('success', 'Terimakasih telah melakukan pendaftaran seminar, data pendaftaran akan di verifikasi terlebih dahulu');
     }
 
     /**

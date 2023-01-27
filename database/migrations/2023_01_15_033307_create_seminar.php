@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('judul_skripsi');
             $table->string('lokasi_penelitian', 255);
             $table->unsignedBigInteger('batch_id');
-            $table->unsignedBigInteger('dosen_id')->nullable();
             $table->dateTime('waktu_seminar')->nullable();
             $table->string('no_surat', 128)->nullable();
             $table->smallInteger('status')->default('0');

@@ -194,7 +194,6 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-        
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
@@ -206,7 +205,6 @@
         </footer>
     </div>
     <!-- ./wrapper -->
-    @yield('addmodal')
     <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->

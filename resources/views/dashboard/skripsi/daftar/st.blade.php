@@ -34,7 +34,7 @@
     <title>Surat Tugas</title>
 </head>
 
-<body class="container">
+<body class="container" onload="window.print()">
     @include('dashboard.kop.teknik')
     <div class="kontent">
         <table width="850px" class="paragraf">
@@ -100,7 +100,13 @@
             <tr>
                 <td width="150px" class="top-text">Kepada</td>
                 <td width="10px" class="top-text">:</td>
-                <td class="top-text"><strong>{{ $skripsi->dosen->nama }}</strong></td>
+                <td class="top-text">
+                    <ol>
+                        @foreach($skripsi->dosen as $dosen)
+                            <li><strong>{{ $dosen->nama }}</strong></li>
+                        @endforeach
+                    </ol>
+                </td>
             </tr>
             <tr>
                 <td width="150px" class="top-text">Untuk</td>
@@ -112,7 +118,7 @@
                         <li>Kegiatan bimbingan dilaksanakan sejak tanggal dikeluarkannya Surat Tugas ini dan agar mahasiswa menghubungi dan berkonsultasi dengan pembimbing.</li>
                         <li>Pelaksanaan penulisan proposal skripsi dan penelitian dimulai sejak ditanda tangani Surat Tugas ini.</li>
                         <li>Melaksanakan bimbingan proposal 3 (tiga) kali dan bimbingan skripsi minimal 6 (enam) kali sampai selesai penyusunan skripsi</li>
-                        <li>Surat Tugas ini berlaku sampai tanggal <strong>{{ tanggal_indonesia($skripsi->akhir_penugasan, false) }}</strong></li>
+                        <li>Surat Tugas ini berlaku sampai tanggal <strong>{{ tanggal_indonesia($selesai, false) }}</strong></li>
                     </ol>
                 </td>
             </tr>

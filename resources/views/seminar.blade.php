@@ -89,6 +89,18 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        let editor;
+
+        ClassicEditor
+            .create(document.querySelector('#judul'), {
+                toolbar: ['bold', 'italic'],
+            }).then(newEditor => {
+                editor = newEditor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
         $(document).ready(function() {
 
             $("#nama").autocomplete({
@@ -117,17 +129,11 @@
                     $('#dosen_id').val(ui.item.dosen_id);
                     $('#dosen').val(ui.item.dosen);
                     $('#lokasi').val(ui.item.lokasi);
+                    // $('#judul').html(ui.item.judul);
+                    editor.setData(ui.item.judul);
                     return false;
                 }
             });
         });
-
-        ClassicEditor
-            .create(document.querySelector('#judul'), {
-                toolbar: ['bold', 'italic'],
-            })
-            .catch(error => {
-                console.error(error);
-            });
     </script>
 @endsection

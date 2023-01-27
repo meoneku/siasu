@@ -84,6 +84,7 @@
                         <button type="button" class="btn btn-warning" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali</button>&nbsp;
                         <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
                     </div>
+                </form>
             </div>
             <div class="card-footer">
                 *<i>Perhatikan Penulisan Nama Lulusan

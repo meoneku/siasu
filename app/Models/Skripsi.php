@@ -19,7 +19,7 @@ class Skripsi extends Model
 
     public function dosen()
     {
-        return $this->belongsTo(Dosen::class)->withDefault(['nama' => '']);
+        return $this->belongsToMany(Dosen::class)->withPivot('pembimbing', 'mulai', 'selesai');
     }
 
     public function batch()
@@ -41,6 +41,16 @@ class Skripsi extends Model
                 'mahasiswa',
                 fn ($query) =>
                 $query->where('nama', 'like', '%' . $nama . '%')
+            )
+        );
+
+        $query->when(
+            $filters['search'] ?? false,
+            fn ($query, $search) =>
+            $query->whereHas(
+                'mahasiswa',
+                fn ($query) =>
+                $query->where('nama', 'like', '%' . $search . '%')
             )
         );
 
