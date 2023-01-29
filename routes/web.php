@@ -54,26 +54,51 @@ Route::group(['middleware' => 'guestadm'], function () {
 Route::get('/webmin/logout', [AdminController::class, 'logout'])->name('webmin.logout');
 
 //Admin Routes
-Route::group(['middleware' => 'adminauth'], function () {
+Route::group(['middleware' => 'is_login'], function () {
     //Dashboard Routes
     Route::get('/webmin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    //Jurusan Routes
-    Route::resources(['webmin/jurusan' => JurusanController::class,]);
+    //For Superuser Routes
+    Route::group(['middleware' => 'root'], function () {
+        //Jurusan Routes
+        Route::resources(['webmin/jurusan' => JurusanController::class,]);
+
+        //Jabatan Routes
+        Route::resources(['webmin/jabatan' => JabatanController::class,]);
+
+        //Lulusan Route Delete
+        Route::delete('webmin/lulusan/{lulusan}', [LulusanController::class, 'destroy'])->name('lulusan.destroy');
+
+        //Settings Route
+        Route::get('webmin/parameter', [SettingController::class, 'parameter'])->name('setting.parameter');
+        Route::post('webmin/parameter', [SettingController::class, 'parameterStore'])->name('setting.parameter.store');
+
+        //Kegiatan Route
+        Route::resources(['webmin/kegiatan' => KegiatanController::class]);
+
+        //Skripsi Route Delete
+        Route::delete('webmin/skripsi/{skripsi}', [SkripsiController::class, 'destroy'])->name('skripsi.destroy');
+    });
+
+    //Profil And Password Changes Routes
+    Route::get('webmin/password', [SettingController::class, 'password'])->name('setting.password');
+    Route::post('webmin/password', [SettingController::class, 'passwordStore'])->name('setting.password.store');
+    Route::get('webmin/profil', [SettingController::class, 'profil'])->name('setting.profil');
+    Route::post('webmin/profil', [SettingController::class, 'profilStore'])->name('setting.profil.store');
+
     //Lulusan Routes
     Route::get('webmin/lulusan', [LulusanController::class, 'index'])->name('lulusan.index');
     Route::get('webmin/lulusan/create', [LulusanController::class, 'create'])->name('lulusan.create');
     Route::post('webmin/lulusan', [LulusanController::class, 'store'])->name('lulusan.store');
     Route::get('webmin/lulusan/{lulusan}/edit', [LulusanController::class, 'edit'])->name('lulusan.edit');
     Route::put('webmin/lulusan/{lulusan}', [LulusanController::class, 'update'])->name('lulusan.update');
-    Route::delete('webmin/lulusan/{lulusan}', [LulusanController::class, 'destroy'])->name('lulusan.destroy');
     Route::get('webmin/lulusan/template', [LulusanController::class, 'DownloadTemplate'])->name('lulusan.template');
     Route::get('webmin/lulusan/import', [LulusanController::class, 'import'])->name('lulusan.import');
     Route::post('webmin/lulusan/impview', [LulusanController::class, 'importView'])->name('lulusan.impview');
     Route::post('webmin/lulusan/import', [LulusanController::class, 'importData'])->name('lulusan.impData');
-    //Jabatan Routes
-    Route::resources(['webmin/jabatan' => JabatanController::class,]);
+
     //List Kata Routes
     Route::resources(['webmin/kata' => KataController::class,]);
+
     //Nilai Routes
     Route::get('webmin/nilai', [NilaiController::class, 'index'])->name('nilai.index');
     Route::get('webmin/nilai/import', [NilaiController::class, 'import'])->name('nilai.import');
@@ -85,6 +110,7 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::delete('webmin/nilai/{nilai}', [NilaiController::class, 'destroy'])->name('nilai.destroy');
     Route::get('webmin/nilai/pindah', [NilaiController::class, 'pindah'])->name('nilai.import.pindah');
     Route::post('webmin/nilai/pindah', [NilaiController::class, 'pindahStore'])->name('nilai.impstore.pindah');
+
     //Dosen Routes
     Route::get('webmin/dosen', [DosenController::class, 'index'])->name('dosen.index');
     Route::get('webmin/dosen/create', [DosenController::class, 'create'])->name('dosen.create');
@@ -96,6 +122,7 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::get('webmin/dosen/import', [DosenController::class, 'import'])->name('dosen.import');
     Route::post('webmin/dosen/impview', [DosenController::class, 'importView'])->name('dosen.impview');
     Route::post('webmin/dosen/import', [DosenController::class, 'importData'])->name('dosen.impData');
+
     //Mahasiswa Routes
     Route::get('webmin/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
     Route::get('webmin/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
@@ -111,13 +138,7 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::get('webmin/transkrip', [TranskripController::class, 'index'])->name('transkrip.index');
     Route::get('webmin/transkrip/print', [TranskripController::class, 'print'])->name('transkrip.print');
     Route::get('webmin/transkrip/edit', [TranskripController::class, 'edit'])->name('transkrip.edit');
-    //Settings Route
-    Route::get('webmin/parameter', [SettingController::class, 'parameter'])->name('setting.parameter');
-    Route::post('webmin/parameter', [SettingController::class, 'parameterStore'])->name('setting.parameter.store');
-    Route::get('webmin/password', [SettingController::class, 'password'])->name('setting.password');
-    Route::post('webmin/password', [SettingController::class, 'passwordStore'])->name('setting.password.store');
-    Route::get('webmin/profil', [SettingController::class, 'profil'])->name('setting.profil');
-    Route::post('webmin/profil', [SettingController::class, 'profilStore'])->name('setting.profil.store');
+
     //Ajar Route
     Route::get('webmin/ajar', [AjarController::class, 'index'])->name('ajar.index');
     Route::get('webmin/ajar/create', [AjarController::class, 'create'])->name('ajar.create');
@@ -125,17 +146,16 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::get('webmin/ajar/{ajar}/edit', [AjarController::class, 'edit'])->name('ajar.edit');
     Route::put('webmin/ajar/{ajar}', [AjarController::class, 'update'])->name('ajar.update');
     Route::delete('webmin/ajar/{ajar}', [AjarController::class, 'destroy'])->name('ajar.destroy');
-    //Kegiatan Route
-    Route::resources(['webmin/kegiatan' => KegiatanController::class]);
+
     //Batch Route
     Route::resources(['webmin/batch' => BatchController::class]);
+
     //Daftar Skripsi Route
     Route::get('webmin/skripsi', [SkripsiController::class, 'index'])->name('skripsi.index');
     Route::get('webmin/skripsi/create', [SkripsiController::class, 'create'])->name('skripsi.create');
     Route::post('webmin/skripsi', [SkripsiController::class, 'store'])->name('skripsi.store');
     Route::get('webmin/skripsi/{skripsi}/edit', [SkripsiController::class, 'edit'])->name('skripsi.edit');
     Route::put('webmin/skripsi/{skripsi}', [SkripsiController::class, 'update'])->name('skripsi.update');
-    Route::delete('webmin/skripsi/{skripsi}', [SkripsiController::class, 'destroy'])->name('skripsi.destroy');
     Route::get('webmin/skripsi/{skripsi}/form', [SkripsiController::class, 'form'])->name('skripsi.form');
     Route::get('webmin/skripsi/{skripsi}/setbimbing', [SkripsiController::class, 'setpembimbing'])->name('skripsi.set.pembimbing');
     Route::get('webmin/skripsi/{skripsi}/addbimbing', [SkripsiController::class, 'addpembimbing'])->name('skripsi.add.pembimbing');
@@ -147,6 +167,7 @@ Route::group(['middleware' => 'adminauth'], function () {
     Route::post('webmin/skripsi/setbimbing/{skripsi}', [SkripsiController::class, 'updatebimbing'])->name('skripsi.update.bimbing');
     Route::get('webmin/skripsi/{skripsi}/approve', [SkripsiController::class, 'persetujuan'])->name('skripsi.persetujuan');
     Route::put('webmin/skripsi/status/{skripsi}', [SkripsiController::class, 'updatestatus'])->name('skripsi.update.status');
+
     //Seminar Skripsi Route
     Route::resources(['webmin/seminar' => SeminarController::class]);
 });

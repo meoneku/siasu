@@ -21,7 +21,9 @@
                     </tr>
                 </table>
                 <div class="d-flex justify-content-end mt-2 mb-2">
-                    <a href="{{ url('webmin/skripsi') . '/' . $skripsi->id . '/addbimbing'}}" class="btn btn-primary"><i class="fas fa-plus"></i> Input Pembimbing</a>
+                    @if ($skripsi->status != 5)
+                        <a href="{{ url('webmin/skripsi') . '/' . $skripsi->id . '/addbimbing' }}" class="btn btn-primary"><i class="fas fa-plus"></i> Input Pembimbing</a>
+                    @endif
                 </div>
                 <table class="table table-striped">
                     <tr>
@@ -34,38 +36,45 @@
                         <th>Selesai</th>
                         <th></th>
                     </tr>
-                    @foreach($skripsi->dosen as $dosen)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $dosen->niy }}</td>
-                        <td>{{ $dosen->nama }}</td>
-                        <td>{{ $dosen->jurusan->jenjang }} {{ $dosen->jurusan->jurusan }}</td>
-                        <td>{{ $dosen->pivot->pembimbing }}</td>
-                        <td>{{ tanggal_indonesia($dosen->pivot->mulai, false) }}</td>
-                        <td>{{ tanggal_indonesia($dosen->pivot->selesai, false) }}</td>
-                        <td>
-                            <form action="/webmin/skripsi/pembimbing/{{ $skripsi->id }}" method="post" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                <input type="hidden" name="dosen_id" value="{{ $dosen->id }}">
-                                <button class="badge bg-danger border-0 button-delete" data-message=" Pembimbing {{ $dosen->nama }} "><i class="fas fa-trash"></i></button>
-                            </form>
-                        </td>
-                    </tr>
+                    @foreach ($skripsi->dosen as $dosen)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $dosen->niy }}</td>
+                            <td>{{ $dosen->nama }}</td>
+                            <td>{{ $dosen->jurusan->jenjang }} {{ $dosen->jurusan->jurusan }}</td>
+                            <td>{{ $dosen->pivot->pembimbing }}</td>
+                            <td>{{ tanggal_indonesia($dosen->pivot->mulai, false) }}</td>
+                            <td>{{ tanggal_indonesia($dosen->pivot->selesai, false) }}</td>
+                            <td>
+                                <form action="/webmin/skripsi/pembimbing/{{ $skripsi->id }}" method="post" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
+                                    <input type="hidden" name="dosen_id" value="{{ $dosen->id }}">
+                                    <button class="badge bg-danger border-0 button-delete" data-message=" Pembimbing {{ $dosen->nama }} "><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
                 </table>
-                <form action="/webmin/skripsi/penerbitan/{{ $skripsi->id }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="redirect_to" value="{!! URL::previous() !!}">
+                @if ($skripsi->status == 5)
                     <div class="d-flex justify-content-end mt-2 mb-2">
-                        <button type="button" class="btn btn-warning" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali</button>&nbsp;
-                        <button type="submit" class="btn btn-success"><i class="fa fa-envelope"></i> Terbitkan Surat Penugasan</button>
+                        <a href="{{ url('webmin/skripsi') }}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>&nbsp;
+                        <a href="/webmin/skripsi/{{ $skripsi->id }}/tugas" class="btn btn-success" target="_blank"><i class="fa fa-envelope"></i> Cetak Surat Penugasan</a>
                     </div>
-                </form>
+                @else
+                    <form action="/webmin/skripsi/penerbitan/{{ $skripsi->id }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="redirect_to" value="{!! URL::previous() !!}">
+                        <div class="d-flex justify-content-end mt-2 mb-2">
+                            <a href="{{ url('webmin/skripsi') }}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>&nbsp;
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-envelope"></i> Terbitkan Surat Penugasan</button>
+                        </div>
+                    </form>
+                @endif
             </div>
             <div class="card-footer">
-                
+
             </div>
         </div>
     </div>

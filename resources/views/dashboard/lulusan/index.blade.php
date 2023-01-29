@@ -82,12 +82,14 @@
                                         <a href="/webmin/transkrip/print?nim={{ $lulus->nim }}&separator={{ env('SEPARATOR') }}&kurikulum={{ $kuri }}&final=false&predikat={{ env('PREDIKAT') }}&pin={{ env('PIN') }}" class="btn btn-primary" target="_blank"><i class="fas fa-sad-cry"></i> Transkrip Sementara</a>&nbsp;
                                         <a href="/webmin/transkrip/print?nim={{ $lulus->nim }}&separator={{ env('SEPARATOR') }}&kurikulum={{ $kuri }}&final=true&predikat={{ env('PREDIKAT') }}&pin={{ env('PIN') }}" class="btn btn-success" target="_blank"><i class="fas fa-print"></i> Transkrip</a>&nbsp;
                                         <a href="/webmin/lulusan/{{ $lulus->id }}/edit" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>&nbsp;
-                                        <form action="/webmin/lulusan/{{ $lulus->id }}" method="post" class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                            <button class="btn btn-danger button-delete" data-message="Lulusan Dengan Nama {{ $lulus->nama }}"><i class="fas fa-trash"></i> Hapus</button>
-                                        </form>
+                                        @if (Auth::guard('admin')->user()->role == 'root')
+                                            <form action="/webmin/lulusan/{{ $lulus->id }}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
+                                                <button class="btn btn-danger button-delete" data-message="Lulusan Dengan Nama {{ $lulus->nama }}"><i class="fas fa-trash"></i> Hapus</button>
+                                            </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

@@ -78,23 +78,25 @@
                                             </button>
                                             <div class="dropdown-menu" role="menu">
                                                 <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/edit"><i class="fas fa-edit"></i> Edit / Lihat</a>
-                                                <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/approve"><i class="far fa-check-circle"></i> Status Seminar</a>
+                                                <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/approve"><i class="far fa-check-circle"></i> Status Daftar</a>
                                                 <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/form" target="_blank"><i class="fas fa-file-pdf"></i> Form Pendaftaran</a>
                                                 @if ($data->status == 3 or $data->status == 5)
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/setbimbing"><i class="fas fa-user-graduate"></i> Set Dosen Pembimbing</a>
                                                     @if ($data->status == 5)
                                                         <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/formbimbing" target="_blank"><i class="fas fa-sticky-note"></i> Form Pembimbing</a>
-                                                        <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/tugas" target="_blank"><i class="fas fa-file-signature"></i> Surat Penugasan</a>
+                                                        <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/tugas" target="_blank"><i class="fas fa-envelope"></i> Surat Penugasan</a>
                                                     @endif
                                                 @endif
-                                                <div class="dropdown-divider"></div>
-                                                <form action="/webmin/skripsi/{{ $data->id }}" method="post" class="d-inline">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                                    <button class="btn-link button-delete dropdown-item" data-message="Data Pendaftar Skripsi {{ $data->mahasiswa->nama }}"><i class="fas fa-trash"></i> Hapus</button>
-                                                </form>
+                                                @if (Auth::guard('admin')->user()->role == 'root')
+                                                    <div class="dropdown-divider"></div>
+                                                    <form action="/webmin/skripsi/{{ $data->id }}" method="post" class="d-inline">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
+                                                        <button class="btn-link button-delete dropdown-item" data-message="Data Pendaftar Skripsi {{ $data->mahasiswa->nama }}"><i class="fas fa-trash"></i> Hapus</button>
+                                                    </form>
+                                                @endif
                                             </div>
                                         </div>
                                     </td>

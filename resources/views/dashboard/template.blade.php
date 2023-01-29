@@ -98,21 +98,25 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Keuangan</a>
-                            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                <li><a href="{{ url('webmin/prank') }}" class="dropdown-item">Gaji Bulanan</a></li>
-                                <li><a href="{{ url('webmin/prank') }}" class="dropdown-item">Honorarium Magang</a></li>
-                                <li><a href="{{ url('webmin/prank') }}" class="dropdown-item">Honorarium Proposal Skripsi & Skripsi</a></li>
-                            </ul>
-                        </li>
+                        @if (Auth::guard('admin')->user()->role == 'root')
+                            <li class="nav-item dropdown">
+                                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Keuangan</a>
+                                <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                    <li><a href="{{ url('webmin/prank') }}" class="dropdown-item">Gaji Bulanan</a></li>
+                                    <li><a href="{{ url('webmin/prank') }}" class="dropdown-item">Honorarium Magang</a></li>
+                                    <li><a href="{{ url('webmin/prank') }}" class="dropdown-item">Honorarium Proposal Skripsi & Skripsi</a></li>
+                                </ul>
+                            </li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Data Master</a>
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                <li><a href="{{ url('webmin/jurusan') }}" class="dropdown-item">Data Jurusan</a></li>
-                                <li><a href="{{ url('webmin/kegiatan') }}" class="dropdown-item">Data Kegiatan</a></li>
-                                <li><a href="{{ url('webmin/batch') }}" class="dropdown-item">Gelombang / Batch Kegiatan</a></li>
-                                <li class="dropdown-divider"></li>
+                                @if (Auth::guard('admin')->user()->role == 'root')
+                                    <li><a href="{{ url('webmin/jurusan') }}" class="dropdown-item">Data Jurusan</a></li>
+                                    <li><a href="{{ url('webmin/kegiatan') }}" class="dropdown-item">Data Kegiatan</a></li>
+                                    <li><a href="{{ url('webmin/batch') }}" class="dropdown-item">Gelombang / Batch Kegiatan</a></li>
+                                    <li class="dropdown-divider"></li>
+                                @endif
                                 <li><a href="{{ url('webmin/kata') }}" class="dropdown-item">List Kata</a></li>
                             </ul>
                         </li>
@@ -121,8 +125,10 @@
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                 <li><a href="{{ url('webmin/profil') }}" class="dropdown-item">Profil</a></li>
                                 <li><a href="{{ url('webmin/password') }}" class="dropdown-item">Ganti Password</a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a href="{{ url('webmin/parameter') }}" class="dropdown-item">Parameter</a></li>
+                                @if (Auth::guard('admin')->user()->role == 'root')
+                                    <li class="dropdown-divider"></li>
+                                    <li><a href="{{ url('webmin/parameter') }}" class="dropdown-item">Parameter</a></li>
+                                @endif
                             </ul>
                         </li>
                         <li class="nav-item">

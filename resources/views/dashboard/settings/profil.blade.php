@@ -26,12 +26,12 @@
                             <input type="email" class="form-control  @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email',auth()->guard('admin')->user()->email) }}" maxlength="50" required autofocus>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="role" class="col-sm-2 col-form-label">Role</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control  @error('role') is-invalid @enderror" id="role" name="role" value="{{ old('role',auth()->guard('admin')->user()->role) }}" maxlength="20" required autofocus>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-success">🦊</button>
                     </div>

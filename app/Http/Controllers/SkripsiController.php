@@ -202,9 +202,9 @@ class SkripsiController extends Controller
         }
 
         Skripsi::where('id', $skripsi->id)
-             ->update($validateData);
+            ->update($validateData);
 
-        return redirect($request->redirect_to)->with('success', 'Surat Penugasan Sudah Berhasil Diterbitkan');
+        return redirect(url('webmin/skripsi') . '/' . $skripsi->id . '/setbimbing')->with('success', 'Surat Penugasan Sudah Berhasil Diterbitkan');
     }
 
     public function persetujuan(Skripsi $skripsi)
@@ -290,7 +290,7 @@ class SkripsiController extends Controller
     {
 
         $tanggal = [];
-        foreach($skripsi->dosen as $dosen) {
+        foreach ($skripsi->dosen as $dosen) {
             array_push($tanggal, $dosen->pivot->selesai);
         }
         return view('dashboard.skripsi.daftar.st', [

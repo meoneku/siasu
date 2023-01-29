@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminAuthenticated
+class RootAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class AdminAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('admin')->user()->role == 'admin') {
+        if (Auth::guard('admin')->user()->role == 'root') {
             return $next($request);
         }
         if ($request->ajax() || $request->wantsJson()) {
