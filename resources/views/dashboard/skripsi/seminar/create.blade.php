@@ -3,12 +3,12 @@
     <div class="col-lg-12">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="card-title m-0">Data Pendaftar Skripsi | Tambah</h5>
+                <h5 class="card-title m-0">Data Pendaftar Seminar Skripsi | Tambah</h5>
             </div>
             <div class="card-body">
-                <form class="form-horizontal" method="post" action="{{ url('webmin/skripsi') }}" enctype="multipart/form-data">
+                <form class="form-horizontal" method="post" action="{{ url('webmin/seminar') }}" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="redirect_to" value="{{ url('webmin/skripsi') }}">
+                    <input type="hidden" name="redirect_to" value="{{ url('webmin/seminar') }}">
                     <div class="form-group row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
@@ -41,33 +41,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="hp" class="col-sm-2 col-form-label">Nomor Handphone</label>
-                        <div class="col-sm-6">
-                            <input type="number" class="form-control" id="hp" name="nomor_handphone" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label">Alamat Email</label>
-                        <div class="col-sm-6">
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="sks" class="col-sm-2 col-form-label">SKS Yang Ditempuh</label>
-                        <div class="col-sm-2">
-                            <input type="number" class="form-control" id="sks" name="sks" required>
-                        </div>
-                        <label for="sks" class="col-sm-2 col-form-label"><i>* Minimal 144 Sks</i></label>
-                    </div>
-                    <div class="form-group row">
-                        <label for="ipk" class="col-sm-2 col-form-label">IPK</label>
-                        <div class="col-sm-2">
-                            <input type="number" step="0.01" class="form-control" id="ipk" name="ipk" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label for="batch_id" class="col-sm-2 col-form-label">Batch</label>
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <select name="batch_id" id="batch_id" class="form-control">
                                 @foreach ($batchs as $batch)
                                     <option value="{{ $batch->id }}">{{ $batch->nama }} - {{ $batch->kegiatan->nama }}</option>
@@ -90,13 +65,25 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        let editor;
+
+        ClassicEditor
+            .create(document.querySelector('#judul'), {
+                toolbar: ['bold', 'italic'],
+            }).then(newEditor => {
+                editor = newEditor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
         $(document).ready(function() {
 
             $("#nama").autocomplete({
                 source: function(request, response) {
                     // Fetch data
                     $.ajax({
-                        url: "{{ url('api/getMahasiswa') }}",
+                        url: "{{ url('api/getDataSkripsi') }}",
                         type: 'post',
                         dataType: "json",
                         data: {
@@ -109,23 +96,15 @@
                     });
                 },
                 select: function(event, ui) {
-                    // Set selection
-                    // $('#nim').val(ui.item.label);
                     $('#nim').val(ui.item.nim);
                     $('#mahasiswa_id').val(ui.item.id);
                     $('#nama').val(ui.item.nama);
                     $('#jurusan_id').val(ui.item.jurusan);
+                    $('#lokasi').val(ui.item.lokasi);
+                    editor.setData(ui.item.judul);
                     return false;
                 }
             });
         });
-
-        ClassicEditor
-            .create(document.querySelector('#judul'), {
-                toolbar: ['bold', 'italic'],
-            })
-            .catch(error => {
-                console.error(error);
-            });
     </script>
 @endsection

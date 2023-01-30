@@ -23,32 +23,32 @@
 </head>
 
 <body class="container" onload="window.print()">
-    @foreach ($skripsi->dosen as $dosen)
+    @foreach ($seminar->dosen as $dosen)
         @include('dashboard.kop.teknik')
         <div class="kontent">
             <table width="850px" class="paragraf">
                 <tr>
                     <td colspan="3" style="text-align:center;">
-                        <h3>FORM BIMBINGAN SKRIPSI</h3>
+                        <h3>FORM BIMBINGAN SEMINAR SKRIPSI</h3>
                     </td>
                 </tr>
                 <tr>
                     <td width="200px">Nama</td>
                     <td width="10px">:</td>
-                    <td>{{ $skripsi->mahasiswa->nama }}</td>
+                    <td>{{ $seminar->mahasiswa->nama }}</td>
                 </tr>
                 <tr>
                     <td width="200px">NIM / Prodi</td>
                     <td width="10px">:</td>
-                    <td>{{ $skripsi->mahasiswa->nim }} / {{ $skripsi->mahasiswa->jurusan->jenjang }} {{ $skripsi->mahasiswa->jurusan->jurusan }}</td>
+                    <td>{{ $seminar->mahasiswa->nim }} / {{ $seminar->mahasiswa->jurusan->jenjang }} {{ $seminar->mahasiswa->jurusan->jurusan }}</td>
                 </tr>
                 <tr>
                     <td width="200px" style="vertical-align: top;">Judul Skripsi</td>
                     <td width="10px" style="vertical-align: top;">:</td>
-                    <td style="vertical-align: top;">{{ strip_tags($skripsi->judul_skripsi) }}</td>
+                    <td style="vertical-align: top;">{{ strip_tags($seminar->judul_skripsi) }}</td>
                 </tr>
                 <tr>
-                    <td width="200px">Dosen Pembimbing</td>
+                    <td width="200px">Dosen Penguji</td>
                     <td width="10px">:</td>
                     <td>{{ $dosen->nama }}</td>
                 </tr>
@@ -72,7 +72,7 @@
             <table width="850px" class="ttd">
                 <tr>
                     <td></td>
-                    <td width="350px">Pembimbing</td>
+                    <td width="350px">Penguji</td>
                 </tr>
                 <tr>
                     <td height="100px"></td>

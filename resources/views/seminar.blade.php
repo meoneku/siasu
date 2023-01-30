@@ -70,13 +70,6 @@
                     <input type="text" class="form-control" id="lokasi" name="lokasi_penelitian" required>
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="dosen" class="col-sm-2 col-form-label">Dosen Pembimbing</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="dosen" name="dosen" value="" readonly>
-                    <input type="hidden" class="form-control" id="dosen_id" name="dosen_id" value="">
-                </div>
-            </div>
             <div class="d-flex justify-content-end">
                 <a href="/" class="btn btn-warning"><i class="fa-solid fa-arrow-left"></i> Kembali</a>&nbsp;<button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Daftar</button>
             </div>
@@ -120,16 +113,11 @@
                     });
                 },
                 select: function(event, ui) {
-                    // Set selection
-                    // $('#nim').val(ui.item.label);
                     $('#nim').val(ui.item.nim);
                     $('#mahasiswa_id').val(ui.item.id);
                     $('#nama').val(ui.item.nama);
                     $('#jurusan_id').val(ui.item.jurusan);
-                    $('#dosen_id').val(ui.item.dosen_id);
-                    $('#dosen').val(ui.item.dosen);
                     $('#lokasi').val(ui.item.lokasi);
-                    // $('#judul').html(ui.item.judul);
                     editor.setData(ui.item.judul);
                     return false;
                 }

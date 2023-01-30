@@ -33,9 +33,9 @@
                                 </tr>
                             </thead>
                             @if (count($nilai) == 0)
-                            <tr>
-                                <td colspan="6"><span class="d-flex justify-content-center"><i>Tidak Ada Data Yang Di Tampilkan</i></span></td>
-                            </tr>
+                                <tr>
+                                    <td colspan="6"><span class="d-flex justify-content-center"><i>Tidak Ada Data Yang Di Tampilkan</i></span></td>
+                                </tr>
                             @endif
                             <tbody>
                                 <?php $no = 0; ?>
@@ -51,7 +51,7 @@
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td colspan="6"><span class="d-flex justify-content-end"><i>* Jumlah SKS Yang Sudah Di Tempuh {{ $sks }} Detail Nilai Dapat Di Lihat Di  </i><strong><a href="{{ url('webmin/transkrip/edit?nim=') . $skripsi->mahasiswa->nim }}" >Data Nilai</a></strong></span></td>
+                                    <td colspan="6"><span class="d-flex justify-content-end"><i>* Jumlah SKS Yang Sudah Di Tempuh {{ $sks }} Detail Nilai Dapat Di Lihat Di </i><strong><a href="{{ url('webmin/transkrip/edit?nim=') . $skripsi->mahasiswa->nim }}">Data Nilai</a></strong></span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -74,10 +74,10 @@
                         <label for="status" class="col-sm-2 col-form-label">Dosen Pembimbing</label>
                         <div class="col-sm-6">
                             <select id="status" name="status" class="form-control" required>
-                                @if($skripsi->status == 0)
+                                @if ($skripsi->status == 0)
                                     <option value="0">-- Pilih Status --</option>
                                 @else
-                                <option value="{{ $skripsi->status }}">{{ App\Http\Controllers\SkripsiController::getStatus($skripsi->status) }}</option>
+                                    <option value="{{ $skripsi->status }}">{{ App\Http\Controllers\SkripsiController::getStatus($skripsi->status) }}</option>
                                 @endif
                                 <option value="1">Teruskan Ke Koordinator Skripsi</option>
                                 <option value="2">Teruskan Ke Kaprodi</option>
@@ -96,6 +96,7 @@
                         <button type="button" class="btn btn-warning" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali</button>&nbsp;
                         <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
                     </div>
+                </form>
             </div>
             <div class="card-footer">
                 <i>* Sumber Data Nilai Dan SKS Dari Forlap/Feeder Dikti</i>

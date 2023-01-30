@@ -46,13 +46,15 @@
                             <td>{{ tanggal_indonesia($dosen->pivot->mulai, false) }}</td>
                             <td>{{ tanggal_indonesia($dosen->pivot->selesai, false) }}</td>
                             <td>
-                                <form action="/webmin/skripsi/pembimbing/{{ $skripsi->id }}" method="post" class="d-inline">
-                                    @method('delete')
-                                    @csrf
-                                    <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                    <input type="hidden" name="dosen_id" value="{{ $dosen->id }}">
-                                    <button class="badge bg-danger border-0 button-delete" data-message=" Pembimbing {{ $dosen->nama }} "><i class="fas fa-trash"></i></button>
-                                </form>
+                                @if ($skripsi->status != 5)
+                                    <form action="/webmin/skripsi/pembimbing/{{ $skripsi->id }}" method="post" class="d-inline">
+                                        @method('delete')
+                                        @csrf
+                                        <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
+                                        <input type="hidden" name="dosen_id" value="{{ $dosen->id }}">
+                                        <button class="badge bg-danger border-0 button-delete" data-message=" Pembimbing {{ $dosen->nama }} "><i class="fas fa-trash"></i></button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

@@ -207,7 +207,7 @@
 
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2022 <a href="#">Boy Studio</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; {{ date('Y') }} <a href="#">Fakultas Teknik</a>.</strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->

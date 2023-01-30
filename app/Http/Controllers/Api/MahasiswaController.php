@@ -45,7 +45,7 @@ class MahasiswaController extends Controller
         if ($search == '') {
             $datas    = Skripsi::orderby('mahasiswa_id', 'asc')->with('mahasiswa')->limit(10)->get();
         } else {
-            $datas    = Skripsi::with('mahasiswa')->with('batch')->filter(request(['search']))->where('status', '!=', 4)->limit(10)->get();
+            $datas    = Skripsi::with('mahasiswa')->with('batch')->filter(request(['search']))->where('status', 5)->limit(10)->get();
         }
 
         $response = array();
@@ -56,8 +56,6 @@ class MahasiswaController extends Controller
                 "nama"      => $data->mahasiswa->nama,
                 "jurusan"   => $data->mahasiswa->jurusan->jenjang . ' ' . $data->mahasiswa->jurusan->jurusan,
                 "id"        => $data->mahasiswa->id,
-                "dosen_id"  => $data->dosen_id,
-                "dosen"     => $data->dosen->nama,
                 "lokasi"    => $data->lokasi_penelitian,
                 "judul"     => $data->judul_skripsi
             );

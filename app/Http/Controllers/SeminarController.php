@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batch;
+use App\Models\Dosen;
 use App\Models\Jurusan;
 use App\Models\Seminar;
+use App\Models\Surat;
 use Illuminate\Http\Request;
 
 class SeminarController extends Controller
@@ -31,7 +33,10 @@ class SeminarController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.skripsi.seminar.create', [
+            'title'     => 'Mahasiswa | Data Pendaftar Seminar Skripsi',
+            'batchs'    => Batch::where('kegiatan_id', 5)->get()
+        ]);
     }
 
     /**
@@ -49,8 +54,7 @@ class SeminarController extends Controller
             'batch_id'          => 'required'
         ]);
 
-        $seminar = Seminar::create($validateData);
-        // $seminar->dosen()->attach($request->dosen_id, ['sebagai' => 'Pembimbing Utama']);
+        Seminar::create($validateData);
         return redirect($request->redirect_to)->with('success', 'Terimakasih telah melakukan pendaftaran seminar, data pendaftaran akan di verifikasi terlebih dahulu');
     }
 
@@ -73,7 +77,11 @@ class SeminarController extends Controller
      */
     public function edit(Seminar $seminar)
     {
-        //
+        return view('dashboard.skripsi.seminar.edit', [
+            'title'     => 'Mahasiswa | Data Pendaftar Seminar Skripsi',
+            'batchs'    => Batch::where('kegiatan_id', 5)->get(),
+            'seminar'   => $seminar
+        ]);
     }
 
     /**
@@ -85,7 +93,16 @@ class SeminarController extends Controller
      */
     public function update(Request $request, Seminar $seminar)
     {
-        //
+        $validateData   = $request->validate([
+            'mahasiswa_id'      => 'required',
+            'judul_skripsi'     => 'required',
+            'lokasi_penelitian' => 'required',
+            'batch_id'          => 'required'
+        ]);
+
+        Seminar::where('id', $seminar->id)
+            ->update($validateData);
+        return redirect($request->redirect_to)->with('success', 'Data Sudah Berhasil Di Rubah');
     }
 
     /**
@@ -94,8 +111,123 @@ class SeminarController extends Controller
      * @param  \App\Models\Seminar  $seminar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Seminar $seminar)
+    public function destroy(Seminar $seminar, Request $request)
     {
-        //
+        Seminar::destroy($seminar->id);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Hapus');
+    }
+
+    public function penguji(Seminar $seminar)
+    {
+        return view('dashboard.skripsi.seminar.penguji', [
+            'title'     => 'Mahasiswa | Data Pendaftar Seminar Skripsi',
+            'seminar'   => $seminar
+        ]);
+    }
+
+    public function addpenguji(Seminar $seminar)
+    {
+        return view('dashboard.skripsi.seminar.addpenguji', [
+            'title'     => 'Mahasiswa | Data Pendaftar Seminar Skripsi',
+            'seminar'   => $seminar,
+            'dosens'    => Dosen::all()
+        ]);
+    }
+
+    public function destroyPenguji(Seminar $seminar, Request $request)
+    {
+        Seminar::find($seminar->id)->dosen()->detach($request->dosen_id);
+        return redirect($request->redirect_to)->with('success', 'Data Penguji Berhasil Di Hapus');
+    }
+
+    public function savePenguji(Request $request, Seminar $seminar)
+    {
+        Seminar::find($seminar->id)->dosen()->attach($request->dosen_id);
+
+        return redirect($request->redirect_to)->with('success', 'Dosen Penguji Berhasil Di Tambahkan');
+    }
+
+    public function status(Seminar $seminar)
+    {
+        return view('dashboard.skripsi.seminar.status', [
+            'title'     => 'Mahasiswa | Data Pendaftar Seminar Skripsi',
+            'seminar'   => $seminar
+        ]);
+    }
+
+    public function updateStatus(Seminar $seminar, Request $request)
+    {
+        $validateData   = $request->validate([
+            'status'        => 'required',
+            'keterangan'    => ''
+        ]);
+
+        Seminar::where('id', $seminar->id)
+            ->update($validateData);
+        return redirect($request->redirect_to)->with('success', 'Status Sudah Berhasil Di Rubah');
+    }
+
+    public function penerbitan(Request $request, Seminar $seminar)
+    {
+        $validateData = $request->validate([
+            'waktu_seminar' => 'required',
+            'ruang'         => 'required'
+        ]);
+
+        $validateData['status'] = 5;
+
+        if (!$seminar->no_surat) {
+            $validateData['no_surat'] = SkripsiController::NoSurat($seminar->mahasiswa->jurusan_id, $seminar->mahasiswa->jurusan->singkatan, $seminar->mahasiswa->jurusan->kode_surat);
+            $data = [
+                'no_surat'      => $validateData['no_surat'],
+                'jurusan_id'    => $seminar->mahasiswa->jurusan_id,
+                'jenis_surat'   => 'Penugasan Penguji Skripsi',
+                'tahun'         => date('Y')
+            ];
+
+            Surat::create($data);
+        }
+
+        Seminar::where('id', $seminar->id)
+            ->update($validateData);
+
+        return redirect(url('webmin/seminar/penguji') . '/' . $seminar->id)->with('success', 'Surat Penugasan Sudah Berhasil Diterbitkan');
+    }
+
+    public function formulir(Seminar $seminar)
+    {
+        return view('dashboard.skripsi.seminar.formulir', [
+            'seminar'       => $seminar,
+            'kaprodi'       => Dosen::where('jabatan', 'Kaprodi')->where('jurusan_id', $seminar->mahasiswa->jurusan->id)->first(),
+            'koord'         => Dosen::where('jabatan', 'Koordinator Skripsi')->where('jurusan_id', $seminar->mahasiswa->jurusan->id)->first()
+        ]);
+    }
+
+    public function formuji(Seminar $seminar)
+    {
+        return view('dashboard.skripsi.seminar.bimbingan', [
+            'seminar'       => $seminar
+        ]);
+    }
+
+    public static function getStatus($id)
+    {
+        if ($id == 0) {
+            $result = '-- Pilih Status --';
+        } elseif ($id == 1) {
+            $result = 'Teruskan Ke Koordinator Skripsi';
+        } elseif ($id == 2) {
+            $result = 'Teruskan Ke Kaprodi';
+        } elseif ($id == 3) {
+            $result = 'Penugasan Dosen Penguji';
+        } elseif ($id == 4) {
+            $result = 'Seminar Tidak Diterima';
+        } elseif ($id == 5) {
+            $result = 'Set Dosen Penguji';
+        } else {
+            $result = 'Error';
+        }
+
+        return $result;
     }
 }

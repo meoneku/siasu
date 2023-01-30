@@ -36,7 +36,7 @@ class SkripsiController extends Controller
     {
         return view('dashboard.skripsi.daftar.create', [
             'title'     => 'Mahasiswa | Data Pendaftar Skripsi',
-            'batchs'    => Batch::all()
+            'batchs'    => Batch::where('kegiatan_id', 4)->get()
         ]);
     }
 
@@ -191,7 +191,7 @@ class SkripsiController extends Controller
         $validateData['status'] = 5;
 
         if (!$skripsi->no_surat) {
-            $validateData['no_surat'] = $this->NoSurat('94', 'A', $skripsi->mahasiswa->jurusan->kode_surat);
+            $validateData['no_surat'] = $this->NoSurat($skripsi->mahasiswa->jurusan_id, $skripsi->mahasiswa->jurusan->singkatan, $skripsi->mahasiswa->jurusan->kode_surat);
             $data = [
                 'no_surat'      => $validateData['no_surat'],
                 'jurusan_id'    => 94,

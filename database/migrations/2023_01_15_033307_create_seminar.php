@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('lokasi_penelitian', 255);
             $table->unsignedBigInteger('batch_id');
             $table->dateTime('waktu_seminar')->nullable();
+            $table->string('ruang', 10);
             $table->string('no_surat', 128)->nullable();
             $table->smallInteger('status')->default('0');
             $table->text('keterangan')->nullable();
