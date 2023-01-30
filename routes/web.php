@@ -55,8 +55,10 @@ Route::get('/webmin/logout', [AdminController::class, 'logout'])->name('webmin.l
 
 //Admin Routes
 Route::group(['middleware' => 'is_login'], function () {
+
     //Dashboard Routes
     Route::get('/webmin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     //For Superuser Routes
     Route::group(['middleware' => 'root'], function () {
         //Jurusan Routes
@@ -77,6 +79,8 @@ Route::group(['middleware' => 'is_login'], function () {
 
         //Skripsi Route Delete
         Route::delete('webmin/skripsi/{skripsi}', [SkripsiController::class, 'destroy'])->name('skripsi.destroy');
+        //Seminar Route Delete
+        Route::delete('webmin/seminar/{seminar}', [SeminarController::class, 'destroy'])->name('seminar.destroy');
     });
 
     //Profil And Password Changes Routes
@@ -134,6 +138,7 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('webmin/mahasiswa/import', [MahasiswaController::class, 'import'])->name('mahasiswa.import');
     Route::post('webmin/mahasiswa/impview', [MahasiswaController::class, 'importView'])->name('mahasiswa.impview');
     Route::post('webmin/mahasiswa/import', [MahasiswaController::class, 'importData'])->name('mahasiswa.impData');
+
     //Transkrip Route
     Route::get('webmin/transkrip', [TranskripController::class, 'index'])->name('transkrip.index');
     Route::get('webmin/transkrip/print', [TranskripController::class, 'print'])->name('transkrip.print');
@@ -169,7 +174,20 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::put('webmin/skripsi/status/{skripsi}', [SkripsiController::class, 'updatestatus'])->name('skripsi.update.status');
 
     //Seminar Skripsi Route
-    Route::resources(['webmin/seminar' => SeminarController::class]);
+    Route::get('webmin/seminar', [SeminarController::class, 'index'])->name('seminar.index');
+    Route::get('webmin/seminar/create', [SeminarController::class, 'create'])->name('seminar.create');
+    Route::post('webmin/seminar', [SeminarController::class, 'store'])->name('seminar.store');
+    Route::get('webmin/seminar/{seminar}/edit', [SeminarController::class, 'edit'])->name('seminar.edit');
+    Route::put('webmin/seminar/{seminar}', [SeminarController::class, 'update'])->name('seminar.update');
+    Route::get('webmin/seminar/penguji/{seminar}', [SeminarController::class, 'penguji'])->name('seminar.penguji');
+    Route::get('webmin/seminar/penguji/{seminar}/add', [SeminarController::class, 'addpenguji'])->name('seminar.penguji.add');
+    Route::post('webmin/seminar/penguji/{seminar}', [SeminarController::class, 'savePenguji'])->name('seminar.penguji.save');
+    Route::delete('webmin/seminar/penguji/{seminar}', [SeminarController::class, 'destroyPenguji'])->name('seminar.penguji.destroy');
+    Route::get('webmin/seminar/status/{seminar}', [SeminarController::class, 'status'])->name('seminar.status');
+    Route::put('webmin/seminar/status/{seminar}', [SeminarController::class, 'updateStatus'])->name('seminar.status.update');
+    Route::put('webmin/seminar/penerbitan/{seminar}', [SeminarController::class, 'penerbitan'])->name('seminar.penerbitan.save');
+    Route::get('webmin/seminar/formulir/{seminar}', [SeminarController::class, 'formulir'])->name('seminar.formulir');
+    Route::get('webmin/seminar/formuji/{seminar}', [SeminarController::class, 'formuji'])->name('seminar.formuji');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');
