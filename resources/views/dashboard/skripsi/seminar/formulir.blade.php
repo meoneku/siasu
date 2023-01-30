@@ -57,7 +57,7 @@
                     <ol type="1">
                         <li>Menyertakan Foto Kopi KRS Berjalan Yang Telah Di Setujui</li>
                         <li>Telah Melakukan Pembayaran Seminar Proposal</li>
-                        <li>Telah Mendapat Persetujuan Proposal Skripsi Oleh Dosen Pembimbing</li>
+                        <li>Tiga (3) Eksemplar Draft Proposal Skripsi Yang Sudah Di Setujui Oleh Pembimbing Skripsi</li>
                     </ol>
                 </td>
             </tr>

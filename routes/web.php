@@ -165,7 +165,7 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('webmin/skripsi/{skripsi}/setbimbing', [SkripsiController::class, 'setpembimbing'])->name('skripsi.set.pembimbing');
     Route::get('webmin/skripsi/{skripsi}/addbimbing', [SkripsiController::class, 'addpembimbing'])->name('skripsi.add.pembimbing');
     Route::get('webmin/skripsi/{skripsi}/formbimbing', [SkripsiController::class, 'formpembimbing'])->name('skripsi.form.pembimbing');
-    Route::get('webmin/skripsi/{skripsi}/tugas', [SkripsiController::class, 'surattugas'])->name('skripsi.surat.tugas');
+    Route::get('webmin/skripsi/penugasan/{skripsi}', [SkripsiController::class, 'penugasan'])->name('skripsi.surat.tugas');
     Route::post('webmin/skripsi/penerbitan/{skripsi}', [SkripsiController::class, 'penerbitan'])->name('skripsi.surat.penerbitan');
     Route::delete('webmin/skripsi/pembimbing/{skripsi}', [SkripsiController::class, 'destroybimbing'])->name('skripsi.destroy.pembimbing');
     // Route::put('webmin/skripsi/setbimbing/{skripsi}', [SkripsiController::class, 'updatebimbing'])->name('skripsi.update.bimbing');
@@ -188,6 +188,8 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::put('webmin/seminar/penerbitan/{seminar}', [SeminarController::class, 'penerbitan'])->name('seminar.penerbitan.save');
     Route::get('webmin/seminar/formulir/{seminar}', [SeminarController::class, 'formulir'])->name('seminar.formulir');
     Route::get('webmin/seminar/formuji/{seminar}', [SeminarController::class, 'formuji'])->name('seminar.formuji');
+    Route::get('webmin/seminar/penugasan/{seminar}', [SeminarController::class, 'penugasan'])->name('seminar.penugasan');
+    Route::get('webmin/seminar/berita/{seminar}', [SeminarController::class, 'berita'])->name('seminar.berita');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

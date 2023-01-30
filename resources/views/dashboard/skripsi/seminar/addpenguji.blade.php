@@ -23,6 +23,26 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="sebagai" class="col-sm-2 col-form-label">Penguji</label>
+                        <div class="col-sm-3">
+                            <select id="sebagai" name="sebagai" class="form-control" required>
+                                <option value="Ketua Penguji">Ketua Penguji</option>
+                                <option value="Anggota Penguji">Anggota Penguji</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ke" class="col-sm-2 col-form-label">Penguji Ke</label>
+                        <div class="col-sm-2">
+                            <select id="ke" name="ke" class="form-control" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-warning" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali</button>&nbsp;
                         <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button>
@@ -30,7 +50,12 @@
                 </form>
             </div>
             <div class="card-footer">
-
+                <i>
+                    * Berdasarkan Panduan Skripsi Tahun 2022 :<br/>
+                    1. Penguji Ke 1 Merupakan Ketua Penguji<br/>
+                    2. Penguji Ke 2 Merupakan Anggota Penguji<br/>
+                    3. Penguji Ke 3 Merupakan Anggota Penguji (Pembimbing Skripsi)
+                </i>
             </div>
         </div>
     </div>

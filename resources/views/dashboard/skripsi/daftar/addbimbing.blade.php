@@ -32,18 +32,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="mulai" class="col-sm-2 col-form-label">Mulai Penugasan</label>
-                        <div class="col-sm-4">
-                            <input type="date" class="form-control" id="mulai" name="mulai" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="selesai" class="col-sm-2 col-form-label">Selesai Penugasan</label>
-                        <div class="col-sm-4">
-                            <input type="date" class="form-control" id="selesai" name="selesai" required>
-                        </div>
-                    </div>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-warning" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali</button>&nbsp;
                         <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</button>

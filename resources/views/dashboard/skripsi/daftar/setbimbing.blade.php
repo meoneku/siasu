@@ -32,8 +32,6 @@
                         <th>Nama</th>
                         <th>Homebase</th>
                         <th>Pembimbing</th>
-                        <th>Mulai</th>
-                        <th>Selesai</th>
                         <th></th>
                     </tr>
                     @foreach ($skripsi->dosen as $dosen)
@@ -43,8 +41,6 @@
                             <td>{{ $dosen->nama }}</td>
                             <td>{{ $dosen->jurusan->jenjang }} {{ $dosen->jurusan->jurusan }}</td>
                             <td>{{ $dosen->pivot->pembimbing }}</td>
-                            <td>{{ tanggal_indonesia($dosen->pivot->mulai, false) }}</td>
-                            <td>{{ tanggal_indonesia($dosen->pivot->selesai, false) }}</td>
                             <td>
                                 @if ($skripsi->status != 5)
                                     <form action="/webmin/skripsi/pembimbing/{{ $skripsi->id }}" method="post" class="d-inline">
@@ -60,14 +56,38 @@
                     @endforeach
                 </table>
                 @if ($skripsi->status == 5)
+                <div class="form-group row  mt-3 mb-2">
+                    <label for="awal_penugasan" class="col-sm-2 col-form-label">Awal Penugasan</label>
+                    <div class="col-sm-4">
+                        <input type="date" id="awal_penugasan" name="awal_penugasan" class="form-control" value="{{ $skripsi->awal_penugasan }}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="akhir_penugasan" class="col-sm-2 col-form-label">Akhir Penugasan</label>
+                    <div class="col-sm-4">
+                        <input type="date" id="akhir_penugasan" name="akhir_penugasan" class="form-control" value="{{ $skripsi->akhir_penugasan }}" readonly>
+                    </div>
+                </div>
                     <div class="d-flex justify-content-end mt-2 mb-2">
                         <a href="{{ url('webmin/skripsi') }}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>&nbsp;
-                        <a href="/webmin/skripsi/{{ $skripsi->id }}/tugas" class="btn btn-success" target="_blank"><i class="fa fa-envelope"></i> Cetak Surat Penugasan</a>
+                        <a href="/webmin/skripsi/penugasan/{{ $skripsi->id }}" class="btn btn-success" target="_blank"><i class="fa fa-envelope"></i> Cetak Surat Penugasan</a>
                     </div>
                 @else
-                    <form action="/webmin/skripsi/penerbitan/{{ $skripsi->id }}" method="post" enctype="multipart/form-data">
+                    <form action="/webmin/skripsi/penerbitan/{{ $skripsi->id }}" method="post" enctype="multipart/form-data" class="mt-3 mb-2">
                         @csrf
                         <input type="hidden" name="redirect_to" value="{!! URL::previous() !!}">
+                        <div class="form-group row">
+                            <label for="awal_penugasan" class="col-sm-2 col-form-label">Awal Penugasan</label>
+                            <div class="col-sm-4">
+                                <input type="date" id="awal_penugasan" name="awal_penugasan" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="akhir_penugasan" class="col-sm-2 col-form-label">Akhir Penugasan</label>
+                            <div class="col-sm-4">
+                                <input type="date" id="akhir_penugasan" name="akhir_penugasan" class="form-control" required>
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-end mt-2 mb-2">
                             <a href="{{ url('webmin/skripsi') }}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>&nbsp;
                             <button type="submit" class="btn btn-primary"><i class="fa fa-envelope"></i> Terbitkan Surat Penugasan</button>

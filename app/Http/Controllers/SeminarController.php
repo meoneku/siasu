@@ -142,7 +142,7 @@ class SeminarController extends Controller
 
     public function savePenguji(Request $request, Seminar $seminar)
     {
-        Seminar::find($seminar->id)->dosen()->attach($request->dosen_id);
+        Seminar::find($seminar->id)->dosen()->attach($request->dosen_id, ['sebagai' => $request->sebagai, 'ke' => $request->ke]);
 
         return redirect($request->redirect_to)->with('success', 'Dosen Penguji Berhasil Di Tambahkan');
     }
@@ -169,9 +169,15 @@ class SeminarController extends Controller
 
     public function penerbitan(Request $request, Seminar $seminar)
     {
+        if ($seminar->dosen()->count() == 0) {
+            return redirect(url('webmin/seminar/penguji') . '/' . $seminar->id)->with('success', 'Dosen Penguji Masih Kosong');
+        }
+
         $validateData = $request->validate([
-            'waktu_seminar' => 'required',
-            'ruang'         => 'required'
+            'tanggal_seminar'=> 'required',
+            'ruang'         => 'required',
+            'jam_mulai'     => 'required',
+            'jam_selesai'   => 'required'
         ]);
 
         $validateData['status'] = 5;
@@ -206,6 +212,21 @@ class SeminarController extends Controller
     public function formuji(Seminar $seminar)
     {
         return view('dashboard.skripsi.seminar.bimbingan', [
+            'seminar'       => $seminar
+        ]);
+    }
+
+    public function penugasan(Seminar $seminar)
+    {
+        return view('dashboard.skripsi.seminar.penugasan', [
+            'seminar'       => $seminar,
+            'kaprodi'       => Dosen::where('jurusan_id', $seminar->mahasiswa->jurusan_id)->where('jabatan', 'Kaprodi')->first()
+        ]);
+    }
+
+    public function berita(Seminar $seminar)
+    {
+        return view('dashboard.skripsi.seminar.berita', [
             'seminar'       => $seminar
         ]);
     }

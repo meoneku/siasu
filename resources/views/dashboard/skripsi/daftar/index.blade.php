@@ -85,7 +85,7 @@
                                                     <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/setbimbing"><i class="fas fa-user-graduate"></i> Set Dosen Pembimbing</a>
                                                     @if ($data->status == 5)
                                                         <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/formbimbing" target="_blank"><i class="fas fa-sticky-note"></i> Form Pembimbing</a>
-                                                        <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/tugas" target="_blank"><i class="fas fa-envelope"></i> Surat Penugasan</a>
+                                                        <a class="dropdown-item" href="/webmin/skripsi/penugasan/{{ $data->id }}" target="_blank"><i class="fas fa-envelope"></i> Surat Penugasan</a>
                                                     @endif
                                                 @endif
                                                 @if (Auth::guard('admin')->user()->role == 'root')

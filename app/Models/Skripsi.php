@@ -19,7 +19,7 @@ class Skripsi extends Model
 
     public function dosen()
     {
-        return $this->belongsToMany(Dosen::class)->withPivot('pembimbing', 'mulai', 'selesai');
+        return $this->belongsToMany(Dosen::class)->withPivot('pembimbing')->orderBy('pembimbing', 'desc');;
     }
 
     public function batch()

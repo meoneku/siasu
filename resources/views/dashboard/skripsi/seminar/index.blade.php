@@ -84,9 +84,9 @@
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="/webmin/seminar/penguji/{{ $data->id }}"><i class="fas fa-user-graduate"></i> Set Penguji</a>
                                                     @if ($data->status == 5)
-                                                        <a class="dropdown-item" href="/webmin/seminar/{{ $data->id }}/britac" target="_blank"><i class="fas fa-sticky-note"></i> Berita Acara</a>
+                                                        <a class="dropdown-item" href="/webmin/seminar/berita/{{ $data->id }}" target="_blank"><i class="fas fa-sticky-note"></i> Berita Acara</a>
                                                         <a class="dropdown-item" href="/webmin/seminar/formuji/{{ $data->id }}" target="_blank"><i class="fas fa-briefcase"></i> Form Penguji</a>
-                                                        <a class="dropdown-item" href="/webmin/seminar/{{ $data->id }}/tugas" target="_blank"><i class="fas fa-file-signature"></i> Surat Penugasan</a>
+                                                        <a class="dropdown-item" href="/webmin/seminar/penugasan/{{ $data->id }}" target="_blank"><i class="fas fa-file-signature"></i> Surat Penugasan</a>
                                                     @endif
                                                 @endif
                                                 <div class="dropdown-divider"></div>

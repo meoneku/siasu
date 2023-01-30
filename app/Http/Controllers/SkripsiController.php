@@ -171,11 +171,9 @@ class SkripsiController extends Controller
         $validateData   = $request->validate([
             'dosen_id'      => 'required',
             'pembimbing'    => 'required',
-            'mulai'         => 'required',
-            'selesai'       => 'required',
         ]);
 
-        Skripsi::find($skripsi->id)->dosen()->attach($validateData['dosen_id'], ['pembimbing' => $validateData['pembimbing'], 'mulai' => $validateData['mulai'], 'selesai' => $validateData['selesai']]);
+        Skripsi::find($skripsi->id)->dosen()->attach($validateData['dosen_id'], ['pembimbing' => $validateData['pembimbing']]);
 
         return redirect($request->redirect_to)->with('success', 'Dosen Pembimbing Berhasil Di Tambahkan');
     }
@@ -188,13 +186,18 @@ class SkripsiController extends Controller
 
     public function penerbitan(Skripsi $skripsi, Request $request)
     {
+        $validateData   = $request->validate([
+            'awal_penugasan'     => 'required',
+            'akhir_penugasan'    => 'required'
+        ]);
+
         $validateData['status'] = 5;
 
         if (!$skripsi->no_surat) {
             $validateData['no_surat'] = $this->NoSurat($skripsi->mahasiswa->jurusan_id, $skripsi->mahasiswa->jurusan->singkatan, $skripsi->mahasiswa->jurusan->kode_surat);
             $data = [
                 'no_surat'      => $validateData['no_surat'],
-                'jurusan_id'    => 94,
+                'jurusan_id'    => $skripsi->mahasiswa->jurusan_id,
                 'jenis_surat'   => 'Penugasan Pembimbing Skripsi',
                 'tahun'         => date('Y')
             ];
@@ -286,17 +289,11 @@ class SkripsiController extends Controller
         return redirect($request->redirect_to)->with('success', 'Status Berhasil Di Update');
     }
 
-    public function surattugas(Skripsi $skripsi)
+    public function penugasan(Skripsi $skripsi)
     {
-
-        $tanggal = [];
-        foreach ($skripsi->dosen as $dosen) {
-            array_push($tanggal, $dosen->pivot->selesai);
-        }
-        return view('dashboard.skripsi.daftar.st', [
-            'skripsi'   => $skripsi,
-            'dekan'     => Dosen::where('jabatan', 'Dekan')->first(),
-            'selesai'   => $tanggal[0]
+        return view('dashboard.skripsi.daftar.penugasan', [
+            'skripsi'       => $skripsi,
+            'kaprodi'       => Dosen::where('jurusan_id', $skripsi->mahasiswa->jurusan_id)->where('jabatan', 'Kaprodi')->first()
         ]);
     }
 

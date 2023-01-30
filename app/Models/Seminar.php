@@ -15,7 +15,7 @@ class Seminar extends Model
 
     public function dosen()
     {
-        return $this->belongsToMany(Dosen::class);
+        return $this->belongsToMany(Dosen::class)->withPivot('sebagai', 'ke')->orderBy('ke', 'asc');
     }
 
     public function mahasiswa()
@@ -26,6 +26,11 @@ class Seminar extends Model
     public function batch()
     {
         return $this->belongsTo(Batch::class);
+    }
+
+    public function surat()
+    {
+        return $this->hasOne(Surat::class,'no_surat','no_surat')->withDefault(['created_at' => date('Y-m-d')]);
     }
 
     public function scopeFilter($query, array $filters)
