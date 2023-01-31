@@ -46,6 +46,7 @@
                         <button class="btn btn-danger btn-flat" type="submit"><i class="fas fa-search"></i></button>
                         <a href="/webmin/seminar" class="btn btn-info btn-flat"><i class="fas fa-circle-notch"></i></a>
                         <a href="/webmin/seminar/create" class="btn btn-primary btn-flat"><i class="fas fa-plus"></i></a>
+                        <a href="/webmin/seminar/jadwal?jurusan={{ request('jurusan') }}&batch={{ request('batch') }}" class="btn btn-warning btn-flat" target="_blank"><i class="fas fa-clock"></i></a>
                     </div>
                 </form>
                 <div class="row mt-4">

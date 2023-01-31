@@ -17,7 +17,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\UjiController;
 use App\Http\Controllers\KegiatanController;
-use App\http\Controllers\BatchController;
+use App\Http\Controllers\BatchController;
 use App\Http\Controllers\SeminarController;
 
 /*
@@ -190,6 +190,7 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('webmin/seminar/formuji/{seminar}', [SeminarController::class, 'formuji'])->name('seminar.formuji');
     Route::get('webmin/seminar/penugasan/{seminar}', [SeminarController::class, 'penugasan'])->name('seminar.penugasan');
     Route::get('webmin/seminar/berita/{seminar}', [SeminarController::class, 'berita'])->name('seminar.berita');
+    Route::get('webmin/seminar/jadwal', [SeminarController::class, 'jadwal'])->name('seminar.jadwal');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

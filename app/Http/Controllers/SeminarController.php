@@ -174,7 +174,7 @@ class SeminarController extends Controller
         }
 
         $validateData = $request->validate([
-            'tanggal_seminar'=> 'required',
+            'tanggal_seminar' => 'required',
             'ruang'         => 'required',
             'jam_mulai'     => 'required',
             'jam_selesai'   => 'required'
@@ -228,6 +228,20 @@ class SeminarController extends Controller
     {
         return view('dashboard.skripsi.seminar.berita', [
             'seminar'       => $seminar
+        ]);
+    }
+
+    public function jadwal(Request $request)
+    {
+        if (!$request->batch or !$request->jurusan) {
+            return redirect(url('webmin/404'));
+        }
+
+        return view('dashboard.skripsi.seminar.jadwal', [
+            'seminar'   => Seminar::with('mahasiswa')->with('batch')->with('dosen')->filter(request(['jurusan', 'batch']))->where('status', 5)->orderBy('tanggal_seminar', 'asc')->orderBy('jam_mulai', 'asc')->get(),
+            'batch'     => Batch::find($request->batch),
+            'jurusan'   => Jurusan::find($request->jurusan),
+            'kaprodi'   => Dosen::where('jurusan_id', $request->jurusan)->where('jabatan', 'Kaprodi')->first()
         ]);
     }
 
