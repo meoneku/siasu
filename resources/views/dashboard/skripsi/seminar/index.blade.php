@@ -70,7 +70,7 @@
                                     <td>{{ $data->mahasiswa->jurusan->jenjang }} {{ $data->mahasiswa->jurusan->jurusan }}</td>
                                     <td>{{ tanggal_indonesia($data->created_at) }}</td>
                                     <td>{{ $data->batch->nama }}</td>
-                                    <td>{!! App\Http\Controllers\SkripsiController::getStatusPendaftaran($data->status) !!}</td>
+                                    <td>{!! App\Helpers\Codes::getStatusDaftarSkripsi($data->status) !!}</td>
                                     <td>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-info btn-xs">#</button>

@@ -80,7 +80,7 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    
+
                 </td>
             </tr>
             <tr>
@@ -122,9 +122,9 @@
         <br />
         <table width="850px" class="ttd">
             <tr>
-                <td width="320px"></td>
+                <td width="350px"></td>
                 <td width=""></td>
-                <td width="320px">Jombang, {{ tanggal_indonesia($seminar->tanggal_seminar, false) }}</td>
+                <td width="350px">Jombang, {{ tanggal_indonesia($seminar->tanggal_seminar, false) }}</td>
             </tr>
             <tr>
                 <td></td>

@@ -39,103 +39,106 @@
     <div class="kontent">
         <table width="850px" class="paragraf">
             <tr>
-                <td heigth="30px" colspan="3" style="text-align:center;">
+                <td heigth="30px" colspan="4" style="text-align:center;">
 
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align:center;">
+                <td colspan="4" style="text-align:center;">
                     <strong><u><span style="font-size: 28px">SURAT TUGAS</u></strong><br />
                     Nomor : {{ $skripsi->no_surat }}
                 </td>
             </tr>
             <tr>
-                <td heigth="30px" colspan="3" style="text-align:center;">
+                <td heigth="30px" colspan="4" style="text-align:center;">
 
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     Dekan Fakultas Teknik Universitas Hasyim Asy'ari Tebuireng Jombang dengan ini menugaskan kepada:
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
 
                 </td>
             </tr>
             @foreach ($skripsi->dosen as $dosen)
                 <tr>
-                    <td width="220px" class="top-text">Nama</td>
+                    <td width="10px" class="top-text">{{ $dosen->pivot->ke }}.&nbsp;</td>
+                    <td width="210px" class="top-text">Nama</td>
                     <td width="10px" class="top-text">:</td>
                     <td class="top-text">{{ $dosen->nama }}</td>
                 </tr>
                 <tr>
-                    <td width="220px" class="top-text">NIY</td>
+                    <td width="10px" class="top-text"></td>
+                    <td width="210px" class="top-text">NIY</td>
                     <td width="10px" class="top-text">:</td>
                     <td class="top-text">{{ $dosen->niy }}</td>
                 </tr>
                 <tr>
-                    <td width="220px" class="top-text">Pembimbing</td>
+                    <td width="10px" class="top-text"></td>
+                    <td width="210px" class="top-text">Homebase</td>
                     <td width="10px" class="top-text">:</td>
-                    <td class="top-text">{{ $dosen->pivot->pembimbing }}</td>
+                    <td class="top-text">{{ $dosen->jurusan->jenjang }} {{ $dosen->jurusan->jurusan }}</td>
                 </tr>
                 <tr>
-                    <td colspan="3"></td>
+                    <td colspan="4"></td>
                 </tr>
             @endforeach
             <tr>
-                <td colspan="3" class="justify">
-                    untuk bertugas sebagai Pembimbing Skripsi mahasiswa Jenjang Program Studi {{ $skripsi->mahasiswa->jurusan->jenjang }} {{ $skripsi->mahasiswa->jurusan->jurusan }} Jurusan {{ $skripsi->mahasiswa->jurusan->jurusan }} berikut ini:
+                <td colspan="4" class="justify">
+                    untuk bertugas sebagai Pembimbing Skripsi mahasiswa Program Studi {{ $skripsi->mahasiswa->jurusan->jenjang }} {{ $skripsi->mahasiswa->jurusan->jurusan }} berikut ini:
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
 
                 </td>
             </tr>
             <tr>
-                <td width="220px" class="top-text">Nama Mahasiswa</td>
+                <td width="220px" colspan="2" class="top-text">Nama Mahasiswa</td>
                 <td width="10px" class="top-text">:</td>
-                <td class="top-text">{{ $skripsi->mahasiswa->nama}}</td>
+                <td class="top-text">{{ $skripsi->mahasiswa->nama }}</td>
             </tr>
             <tr>
-                <td width="220px" class="top-text">NIM</td>
+                <td width="220px" colspan="2" class="top-text">NIM</td>
                 <td width="10px" class="top-text">:</td>
-                <td class="top-text">{{ $skripsi->mahasiswa->nim}}</td>
+                <td class="top-text">{{ $skripsi->mahasiswa->nim }}</td>
             </tr>
             <tr>
-                <td width="220px" class="top-text">Jenjang/Program Studi</td>
+                <td width="220px" colspan="2" class="top-text">Jenjang/Program Studi</td>
                 <td width="10px" class="top-text">:</td>
                 <td class="top-text">{{ $skripsi->mahasiswa->jurusan->jenjang }} / {{ $skripsi->mahasiswa->jurusan->jurusan }}</td>
             </tr>
             <tr>
-                <td width="220px" class="top-text">Fakultas</td>
+                <td width="220px" colspan="2" class="top-text">Fakultas</td>
                 <td width="10px" class="top-text">:</td>
                 <td class="top-text">{{ $skripsi->mahasiswa->jurusan->fakultas }}</td>
             </tr>
             <tr>
-                <td width="220px" class="top-text">Judul Skripsi</td>
+                <td width="220px" colspan="2" class="top-text">Judul Skripsi</td>
                 <td width="10px" class="top-text">:</td>
                 <td class="top-text justify">{{ strip_tags($skripsi->judul_skripsi) }}</td>
             </tr>
             <tr>
-                <td colspan="3">
-                    
+                <td colspan="4">
+
                 </td>
             </tr>
             <tr>
-                <td width="220px" class="top-text">Masa Berlaku Surat Tugas</td>
+                <td width="220px" colspan="2" class="top-text">Masa Berlaku Surat Tugas</td>
                 <td width="10px" class="top-text">:</td>
                 <td class="top-text">{{ tanggal_indonesia($skripsi->awal_penugasan, false) }} - {{ tanggal_indonesia($skripsi->akhir_penugasan, false) }}</td>
             </tr>
             <tr>
-                <td colspan="3">
-                    
+                <td colspan="4">
+
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     Demikian surat penugasan ini dibuat untuk dilaksanakan sebaik-baiknya.
                 </td>
             </tr>

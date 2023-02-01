@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ESurat;
 use App\Models\Batch;
 use App\Models\Skripsi;
 use App\Models\Dosen;
@@ -170,10 +171,10 @@ class SkripsiController extends Controller
     {
         $validateData   = $request->validate([
             'dosen_id'      => 'required',
-            'pembimbing'    => 'required',
+            'ke'    => 'required',
         ]);
 
-        Skripsi::find($skripsi->id)->dosen()->attach($validateData['dosen_id'], ['pembimbing' => $validateData['pembimbing']]);
+        Skripsi::find($skripsi->id)->dosen()->attach($validateData['dosen_id'], ['ke' => $validateData['ke']]);
 
         return redirect($request->redirect_to)->with('success', 'Dosen Pembimbing Berhasil Di Tambahkan');
     }
@@ -194,7 +195,7 @@ class SkripsiController extends Controller
         $validateData['status'] = 5;
 
         if (!$skripsi->no_surat) {
-            $validateData['no_surat'] = $this->NoSurat($skripsi->mahasiswa->jurusan_id, $skripsi->mahasiswa->jurusan->singkatan, $skripsi->mahasiswa->jurusan->kode_surat);
+            $validateData['no_surat'] = ESurat::makeNomorSurat($skripsi->mahasiswa->jurusan_id, $skripsi->mahasiswa->jurusan->singkatan, $skripsi->mahasiswa->jurusan->kode_surat);
             $data = [
                 'no_surat'      => $validateData['no_surat'],
                 'jurusan_id'    => $skripsi->mahasiswa->jurusan_id,

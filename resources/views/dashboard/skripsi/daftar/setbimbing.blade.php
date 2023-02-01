@@ -31,7 +31,7 @@
                         <th>NIY</th>
                         <th>Nama</th>
                         <th>Homebase</th>
-                        <th>Pembimbing</th>
+                        <th>Pembimbing Ke</th>
                         <th></th>
                     </tr>
                     @foreach ($skripsi->dosen as $dosen)
@@ -40,7 +40,7 @@
                             <td>{{ $dosen->niy }}</td>
                             <td>{{ $dosen->nama }}</td>
                             <td>{{ $dosen->jurusan->jenjang }} {{ $dosen->jurusan->jurusan }}</td>
-                            <td>{{ $dosen->pivot->pembimbing }}</td>
+                            <td>{{ $dosen->pivot->ke }}</td>
                             <td>
                                 @if ($skripsi->status != 5)
                                     <form action="/webmin/skripsi/pembimbing/{{ $skripsi->id }}" method="post" class="d-inline">
@@ -56,18 +56,18 @@
                     @endforeach
                 </table>
                 @if ($skripsi->status == 5)
-                <div class="form-group row  mt-3 mb-2">
-                    <label for="awal_penugasan" class="col-sm-2 col-form-label">Awal Penugasan</label>
-                    <div class="col-sm-4">
-                        <input type="date" id="awal_penugasan" name="awal_penugasan" class="form-control" value="{{ $skripsi->awal_penugasan }}" readonly>
+                    <div class="form-group row  mt-3 mb-2">
+                        <label for="awal_penugasan" class="col-sm-2 col-form-label">Awal Penugasan</label>
+                        <div class="col-sm-4">
+                            <input type="date" id="awal_penugasan" name="awal_penugasan" class="form-control" value="{{ $skripsi->awal_penugasan }}" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="akhir_penugasan" class="col-sm-2 col-form-label">Akhir Penugasan</label>
-                    <div class="col-sm-4">
-                        <input type="date" id="akhir_penugasan" name="akhir_penugasan" class="form-control" value="{{ $skripsi->akhir_penugasan }}" readonly>
+                    <div class="form-group row">
+                        <label for="akhir_penugasan" class="col-sm-2 col-form-label">Akhir Penugasan</label>
+                        <div class="col-sm-4">
+                            <input type="date" id="akhir_penugasan" name="akhir_penugasan" class="form-control" value="{{ $skripsi->akhir_penugasan }}" readonly>
+                        </div>
                     </div>
-                </div>
                     <div class="d-flex justify-content-end mt-2 mb-2">
                         <a href="{{ url('webmin/skripsi') }}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>&nbsp;
                         <a href="/webmin/skripsi/penugasan/{{ $skripsi->id }}" class="btn btn-success" target="_blank"><i class="fa fa-envelope"></i> Cetak Surat Penugasan</a>

@@ -77,7 +77,7 @@
                                 @if ($skripsi->status == 0)
                                     <option value="0">-- Pilih Status --</option>
                                 @else
-                                    <option value="{{ $skripsi->status }}">{{ App\Http\Controllers\SkripsiController::getStatus($skripsi->status) }}</option>
+                                    <option value="{{ $skripsi->status }}">{{ App\Helpers\Codes::getStatusSkripsi($skripsi->status) }}</option>
                                 @endif
                                 <option value="1">Teruskan Ke Koordinator Skripsi</option>
                                 <option value="2">Teruskan Ke Kaprodi</option>

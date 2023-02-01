@@ -29,4 +29,13 @@ class IndexController extends Controller
             'batch'     => $batch
         ]);
     }
+
+    public function semhas()
+    {
+        $now = date('Y-m-d');
+        $batch = Batch::where('kegiatan_id', 6)->whereRaw('? between mulai and selesai', $now)->first();
+        return view('semhas', [
+            'batch'     => $batch
+        ]);
+    }
 }

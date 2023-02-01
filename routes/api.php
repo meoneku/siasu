@@ -24,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/getDosen', [DosenController::class, 'getDosen'])->name('getdosen.api');
 Route::post('/getMahasiswa', [MahasiswaController::class, 'getMahasiswa'])->name('getMahasiswa.api');
 Route::post('/getDataSkripsi', [MahasiswaController::class, 'getDataSkripsi'])->name('getDataSkripsi.api');
+Route::post('/getDataSeminar', [MahasiswaController::class, 'getDataSeminar'])->name('getDataSeminar.api');

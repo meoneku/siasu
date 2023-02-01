@@ -19,6 +19,7 @@ use App\Http\Controllers\UjiController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\SeminarController;
+use App\Http\Controllers\SemhasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,8 @@ Route::get('/skripsi', [IndexController::class, 'skripsi'])->name('home.skripsi.
 Route::post('/skripsi', [SkripsiController::class, 'store'])->name('home.skripsi.store');
 Route::get('/seminar', [IndexController::class, 'seminar'])->name('home.seminar.index');
 Route::post('/seminar', [SeminarController::class, 'store'])->name('home.seminar.store');
+Route::get('/semhas', [IndexController::class, 'semhas'])->name('home.semhas.index');
+Route::post('/semhas', [SemhasController::class, 'store'])->name('home.semhas.store');
 
 Route::get('/webmin/prank', function () {
     return view('hello');
@@ -191,6 +194,9 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('webmin/seminar/penugasan/{seminar}', [SeminarController::class, 'penugasan'])->name('seminar.penugasan');
     Route::get('webmin/seminar/berita/{seminar}', [SeminarController::class, 'berita'])->name('seminar.berita');
     Route::get('webmin/seminar/jadwal', [SeminarController::class, 'jadwal'])->name('seminar.jadwal');
+
+    //Seminar Hasil Routes
+    Route::resources(['webmin/semhas' => SemhasController::class]);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

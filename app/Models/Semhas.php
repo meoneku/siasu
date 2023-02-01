@@ -4,22 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Skripsi extends Model
+class Semhas extends Model
 {
     use HasFactory;
 
-    protected $table    = 'skripsi';
-    protected $guarded  = ['id'];
+    protected $table = 'ujianskripsi';
+
+    protected $guarded = ['id'];
 
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class)->withDefault(['nama' => 'Tidak Terdefinisi']);
-    }
-
-    public function dosen()
-    {
-        return $this->belongsToMany(Dosen::class)->withPivot('ke')->orderBy('ke', 'asc');;
+        return $this->belongsTo(Mahasiswa::class);
     }
 
     public function batch()
@@ -27,9 +24,9 @@ class Skripsi extends Model
         return $this->belongsTo(Batch::class);
     }
 
-    public function surat()
+    public function dosen()
     {
-        return $this->hasOne(Surat::class, 'no_surat', 'no_surat')->withDefault(['created_at' => date('Y-m-d')]);
+        return $this->BelongsToMany(Dosen::class)->withPivot('sebagai', 'ke')->orderBy('ke', 'asc');
     }
 
     public function scopeFilter($query, array $filters)

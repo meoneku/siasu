@@ -7,8 +7,8 @@ use App\Helpers\Codes;
 
 class UjiController extends Controller
 {
-    public function index (Request $request)
+    public function index(Request $request)
     {
-        echo Codes::getSemesterNow();
+        echo Codes::getTA(20221);
     }
 }

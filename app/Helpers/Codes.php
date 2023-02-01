@@ -31,15 +31,93 @@ class Codes
     {
         $month = date('m');
         $year  = date('Y');
-        if ($month == 1 ) {
+        if ($month == 1) {
             $year_semester = $year - 1;
             $semester = $year_semester . '1';
-        } elseif ($month >= 2 AND $month <= 7) {
+        } elseif ($month >= 2 and $month <= 7) {
             $year_semester = $year - 1;
             $semester = $year_semester . '2';
         } else {
             $semester = $year . '1';
         }
         return $semester;
+    }
+
+    public static function getTA($periode)
+    {
+        $getYear = substr($periode, 0, 4);
+        $getNextYear = $getYear + 1;
+        $getSemester = substr($periode, 4);
+
+        if ($getSemester % 2 == 0) {
+            $TA = 'Genap TA ' . $getYear . '/' . $getNextYear;
+        } else {
+            $TA = 'Gasal TA ' . $getYear . '/' . $getNextYear;
+        }
+
+        return $TA;
+    }
+
+    public static function getStatusSkripsi($id)
+    {
+        if ($id == 0) {
+            $result = '-- Pilih Status --';
+        } elseif ($id == 1) {
+            $result = 'Teruskan Ke Koordinator Skripsi';
+        } elseif ($id == 2) {
+            $result = 'Teruskan Ke Kaprodi';
+        } elseif ($id == 3) {
+            $result = 'Penugasan Dosen Pembimbing';
+        } elseif ($id == 4) {
+            $result = 'Pendaftaran Tidak Diterima';
+        } elseif ($id == 5) {
+            $result = 'Set Dosen Pembimbing';
+        } else {
+            $result = 'Error';
+        }
+
+        return $result;
+    }
+
+    public static function getStatusDaftarSkripsi($id)
+    {
+        if ($id == 0) {
+            $result = '<button class="btn btn-primary btn-xs">Baru</button>';
+        } elseif ($id == 1) {
+            $result = '<button class="btn btn-warning btn-xs">Proses</button>';
+        } elseif ($id == 2) {
+            $result = '<button class="btn btn-warning btn-xs">Proses</button>';
+        } elseif ($id == 3) {
+            $result = '<button class="btn btn-info btn-xs">Penugasan</button>';
+        } elseif ($id == 4) {
+            $result = '<button class="btn btn-danger btn-xs">Ditolak</button>';
+        } elseif ($id == 5) {
+            $result = '<button class="btn btn-success btn-xs">Terima</button>';
+        } else {
+            $result = 'Error';
+        }
+
+        return $result;
+    }
+
+    public static function getStatusSeminar($id)
+    {
+        if ($id == 0) {
+            $result = '-- Pilih Status --';
+        } elseif ($id == 1) {
+            $result = 'Teruskan Ke Koordinator Skripsi';
+        } elseif ($id == 2) {
+            $result = 'Teruskan Ke Kaprodi';
+        } elseif ($id == 3) {
+            $result = 'Penugasan Dosen Penguji';
+        } elseif ($id == 4) {
+            $result = 'Seminar Tidak Diterima';
+        } elseif ($id == 5) {
+            $result = 'Set Dosen Penguji';
+        } else {
+            $result = 'Error';
+        }
+
+        return $result;
     }
 }

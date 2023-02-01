@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('ujianskripsi_id');
             $table->unsignedBigInteger('dosen_id');
+            $table->string('sebagai', 128);
+            $table->tinyInteger('ke');
             $table->timestamps();
 
             $table->foreign('ujianskripsi_id')->references('id')->on('ujianskripsi');

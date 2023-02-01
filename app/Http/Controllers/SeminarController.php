@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ESurat;
 use App\Models\Batch;
 use App\Models\Dosen;
 use App\Models\Jurusan;
@@ -183,7 +184,7 @@ class SeminarController extends Controller
         $validateData['status'] = 5;
 
         if (!$seminar->no_surat) {
-            $validateData['no_surat'] = SkripsiController::NoSurat($seminar->mahasiswa->jurusan_id, $seminar->mahasiswa->jurusan->singkatan, $seminar->mahasiswa->jurusan->kode_surat);
+            $validateData['no_surat'] = ESurat::makeNomorSurat($seminar->mahasiswa->jurusan_id, $seminar->mahasiswa->jurusan->singkatan, $seminar->mahasiswa->jurusan->kode_surat);
             $data = [
                 'no_surat'      => $validateData['no_surat'],
                 'jurusan_id'    => $seminar->mahasiswa->jurusan_id,
@@ -243,26 +244,5 @@ class SeminarController extends Controller
             'jurusan'   => Jurusan::find($request->jurusan),
             'kaprodi'   => Dosen::where('jurusan_id', $request->jurusan)->where('jabatan', 'Kaprodi')->first()
         ]);
-    }
-
-    public static function getStatus($id)
-    {
-        if ($id == 0) {
-            $result = '-- Pilih Status --';
-        } elseif ($id == 1) {
-            $result = 'Teruskan Ke Koordinator Skripsi';
-        } elseif ($id == 2) {
-            $result = 'Teruskan Ke Kaprodi';
-        } elseif ($id == 3) {
-            $result = 'Penugasan Dosen Penguji';
-        } elseif ($id == 4) {
-            $result = 'Seminar Tidak Diterima';
-        } elseif ($id == 5) {
-            $result = 'Set Dosen Penguji';
-        } else {
-            $result = 'Error';
-        }
-
-        return $result;
     }
 }

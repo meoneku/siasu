@@ -54,7 +54,7 @@
                                     <ul aria-labelledby="skripsi" class="dropdown-menu border-0 shadow">
                                         <li><a tabindex="-1" href="{{ url('webmin/skripsi') }}" class="dropdown-item">Pendaftar Skripsi</a></li>
                                         <li><a tabindex="-1" href="{{ url('webmin/seminar') }}" class="dropdown-item">Seminar Proposal</a></li>
-                                        <li><a tabindex="-1" href="{{ url('webmin/ujianakhir') }}" class="dropdown-item">Ujian Akhir</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/semhas') }}" class="dropdown-item">Ujian Akhir</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="{{ url('webmin/yudisium') }}" class="dropdown-item">Yudisium</a></li>

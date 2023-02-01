@@ -16,11 +16,11 @@
     <div class="col-lg-12">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="card-title m-0">Data Pendaftaran Skripsi</h5>
+                <h5 class="card-title m-0">Data Pendaftaran Seminar Hasil</h5>
             </div>
 
             <div class="card-body">
-                <form action="/webmin/skripsi">
+                <form action="/webmin/seminar">
                     <div class="input-group">
                         <input type="text" name="nama" class="form-control rounded-0 w-25" placeholder="Semua Nama" value="{{ request('nama') }}">
                         <select name="jurusan" class="form-control w-25">
@@ -44,8 +44,9 @@
                             @endforeach
                         </select>
                         <button class="btn btn-danger btn-flat" type="submit"><i class="fas fa-search"></i></button>
-                        <a href="/webmin/skripsi" class="btn btn-info btn-flat"><i class="fas fa-circle-notch"></i></a>
-                        <a href="/webmin/skripsi/create" class="btn btn-primary btn-flat"><i class="fas fa-plus"></i></a>
+                        <a href="/webmin/semhas" class="btn btn-info btn-flat"><i class="fas fa-circle-notch"></i></a>
+                        <a href="/webmin/semhas/create" class="btn btn-primary btn-flat"><i class="fas fa-plus"></i></a>
+                        <a href="/webmin/semhas/jadwal?jurusan={{ request('jurusan') }}&batch={{ request('batch') }}" class="btn btn-warning btn-flat" target="_blank"><i class="fas fa-clock"></i></a>
                     </div>
                 </form>
                 <div class="row mt-4">
@@ -62,14 +63,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($skripsi as $data)
+                            @foreach ($semhas as $data)
                                 <tr>
-                                    <td>{{ $skripsi->firstItem() + $loop->index }}</td>
+                                    <td>{{ $semhas->firstItem() + $loop->index }}</td>
                                     <td>{{ $data->mahasiswa->nama }}</td>
                                     <td>{{ $data->mahasiswa->jurusan->jenjang }} {{ $data->mahasiswa->jurusan->jurusan }}</td>
                                     <td>{{ tanggal_indonesia($data->created_at) }}</td>
                                     <td>{{ $data->batch->nama }}</td>
-                                    <td>{!! App\Helpers\Codes::getStatusDaftarSkripsi($data->status) !!}</td>
+                                    <td>{!! App\Http\Controllers\SkripsiController::getStatusPendaftaran($data->status) !!}</td>
                                     <td>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-info btn-xs">#</button>
@@ -77,26 +78,25 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                             </button>
                                             <div class="dropdown-menu" role="menu">
-                                                <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/edit"><i class="fas fa-edit"></i> Edit / Lihat</a>
-                                                <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/approve"><i class="far fa-check-circle"></i> Status Daftar</a>
-                                                <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/form" target="_blank"><i class="fas fa-file-pdf"></i> Form Pendaftaran</a>
+                                                <a class="dropdown-item" href="/webmin/semhas/{{ $data->id }}/edit"><i class="fas fa-edit"></i> Edit / Lihat</a>
+                                                <a class="dropdown-item" href="/webmin/semhas/status/{{ $data->id }}"><i class="far fa-check-circle"></i> Status</a>
+                                                <a class="dropdown-item" href="/webmin/semhas/formulir/{{ $data->id }}" target="_blank"><i class="fas fa-file-pdf"></i> Form Daftar</a>
                                                 @if ($data->status == 3 or $data->status == 5)
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/setbimbing"><i class="fas fa-user-graduate"></i> Set Dosen Pembimbing</a>
+                                                    <a class="dropdown-item" href="/webmin/semhas/penguji/{{ $data->id }}"><i class="fas fa-user-graduate"></i> Set Penguji</a>
                                                     @if ($data->status == 5)
-                                                        <a class="dropdown-item" href="/webmin/skripsi/{{ $data->id }}/formbimbing" target="_blank"><i class="fas fa-sticky-note"></i> Form Pembimbing</a>
-                                                        <a class="dropdown-item" href="/webmin/skripsi/penugasan/{{ $data->id }}" target="_blank"><i class="fas fa-envelope"></i> Surat Penugasan</a>
+                                                        <a class="dropdown-item" href="/webmin/semhas/berita/{{ $data->id }}" target="_blank"><i class="fas fa-sticky-note"></i> Berita Acara</a>
+                                                        <a class="dropdown-item" href="/webmin/semhas/formuji/{{ $data->id }}" target="_blank"><i class="fas fa-briefcase"></i> Form Penguji</a>
+                                                        <a class="dropdown-item" href="/webmin/semhas/penugasan/{{ $data->id }}" target="_blank"><i class="fas fa-file-signature"></i> Surat Penugasan</a>
                                                     @endif
                                                 @endif
-                                                @if (Auth::guard('admin')->user()->role == 'root')
-                                                    <div class="dropdown-divider"></div>
-                                                    <form action="/webmin/skripsi/{{ $data->id }}" method="post" class="d-inline">
-                                                        @method('delete')
-                                                        @csrf
-                                                        <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                                        <button class="btn-link button-delete dropdown-item" data-message="Data Pendaftar Skripsi {{ $data->mahasiswa->nama }}"><i class="fas fa-trash"></i> Hapus</button>
-                                                    </form>
-                                                @endif
+                                                <div class="dropdown-divider"></div>
+                                                <form action="/webmin/semhas/{{ $data->id }}" method="post" class="d-inline">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
+                                                    <button class="btn-link button-delete dropdown-item" data-message="Data Pendaftar Seminar Hasil {{ $data->mahasiswa->nama }}"><i class="fas fa-trash"></i> Hapus</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </td>
@@ -106,7 +106,7 @@
                     </table>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    {{ $skripsi->links() }}
+                    {{ $semhas->links() }}
                 </div>
             </div>
         </div>

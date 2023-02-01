@@ -31,7 +31,7 @@
                                 @if ($seminar->status == 0)
                                     <option value="0">-- Pilih Status --</option>
                                 @else
-                                    <option value="{{ $seminar->status }}">{{ App\Http\Controllers\SeminarController::getStatus($seminar->status) }}</option>
+                                    <option value="{{ $seminar->status }}">{{ App\Helpers\Codes::getStatusSeminar($seminar->status) }}</option>
                                 @endif
                                 <option value="1">Teruskan Ke Koordinator Skripsi</option>
                                 <option value="2">Teruskan Ke Kaprodi</option>

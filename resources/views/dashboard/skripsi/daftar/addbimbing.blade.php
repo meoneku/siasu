@@ -1,7 +1,7 @@
 @extends('dashboard.template')
 @section('addcss')
-<link rel="stylesheet" href="{{ url('plugins/select2/css/select2.min.css') }}">
-<link rel="stylesheet" href="{{ url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @endsection
 @section('main')
     <div class="col-lg-12">
@@ -17,18 +17,19 @@
                         <label for="dosen_id" class="col-sm-2 col-form-label">Nama Dosen</label>
                         <div class="col-sm-8">
                             <select id="dosen_id" name="dosen_id" class="form-control select2" required>
-                                @foreach($dosens as $dosen)
+                                @foreach ($dosens as $dosen)
                                     <option value="{{ $dosen->id }}">{{ $dosen->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="pembimbing" class="col-sm-2 col-form-label">Pembimbing</label>
+                        <label for="ke" class="col-sm-2 col-form-label">Pembimbing Ke</label>
                         <div class="col-sm-4">
-                            <select id="pembimbing" name="pembimbing" class="form-control" required>
-                                <option value="Utama">Utama</option>
-                                <option value="Pendamping">Pendamping</option>
+                            <select id="ke" name="ke" class="form-control" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
                             </select>
                         </div>
                     </div>
@@ -39,7 +40,7 @@
                 </form>
             </div>
             <div class="card-footer">
-                
+
             </div>
         </div>
     </div>
@@ -48,7 +49,7 @@
 @section('addjs')
     <script src="{{ url('plugins/select2/js/select2.min.js') }}"></script>
     <script>
-        $(function () {
+        $(function() {
             $('.select2').select2({
                 theme: 'bootstrap4',
                 placeholder: 'Dosen Pembimbing'

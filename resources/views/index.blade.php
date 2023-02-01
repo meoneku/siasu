@@ -27,7 +27,7 @@
         </div>
         <div class="col-3">
             <div class="card p-2" data-tilt>
-                <a href="#"><img src="img/svg/document-general-letter-2-svgrepo-com.svg" class="card-img-top" alt="SIP!" height="150px" width="150px" /></a>
+                <a href="/semhas"><img src="img/svg/document-general-letter-2-svgrepo-com.svg" class="card-img-top" alt="SIP!" height="150px" width="150px" /></a>
                 <div class="card-body text-center">
                     <p class="h6">Pendaftaran Seminar Hasil</p>
                 </div>
