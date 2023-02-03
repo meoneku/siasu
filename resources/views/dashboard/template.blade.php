@@ -49,6 +49,8 @@
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                 <li><a href="{{ url('webmin/mahasiswa') }}" class="dropdown-item">Data Mahasiswa</a></li>
                                 <li class="dropdown-divider"></li>
+                                <li><a href="{{ url('webmin/kppi') }}" class="dropdown-item">Praktik Industri / Kerja Praktik</a></li>
+                                <li class="dropdown-divider"></li>
                                 <li class="dropdown-submenu dropdown-hover">
                                     <a id="skripsi" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Skripsi</a>
                                     <ul aria-labelledby="skripsi" class="dropdown-menu border-0 shadow">

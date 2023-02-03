@@ -38,4 +38,13 @@ class IndexController extends Controller
             'batch'     => $batch
         ]);
     }
+
+    public function kppi()
+    {
+        $now = date('Y-m-d');
+        $batch = Batch::where('kegiatan_id', 1)->whereRaw('? between mulai and selesai', $now)->first();
+        return view('kppi', [
+            'batch'     => $batch
+        ]);
+    }
 }

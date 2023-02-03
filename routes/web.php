@@ -18,6 +18,7 @@ use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\UjiController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\PiController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SemhasController;
 
@@ -32,10 +33,6 @@ use App\Http\Controllers\SemhasController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-
 // Front Page
 Route::get('/', [IndexController::class, 'index'])->name('home.index');
 Route::get('/skripsi', [IndexController::class, 'skripsi'])->name('home.skripsi.index');
@@ -44,6 +41,8 @@ Route::get('/seminar', [IndexController::class, 'seminar'])->name('home.seminar.
 Route::post('/seminar', [SeminarController::class, 'store'])->name('home.seminar.store');
 Route::get('/semhas', [IndexController::class, 'semhas'])->name('home.semhas.index');
 Route::post('/semhas', [SemhasController::class, 'store'])->name('home.semhas.store');
+Route::get('/kppi', [IndexController::class, 'kppi'])->name('home.kppi.index');
+Route::post('/kppi', [PiController::class, 'store'])->name('home.kppi.store');
 
 Route::get('/webmin/prank', function () {
     return view('hello');
@@ -197,6 +196,9 @@ Route::group(['middleware' => 'is_login'], function () {
 
     //Seminar Hasil Routes
     Route::resources(['webmin/semhas' => SemhasController::class]);
+
+    //PI / KP Routes
+    Route::resources(['webmin/kppi' => PiController::class]);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');
