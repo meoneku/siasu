@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('tanggal_seminar')->nullable();
             $table->time('jam_mulai')->nullable();
             $table->time('jam_selesai')->nullable();
-            $table->string('ruang', 10)->nullable();
+            $table->string('ruang', 20)->nullable();
             $table->string('no_surat', 128)->nullable();
             $table->smallInteger('status')->default('0');
             $table->text('keterangan')->nullable();

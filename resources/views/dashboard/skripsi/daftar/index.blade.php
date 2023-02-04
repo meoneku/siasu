@@ -37,9 +37,9 @@
                             <option value="">Semua Batch</option>
                             @foreach ($batchs as $batch)
                                 @if (request('batch') == $batch->id)
-                                    <option value="{{ $batch->id }}" selected>{{ $batch->nama }}</option>
+                                    <option value="{{ $batch->id }}" selected>{{ $batch->kegiatan->nama }} {{ $batch->nama }} {{ $batch->tahun }}</option>
                                 @else
-                                    <option value="{{ $batch->id }}">{{ $batch->nama }}</option>
+                                    <option value="{{ $batch->id }}">{{ $batch->kegiatan->nama }} {{ $batch->nama }} {{ $batch->tahun }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -68,7 +68,7 @@
                                     <td>{{ $data->mahasiswa->nama }}</td>
                                     <td>{{ $data->mahasiswa->jurusan->jenjang }} {{ $data->mahasiswa->jurusan->jurusan }}</td>
                                     <td>{{ tanggal_indonesia($data->created_at) }}</td>
-                                    <td>{{ $data->batch->nama }}</td>
+                                    <td>{{ $data->batch->kegiatan->nama }} - {{ $data->batch->nama }} - {{ $data->batch->tahun }}</td>
                                     <td>{!! App\Helpers\Codes::getStatusDaftarSkripsi($data->status) !!}</td>
                                     <td>
                                         <div class="btn-group">

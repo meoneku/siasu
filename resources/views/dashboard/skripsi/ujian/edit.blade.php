@@ -6,7 +6,7 @@
                 <h5 class="card-title m-0">Data Pendaftar Seminar Skripsi | Tambah</h5>
             </div>
             <div class="card-body">
-                <form class="form-horizontal" method="post" action="{{ url('webmin/seminar') . '/' . $seminar->id }}" enctype="multipart/form-data">
+                <form class="form-horizontal" method="post" action="{{ url('webmin/semhas') . '/' . $seminar->id }}" enctype="multipart/form-data">
                     @method('put')
                     @csrf
                     <input type="hidden" name="redirect_to" value="{!! URL::previous() !!}">

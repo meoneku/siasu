@@ -81,8 +81,12 @@ Route::group(['middleware' => 'is_login'], function () {
 
         //Skripsi Route Delete
         Route::delete('webmin/skripsi/{skripsi}', [SkripsiController::class, 'destroy'])->name('skripsi.destroy');
+
         //Seminar Route Delete
         Route::delete('webmin/seminar/{seminar}', [SeminarController::class, 'destroy'])->name('seminar.destroy');
+
+        //Seminar Hasil Route Delete
+        Route::delete('webmin/semhas/{semhas}', [SeminarController::class, 'destroy'])->name('semhas.destroy');
     });
 
     //Profil And Password Changes Routes
@@ -195,7 +199,24 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('webmin/seminar/jadwal', [SeminarController::class, 'jadwal'])->name('seminar.jadwal');
 
     //Seminar Hasil Routes
-    Route::resources(['webmin/semhas' => SemhasController::class]);
+    Route::get('webmin/semhas', [SemhasController::class, 'index'])->name('semhas.index');
+    Route::get('webmin/semhas/create', [SemhasController::class, 'create'])->name('semhas.create');
+    Route::post('webmin/semhas', [SemhasController::class, 'store'])->name('semhas.store');
+    Route::get('webmin/semhas/{semhas}/edit', [SemhasController::class, 'edit'])->name('semhas.edit');
+    Route::put('webmin/semhas/{semhas}', [SemhasController::class, 'update'])->name('semhas.update');
+    Route::get('webmin/semhas/formulir/{semhas}', [SemhasController::class, 'formulir'])->name('seminar.formulir');
+    Route::get('webmin/semhas/penguji/{semhas}', [SemhasController::class, 'penguji'])->name('seminar.penguji');
+    Route::get('webmin/semhas/penguji/{semhas}/add', [SemhasController::class, 'addpenguji'])->name('seminar.penguji.add');
+    Route::post('webmin/semhas/penguji/{semhas}', [SemhasController::class, 'savePenguji'])->name('seminar.penguji.save');
+    Route::delete('webmin/semhas/penguji/{semhas}', [SemhasController::class, 'destroyPenguji'])->name('seminar.penguji.destroy');
+    Route::get('webmin/semhas/status/{semhas}', [SemhasController::class, 'status'])->name('semhas.status');
+    Route::put('webmin/semhas/status/{semhas}', [SemhasController::class, 'updateStatus'])->name('semhas.status.update');
+    Route::put('webmin/semhas/penerbitan/{semhas}', [SemhasController::class, 'penerbitan'])->name('semhas.penerbitan.save');
+    Route::get('webmin/semhas/formulir/{semhas}', [SemhasController::class, 'formulir'])->name('semhas.formulir');
+    Route::get('webmin/semhas/formuji/{semhas}', [SemhasController::class, 'formuji'])->name('semhas.formuji');
+    Route::get('webmin/semhas/penugasan/{semhas}', [SemhasController::class, 'penugasan'])->name('semhas.penugasan');
+    Route::get('webmin/semhas/berita/{semhas}', [SemhasController::class, 'berita'])->name('semhas.berita');
+    Route::get('webmin/semhas/jadwal', [SemhasController::class, 'jadwal'])->name('semhas.jadwal');
 
     //PI / KP Routes
     Route::resources(['webmin/kppi' => PiController::class]);

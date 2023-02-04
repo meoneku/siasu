@@ -37,9 +37,9 @@
                             <option value="">Semua Batch</option>
                             @foreach ($batchs as $batch)
                                 @if (request('batch') == $batch->id)
-                                    <option value="{{ $batch->id }}" selected>{{ $batch->nama }}</option>
-                                @else
-                                    <option value="{{ $batch->id }}">{{ $batch->nama }}</option>
+                                    <option value="{{ $batch->id }}" selected>{{ $batch->kegiatan->nama }} {{ $batch->nama }} {{ $batch->tahun }}/option>
+                                    @else
+                                    <option value="{{ $batch->id }}">{{ $batch->kegiatan->nama }} {{ $batch->nama }} {{ $batch->tahun }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -69,7 +69,7 @@
                                     <td>{{ $data->mahasiswa->nama }}</td>
                                     <td>{{ $data->mahasiswa->jurusan->jenjang }} {{ $data->mahasiswa->jurusan->jurusan }}</td>
                                     <td>{{ tanggal_indonesia($data->created_at) }}</td>
-                                    <td>{{ $data->batch->nama }}</td>
+                                    <td>{{ $data->batch->kegiatan->nama }} - {{ $data->batch->nama }} - {{ $data->batch->tahun }}</td>
                                     <td>{!! App\Http\Controllers\SkripsiController::getStatusPendaftaran($data->status) !!}</td>
                                     <td>
                                         <div class="btn-group">
@@ -90,13 +90,15 @@
                                                         <a class="dropdown-item" href="/webmin/semhas/penugasan/{{ $data->id }}" target="_blank"><i class="fas fa-file-signature"></i> Surat Penugasan</a>
                                                     @endif
                                                 @endif
-                                                <div class="dropdown-divider"></div>
-                                                <form action="/webmin/semhas/{{ $data->id }}" method="post" class="d-inline">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                                    <button class="btn-link button-delete dropdown-item" data-message="Data Pendaftar Seminar Hasil {{ $data->mahasiswa->nama }}"><i class="fas fa-trash"></i> Hapus</button>
-                                                </form>
+                                                @if (Auth::guard('admin')->user()->role == 'root')
+                                                    <div class="dropdown-divider"></div>
+                                                    <form action="/webmin/semhas/{{ $data->id }}" method="post" class="d-inline">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
+                                                        <button class="btn-link button-delete dropdown-item" data-message="Data Pendaftar Seminar Hasil {{ $data->mahasiswa->nama }}"><i class="fas fa-trash"></i> Hapus</button>
+                                                    </form>
+                                                @endif
                                             </div>
                                         </div>
                                     </td>

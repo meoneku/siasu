@@ -68,7 +68,7 @@
                                     <td>{{ $data->mahasiswa->nama }}</td>
                                     <td>{{ $data->mahasiswa->jurusan->jenjang }} {{ $data->mahasiswa->jurusan->jurusan }}</td>
                                     <td>{{ tanggal_indonesia($data->created_at) }}</td>
-                                    <td>{{ $data->batch->nama }}</td>
+                                    <td>{{ $data->batch->kegiatan->nama }} - {{ $data->batch->nama }} - {{ $data->batch->tahun }}</td>
                                     <td>{!! $data->status !!}</td>
                                     <td>
                                         <div class="btn-group">
