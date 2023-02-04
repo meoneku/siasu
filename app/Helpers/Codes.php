@@ -120,4 +120,29 @@ class Codes
 
         return $result;
     }
+
+    public static function getStatusPI($id)
+    {
+        if ($id == 0) {
+            $result = '<button class="btn btn-primary btn-xs">Baru</button>';
+        } elseif ($id == 1) {
+            $result = '<button class="btn btn-warning btn-xs">Proses</button>';
+        } elseif ($id == 2) {
+            $result = '<button class="btn btn-warning btn-xs">Proses</button>';
+        } elseif ($id == 3) {
+            $result = '<button class="btn btn-info btn-xs">Penugasan</button>';
+        } elseif ($id == 4) {
+            $result = '<button class="btn btn-success btn-xs">Pelaksanaan</button>';
+        } elseif ($id == 5) {
+            $result = '<button class="btn btn-info btn-xs">Penjadwalan</button>';
+        } elseif ($id == 6) {
+            $result = '<button class="btn btn-info btn-xs">Selesai</button>';
+        } elseif ($id == 7) {
+            $result = '<button class="btn btn-danger btn-xs">Ditolak</button>';
+        } else {
+            $result = 'Error';
+        }
+
+        return $result;
+    }
 }

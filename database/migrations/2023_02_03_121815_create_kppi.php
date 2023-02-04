@@ -28,6 +28,7 @@ return new class extends Migration
             $table->time('jam_mulai')->nullable();
             $table->time('jam_selesai')->nullable();
             $table->smallInteger('status')->default('0');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
 
             $table->foreign('mahasiswa_id')->references('id')->on('mahasiswa');

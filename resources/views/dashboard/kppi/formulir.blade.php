@@ -16,111 +16,88 @@
         <table width="850px" class="paragraf">
             <tr>
                 <td colspan="3" style="text-align:center;">
-                    <h3>FORMULIR PENDAFTARAN SEMINAR HASIL SKRIPSI</h3>
+                    <h3>
+                        FORMULIR PENDAFTARAN PRAKTIK INDUSTRI / KERJA PRAKTIK
+                    </h3>
                 </td>
-            </tr>
-            <tr>
-                <td colspan="3">Yang bertanda tangan dibawah ini :</td>
-            </tr>
-            <tr>
-                <td width="150px">Nama</td>
-                <td width="10px">:</td>
-                <td>{{ $seminar->mahasiswa->nama }}</td>
-            </tr>
-            <tr>
-                <td width="150px">NIM</td>
-                <td width="10px">:</td>
-                <td>{{ $seminar->mahasiswa->nim }}</td>
-            </tr>
-            <tr>
-                <td width="150px">Prodi</td>
-                <td width="10px">:</td>
-                <td>{{ $seminar->mahasiswa->jurusan->jenjang }} {{ $seminar->mahasiswa->jurusan->jurusan }}</td>
             </tr>
             <tr>
                 <td colspan="3"></td>
             </tr>
             <tr>
-                <td colspan="3">Dengan ini mengajukan pendaftaran Seminar Hasil Skripsi dengan judul :</td>
+                <td width="200px">Nama</td>
+                <td width="10px">:</td>
+                <td>{{ $kppi->mahasiswa->nama }}</td>
             </tr>
             <tr>
-                <td colspan="3" class="justify"><strong><span>{!! $seminar->judul_skripsi !!}</span></strong></td>
+                <td width="200px">NIM</td>
+                <td width="10px">:</td>
+                <td>{{ $kppi->mahasiswa->nim }}</td>
+            </tr>
+            <tr>
+                <td width="200px">Prodi</td>
+                <td width="10px">:</td>
+                <td>{{ $kppi->mahasiswa->jurusan->jenjang }} {{ $kppi->mahasiswa->jurusan->jurusan }}</td>
+            </tr>
+            <tr>
+                <td width="200px">No Hanphone</td>
+                <td width="10px">:</td>
+                <td>{{ $kppi->hp }}</td>
+            </tr>
+            <tr>
+                <td width="200px">Tempat</td>
+                <td width="10px">:</td>
+                <td>{{ $kppi->lokasi }}</td>
+            </tr>
+            <tr>
+                <td width="200px">Waktu Pelaksanaan</td>
+                <td width="10px">:</td>
+                <td>{{ tanggal_indonesia($kppi->mulai, false) }} s/d {{ tanggal_indonesia($kppi->selesai, false) }}</td>
             </tr>
             <tr>
                 <td colspan="3"></td>
             </tr>
             <tr>
-                <td colspan="3" style="padding-bottom:0px">Dan saya telah memenuhi syarat-syarat administrasi dan akademik sebagai berikut :</td>
+                <td colspan="3" class="justify">Saya berjanji akan mematuhi semua peraturan yang berlaku selama pelaksanaan Praktik Industri/   Kerja Praktik yang di tetapkan oleh Kantor/Intansi/Lembaga/Perusahaan dan Fakultas Teknik Universitas Hasyim Asy'ari Tebuireng Jombang.</td>
             </tr>
             <tr>
-                <td colspan="3">
-                    <ol type="1">
-                        <li>Menyertakan Foto Kopi KRS Berjalan Yang Telah Di Setujui</li>
-                        <li>Telah Melakukan Pembayaran Seminar Hasil</li>
-                        <li>Tiga (3) Eksemplar Draft Proposal Skripsi Yang Sudah Di Setujui Oleh Pembimbing Skripsi</li>
-                    </ol>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" class="justify"><span>Dengan ini saya melakukan pendaftaran Seminar Hasil Skripsi dengan Judul Diatas.</span></td>
+                <td colspan="3"></td>
             </tr>
         </table>
         <br />
         <table width="850px" class="ttd">
             <tr>
-                <td width="320px">Jombang, {{ tanggal_indonesia($seminar->created_at, false) }}</td>
+                <td width="320px">Jombang, {{ tanggal_indonesia($kppi->created_at, false) }}</td>
                 <td width=""></td>
                 <td width="320px">Menyetujui</td>
             </tr>
             <tr>
                 <td>Pendaftar</td>
                 <td></td>
-                <td>Koordinator Skripsi</td>
+                <td>Kaprodi {{ $kppi->mahasiswa->jurusan->jurusan }}</td>
             </tr>
             <tr>
-                <td height="80px"></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td colspan="2"><u>{{ $seminar->mahasiswa->nama }}</u></td>
-                <td><u>{{ $koord->nama }}</u></td>
-            </tr>
-            <tr>
-                <td>NIM : {{ $seminar->mahasiswa->nim }}</td>
-                <td></td>
-                <td>NIY : {{ $koord->niy }}</td>
-            </tr>
-            <tr>
-                <td height="20px"></td>
+                <td height="100px"></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td></td>
-                <td>Mengetahui</td>
-                <td></td>
+                <td colspan="2"><u>{{ $kppi->mahasiswa->nama }}</u></td>
+                <td><u><u>{{ $kaprodi->nama }}</u></u></td>
             </tr>
             <tr>
-                <td></td>
-                <td>Kaprodi</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td height="80px"></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td colspan="2"><u>{{ $kaprodi->nama }}</u></td>
-            </tr>
-            <tr>
+                <td>NIM : {{ $kppi->mahasiswa->nim }}</td>
                 <td></td>
                 <td>NIY : {{ $kaprodi->niy }}</td>
-                <td></td>
             </tr>
         </table>
+        <br/>
+        <br/>
+        <span style="font-size:16px"><i>Lampiran</i></span><br/>
+        <ul style="margin-top:0px">
+            <li><i>Bukti Pembayaran Praktik Industri/Kerja Praktik</i></li>
+            <li><i>Surat balasan diterima dari tempat Praktik Industri/Kerja Praktik</i></li>
+        </ul>
     </div>
 </body>
 

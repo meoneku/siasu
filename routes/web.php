@@ -87,6 +87,9 @@ Route::group(['middleware' => 'is_login'], function () {
 
         //Seminar Hasil Route Delete
         Route::delete('webmin/semhas/{semhas}', [SeminarController::class, 'destroy'])->name('semhas.destroy');
+
+        //KPPI Route Delete
+        Route::delete('webmin/kppi/{kppi}', [PiController::class, 'destroy'])->name('kppi.destroy');
     });
 
     //Profil And Password Changes Routes
@@ -219,7 +222,15 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('webmin/semhas/jadwal', [SemhasController::class, 'jadwal'])->name('semhas.jadwal');
 
     //PI / KP Routes
-    Route::resources(['webmin/kppi' => PiController::class]);
+    // Route::resources(['webmin/kppi' => PiController::class]);
+    Route::get('webmin/kppi', [PiController::class, 'index'])->name('kppi.index');
+    Route::get('webmin/kppi/create', [PiController::class, 'create'])->name('kppi.create');
+    Route::post('webmin/kppi', [PiController::class, 'store'])->name('kppi.store');
+    Route::get('webmin/kppi/{kppi}/edit', [PiController::class, 'edit'])->name('kppi.edit');
+    Route::put('webmin/kppi/{kppi}', [PiController::class, 'update'])->name('kppi.update');
+    Route::get('webmin/kppi/formulir/{kppi}', [PiController::class, 'formulir'])->name('kppi.formulir');
+    Route::get('webmin/kppi/status/{kppi}', [PiController::class, 'status'])->name('kppi.status');
+    Route::put('webmin/kppi/status/{kppi}', [PiController::class, 'updateStatus'])->name('kppi.status.update');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');
