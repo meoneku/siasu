@@ -74,6 +74,27 @@
                 </td>
             </tr>
             <tr>
+                <td colspan="3">Dosen Pembimbing (<i>Di Isi Oleh Koordinator Skripsi/Kaprodi</i>)</td>
+            </tr>
+            <tr>
+                <td width="150px">Pembimbing</td>
+                <td width="10px">:</td>
+                <td>_________________________________________________________</td>
+            </tr>
+            <tr>
+                <td width="150px">Mulai Tugas</td>
+                <td width="10px">:</td>
+                <td>_______________________________________</td>
+            </tr>
+            <tr>
+                <td width="150px">Selesai Tugas</td>
+                <td width="10px">:</td>
+                <td>_______________________________________</td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
                 <td colspan="3" class="justify"><span>Dengan ini saya melakukan pendaftaran Skripsi dengan Judul dan persyaratan yang telah ditentukan. Dan menyelesaikan Skripsi sesuai dengan waktu yang telah ditentukan oleh Prodi / Jurusan.</span></td>
             </tr>
         </table>
@@ -133,6 +154,13 @@
                 <td></td>
             </tr>
         </table>
+        <br />
+        <br />
+        <span style="font-size:16px"><i>Catatan</i></span><br />
+        <ul style="margin-top:0px">
+            <li><i>FC (Fotocopy) 1 Lembar</i></li>
+            <li><i>Lembar Copy Harap Serahkan Ke Prodi Setelah Mendapatkan Tanda Tangan Dan Pembimbing</i></li>
+        </ul>
     </div>
 </body>
 

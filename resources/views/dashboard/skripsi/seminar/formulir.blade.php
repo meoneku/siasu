@@ -62,6 +62,37 @@
                 </td>
             </tr>
             <tr>
+                <td colspan="3">Dosen Penguji (<i>Di Isi Oleh Koordinator Skripsi/Kaprodi</i>)</td>
+            </tr>
+            <tr>
+                <td width="150px">Penguji 1</td>
+                <td width="10px">:</td>
+                <td>_________________________________________________________</td>
+            </tr>
+            <tr>
+                <td width="150px">Penguji 2</td>
+                <td width="10px">:</td>
+                <td>_________________________________________________________</td>
+            </tr>
+            <tr>
+                <td width="150px">Penguji 3</td>
+                <td width="10px">:</td>
+                <td>_________________________________________________________</td>
+            </tr>
+            <tr>
+                <td width="150px">Waktu Seminar</td>
+                <td width="10px">:</td>
+                <td>_____________________________________Jam_________________</td>
+            </tr>
+            <tr>
+                <td width="150px">Ruang</td>
+                <td width="10px">:</td>
+                <td>_______________________________________</td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
                 <td colspan="3" class="justify"><span>Dengan ini saya melakukan pendaftaran Seminar Skripsi dengan Judul Diatas.</span></td>
             </tr>
         </table>
@@ -121,6 +152,13 @@
                 <td></td>
             </tr>
         </table>
+        <br />
+        <br />
+        <span style="font-size:16px"><i>Catatan</i></span><br />
+        <ul style="margin-top:0px">
+            <li><i>FC (Fotocopy) 1 Lembar</i></li>
+            <li><i>Lembar Copy Harap Serahkan Ke Prodi Setelah Mendapatkan Tanda Tangan Dan Pembimbing</i></li>
+        </ul>
     </div>
 </body>
 

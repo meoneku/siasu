@@ -142,9 +142,9 @@ class SkripsiController extends Controller
 
     public function setpembimbing(Skripsi $skripsi)
     {
-        if ($skripsi->status <= 2 or $skripsi->status == 4) {
-            return redirect(url('webmin/skripsi'))->with('success', 'Error 501');
-        }
+        // if ($skripsi->status <= 2 or $skripsi->status == 4) {
+        //     return redirect(url('webmin/skripsi'))->with('success', 'Error 501');
+        // }
 
         return view('dashboard.skripsi.daftar.setbimbing', [
             'title'     => 'Mahasiswa | Data Pendaftar Skripsi',
@@ -156,9 +156,9 @@ class SkripsiController extends Controller
 
     public function addpembimbing(Skripsi $skripsi)
     {
-        if ($skripsi->status <= 2 or $skripsi->status == 4) {
-            return redirect(url('webmin/skripsi'))->with('success', 'Error 501');
-        }
+        // if ($skripsi->status <= 2 or $skripsi->status == 4) {
+        //     return redirect(url('webmin/skripsi'))->with('success', 'Error 501');
+        // }
 
         return view('dashboard.skripsi.daftar.addbimbing', [
             'title'     => 'Mahasiswa | Data Pendaftar Skripsi',

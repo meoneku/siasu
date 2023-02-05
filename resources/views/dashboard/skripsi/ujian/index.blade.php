@@ -79,17 +79,17 @@
                                             </button>
                                             <div class="dropdown-menu" role="menu">
                                                 <a class="dropdown-item" href="/webmin/semhas/{{ $data->id }}/edit"><i class="fas fa-edit"></i> Edit / Lihat</a>
-                                                <a class="dropdown-item" href="/webmin/semhas/status/{{ $data->id }}"><i class="far fa-check-circle"></i> Status</a>
+                                                {{-- <a class="dropdown-item" href="/webmin/semhas/status/{{ $data->id }}"><i class="far fa-check-circle"></i> Status</a> --}}
                                                 <a class="dropdown-item" href="/webmin/semhas/formulir/{{ $data->id }}" target="_blank"><i class="fas fa-file-pdf"></i> Form Daftar</a>
-                                                @if ($data->status == 3 or $data->status == 5)
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="/webmin/semhas/penguji/{{ $data->id }}"><i class="fas fa-user-graduate"></i> Set Penguji</a>
-                                                    @if ($data->status == 5)
-                                                        <a class="dropdown-item" href="/webmin/semhas/berita/{{ $data->id }}" target="_blank"><i class="fas fa-sticky-note"></i> Berita Acara</a>
-                                                        <a class="dropdown-item" href="/webmin/semhas/formuji/{{ $data->id }}" target="_blank"><i class="fas fa-briefcase"></i> Form Penguji</a>
-                                                        <a class="dropdown-item" href="/webmin/semhas/penugasan/{{ $data->id }}" target="_blank"><i class="fas fa-file-signature"></i> Surat Penugasan</a>
-                                                    @endif
+                                                {{-- @if ($data->status == 3 or $data->status == 5) --}}
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/webmin/semhas/penguji/{{ $data->id }}"><i class="fas fa-user-graduate"></i> Set Penguji</a>
+                                                @if ($data->status == 5)
+                                                    <a class="dropdown-item" href="/webmin/semhas/berita/{{ $data->id }}" target="_blank"><i class="fas fa-sticky-note"></i> Berita Acara</a>
+                                                    <a class="dropdown-item" href="/webmin/semhas/formuji/{{ $data->id }}" target="_blank"><i class="fas fa-briefcase"></i> Form Penguji</a>
+                                                    <a class="dropdown-item" href="/webmin/semhas/penugasan/{{ $data->id }}" target="_blank"><i class="fas fa-file-signature"></i> Surat Penugasan</a>
                                                 @endif
+                                                {{-- @endif --}}
                                                 @if (Auth::guard('admin')->user()->role == 'root')
                                                     <div class="dropdown-divider"></div>
                                                     <form action="/webmin/semhas/{{ $data->id }}" method="post" class="d-inline">

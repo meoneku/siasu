@@ -21,6 +21,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\PiController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SemhasController;
+use App\Http\Controllers\SuratPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,8 @@ Route::get('/semhas', [IndexController::class, 'semhas'])->name('home.semhas.ind
 Route::post('/semhas', [SemhasController::class, 'store'])->name('home.semhas.store');
 Route::get('/kppi', [IndexController::class, 'kppi'])->name('home.kppi.index');
 Route::post('/kppi', [PiController::class, 'store'])->name('home.kppi.store');
+Route::get('/suratpi', [IndexController::class, 'suratpi'])->name('home.suratpi.index');
+Route::post('/suratpi', [SuratPIController::class, 'store'])->name('home.suratpi.store');
 
 Route::get('/webmin/prank', function () {
     return view('hello');
@@ -90,6 +93,9 @@ Route::group(['middleware' => 'is_login'], function () {
 
         //KPPI Route Delete
         Route::delete('webmin/kppi/{kppi}', [PiController::class, 'destroy'])->name('kppi.destroy');
+
+        //Surat PI Route Delete
+        Route::delete('webmin/suratpi/{suratpi}', [SuratPIController::class, 'destroy'])->name('suratpi.destroy');
     });
 
     //Profil And Password Changes Routes
@@ -231,6 +237,16 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('webmin/kppi/formulir/{kppi}', [PiController::class, 'formulir'])->name('kppi.formulir');
     Route::get('webmin/kppi/status/{kppi}', [PiController::class, 'status'])->name('kppi.status');
     Route::put('webmin/kppi/status/{kppi}', [PiController::class, 'updateStatus'])->name('kppi.status.update');
+
+    //Surat PI Routes
+    // Route::resources(['webmin/suratpi' => SuratPIController::class]);
+    Route::get('webmin/suratpi', [SuratPIController::class, 'index'])->name('suratpi.index');
+    Route::get('webmin/suratpi/create', [SuratPIController::class, 'create'])->name('suratpi.create');
+    Route::post('webmin/suratpi', [SuratPIController::class, 'store'])->name('suratpi.store');
+    Route::get('webmin/suratpi/{suratpi}/edit', [SuratPIController::class, 'edit'])->name('suratpi.edit');
+    Route::put('webmin/suratpi/{suratpi}', [SuratPIController::class, 'update'])->name('suratpi.update');
+    Route::put('webmin/suratpi/surat/{suratpi}', [SuratPIController::class, 'publish'])->name('suratpi.surat.publish');
+    Route::get('webmin/suratpi/surat/{suratpi}', [SuratPIController::class, 'cetak'])->name('suratpi.surat.print');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

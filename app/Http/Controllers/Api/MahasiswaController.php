@@ -39,6 +39,27 @@ class MahasiswaController extends Controller
         return response()->json($response);
     }
 
+    public function getMahasiswaId(Request $request)
+    {
+        $search     = $request->q;
+
+        if ($search == '') {
+            $datas    = Mahasiswa::orderby('nama', 'asc')->with('jurusan')->limit(10)->get();
+        } else {
+            $datas    = Mahasiswa::orderby('nama', 'asc')->where('nama', 'like', '%' . $search . '%')->with('jurusan')->limit(10)->get();
+        }
+
+        $response = array();
+        foreach ($datas as $mahasiswa) {
+            $response[] = array(
+                "id"        => $mahasiswa->id,
+                "text"      => $mahasiswa->nim . ' | ' . $mahasiswa->nama . ' | ' . $mahasiswa->jurusan->jurusan,
+            );
+        }
+
+        return response()->json($response);
+    }
+
     public function getDataSkripsi(Request $request)
     {
         $search     = $request->search;

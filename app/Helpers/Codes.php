@@ -145,4 +145,15 @@ class Codes
 
         return $result;
     }
+
+    public static function getStatusSuratPI($id)
+    {
+        if ($id == 0) {
+            $result = '<button class="btn btn-primary btn-xs">Baru</button>';
+        } elseif ($id == 1) {
+            $result = '<button class="btn btn-success btn-xs">Publish</button>';
+        }
+
+        return $result;
+    }
 }

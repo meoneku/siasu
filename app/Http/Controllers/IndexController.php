@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Batch;
+use App\Models\Jurusan;
 
 class IndexController extends Controller
 {
@@ -45,6 +46,13 @@ class IndexController extends Controller
         $batch = Batch::where('kegiatan_id', 1)->whereRaw('? between mulai and selesai', $now)->first();
         return view('kppi', [
             'batch'     => $batch
+        ]);
+    }
+
+    public function suratpi()
+    {
+        return view('suratpi', [
+            'jurusan'      => Jurusan::all()
         ]);
     }
 }

@@ -2,11 +2,11 @@
 @section('main')
     <div class="row">
         <div class="mt-2 mb-2">
-            <h5>Permohonan  Surat</h5>
+            <h5>Permohonan Surat</h5>
         </div>
         <div class="col-6 col-md-3 mb-1">
             <div class="card p-2 h-100" data-tilt>
-                <a href="#"><img src="img/svg/brochure-document-menu-svgrepo-com.svg" class="card-img-top" alt="SIP!" height="96px" width="96px" /></a>
+                <a href="/suratpi"><img src="img/svg/brochure-document-menu-svgrepo-com.svg" class="card-img-top" alt="SIP!" height="96px" width="96px" /></a>
                 <div class="card-body text-center">
                     <span class="fw-bold fs-6">Surat Izin PI / KP</span>
                 </div>
