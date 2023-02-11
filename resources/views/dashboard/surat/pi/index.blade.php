@@ -45,7 +45,8 @@
                                 <th>No</th>
                                 <th>Tempat/Lokasi</th>
                                 <th>Jurusan</th>
-                                <th>Tanggal Daftar</th>
+                                <th>Tanggal</th>
+                                <th>No Surat</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
@@ -57,6 +58,7 @@
                                     <td>{{ $data->tempat }}</td>
                                     <td>{{ $data->jurusan->jenjang }} {{ $data->jurusan->jurusan }}</td>
                                     <td>{{ tanggal_indonesia($data->created_at) }}</td>
+                                    <td>{{ $data->no_surat }}</td>
                                     <td>{!! App\Helpers\Codes::getStatusSuratPI($data->status) !!}</td>
                                     <td>
                                         <div class="btn-group">
