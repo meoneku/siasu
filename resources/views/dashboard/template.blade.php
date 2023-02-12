@@ -84,18 +84,12 @@
                             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Surat</a>
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                 <li class="dropdown-submenu dropdown-hover">
-                                    <a id="dropdownSubMenu1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Dosen</a>
-                                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                        <li><a tabindex="-1" href="{{ url('webmin/prank') }}" class="dropdown-item">Surat Tugas</a></li>
-                                        <li><a tabindex="-1" href="{{ url('webmin/prank') }}" class="dropdown-item">Surat Penerbitan ISBN</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu dropdown-hover">
                                     <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Mahasiswa</a>
                                     <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
                                         <li><a tabindex="-1" href="{{ url('webmin/prank') }}" class="dropdown-item">Surat Keterangan Kuliah</a></li>
-                                        <li><a tabindex="-1" href="{{ url('webmin/prank') }}" class="dropdown-item">Surat Permohonan Magang</a></li>
-                                        <li><a tabindex="-1" href="{{ url('webmin/prank') }}" class="dropdown-item">Surat Permohonan Penelitian</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/suratpi') }}" class="dropdown-item">Surat Permohonan PI/KP</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/prank') }}" class="dropdown-item">Surat Izin Observasi</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/prank') }}" class="dropdown-item">Surat Izin Pengambilan Data</a></li>
                                     </ul>
                                 </li>
                             </ul>

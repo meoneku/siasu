@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ESurat;
+use App\Models\Dosen;
 use App\Models\Jurusan;
 use App\Models\Surat;
 use App\Models\Suratpi;
@@ -150,8 +151,9 @@ class SuratPIController extends Controller
 
     public function cetak(Suratpi $suratpi)
     {
-        foreach ($suratpi->mahasiswa as $data) {
-            echo $data->nama . '<br/>';
-        }
+        return view('dashboard.surat.pi.surat', [
+            'surat'     => $suratpi,
+            'kaprodi'   => Dosen::where('jurusan_id', $suratpi->jurusan_id)->where('jabatan', 'Kaprodi')->first()
+        ]);
     }
 }
