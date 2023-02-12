@@ -21,6 +21,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\PiController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SemhasController;
+use App\Http\Controllers\SuratObservasiController;
 use App\Http\Controllers\SuratPIController;
 
 /*
@@ -46,6 +47,8 @@ Route::get('/kppi', [IndexController::class, 'kppi'])->name('home.kppi.index');
 Route::post('/kppi', [PiController::class, 'store'])->name('home.kppi.store');
 Route::get('/suratpi', [IndexController::class, 'suratpi'])->name('home.suratpi.index');
 Route::post('/suratpi', [SuratPIController::class, 'store'])->name('home.suratpi.store');
+Route::get('/suratobservasi', [IndexController::class, 'suratobservasi'])->name('home.suratobservasi.index');
+Route::post('/suratobservasi', [SuratObservasiController::class, 'store'])->name('home.suratobservasi.store');
 
 Route::get('/webmin/prank', function () {
     return view('hello');
@@ -245,8 +248,11 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::post('webmin/suratpi', [SuratPIController::class, 'store'])->name('suratpi.store');
     Route::get('webmin/suratpi/{suratpi}/edit', [SuratPIController::class, 'edit'])->name('suratpi.edit');
     Route::put('webmin/suratpi/{suratpi}', [SuratPIController::class, 'update'])->name('suratpi.update');
-    Route::put('webmin/suratpi/surat/{suratpi}', [SuratPIController::class, 'publish'])->name('suratpi.surat.publish');
+    Route::put('webmin/suratpi/status/{suratpi}', [SuratPIController::class, 'status'])->name('suratpi.surat.status');
     Route::get('webmin/suratpi/surat/{suratpi}', [SuratPIController::class, 'cetak'])->name('suratpi.surat.print');
+
+    //Surat Observasi Routes
+    Route::resources(['webmin/suratobservasi' => SuratObservasiController::class]);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

@@ -60,7 +60,7 @@ class SuratPIController extends Controller
         $suratpi = Suratpi::create($validateData);
         $suratpi->mahasiswa()->sync($request->mahasiswa_id);
 
-        return redirect($request->redirect_to)->with('success', 'Terimakasih telah melakukan pendaftaran, data pendaftaran akan di verifikasi terlebih dahulu');
+        return redirect($request->redirect_to)->with('success', 'Terimakasih, data permohonan akan di verifikasi terlebih dahulu');
     }
 
     /**
@@ -129,24 +129,27 @@ class SuratPIController extends Controller
         return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Hapus');
     }
 
-    public function publish(Request $request, Suratpi $suratpi)
+    public function status(Request $request, Suratpi $suratpi)
     {
-        $nosurat = ESurat::makeNomorSurat($suratpi->jurusan_id, $suratpi->jurusan->singkatan, $suratpi->jurusan->kode_surat);
+        $nosurat = "";
+        if ($request->datastatus == 1) {
+            $nosurat = ESurat::makeNomorSurat($suratpi->jurusan_id, $suratpi->jurusan->singkatan, $suratpi->jurusan->kode_surat);
+            $data = [
+                'no_surat'      => $nosurat,
+                'jurusan_id'    => $suratpi->jurusan_id,
+                'jenis_surat'   => 'Surat Izin Praktik Industri',
+                'tahun'         => date('Y')
+            ];
+            Surat::create($data);
+        }
+
         $dataU = [
-            'status'        => 1,
+            'status'        => $request->datastatus,
             'no_surat'      => $nosurat
         ];
 
-        $data = [
-            'no_surat'      => $nosurat,
-            'jurusan_id'    => $suratpi->jurusan_id,
-            'jenis_surat'   => 'Surat Izin Praktik Industri',
-            'tahun'         => date('Y')
-        ];
-
         Suratpi::where('id', $suratpi->id)->update($dataU);
-        Surat::create($data);
-        return redirect($request->redirect_to)->with('success', 'Surat Berhasil Dipublish');
+        return redirect($request->redirect_to)->with('success', 'Status Telah Dirubah');
     }
 
     public function cetak(Suratpi $suratpi)

@@ -14,9 +14,17 @@
         </div>
         <div class="col-6 col-md-3 mb-1">
             <div class="card p-2 h-100" data-tilt>
-                <a href="#"><img src="img/svg/bag-briefcase-business-bag-svgrepo-com.svg" class="card-img-top" alt="SIP!" height="96px" width="96px" /></a>
+                <a href="/suratobservasi"><img src="img/svg/bag-briefcase-business-bag-svgrepo-com.svg" class="card-img-top" alt="SIP!" height="96px" width="96px" /></a>
                 <div class="card-body text-center">
-                    <span class="fw-bold fs-6">Surat Izin Penelitian</span>
+                    <span class="fw-bold fs-6">Surat Izin Observasi</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-1">
+            <div class="card p-2 h-100" data-tilt>
+                <a href="#"><img src="img/svg/undraw_text_files_au1q.svg" class="card-img-top" alt="SIP!" height="96px" width="96px" /></a>
+                <div class="card-body text-center">
+                    <span class="fw-bold fs-6">Surat Izin Pengambilan Data</span>
                 </div>
             </div>
         </div>

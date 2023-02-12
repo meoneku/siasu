@@ -16,13 +16,14 @@
     <div class="col-lg-12">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="card-title m-0">Data Pemohon Surat PI/KP</h5>
+                <h5 class="card-title m-0">Data Pemohon Surat Observasi</h5>
             </div>
 
             <div class="card-body">
-                <form action="/webmin/suratpi">
+                <form action="/webmin/suratobservasi">
                     <div class="input-group">
-                        <input type="text" name="tempat" class="form-control rounded-0 w-25" placeholder="Semua Tempat" value="{{ request('tempat') }}">
+                        <input type="text" name="nama" class="form-control rounded-0 w-25" placeholder="Semua Nama" value="{{ request('nama') }}">
+                        <input type="text" name="lembaga" class="form-control rounded-0 w-25" placeholder="Semua Lembaga" value="{{ request('lembaga') }}">
                         <select name="jurusan" class="form-control w-25">
                             <option value="">Semua Jurusan</option>
                             @foreach ($jurusan as $prodi)
@@ -34,8 +35,8 @@
                             @endforeach
                         </select>
                         <button class="btn btn-danger btn-flat" type="submit"><i class="fas fa-search"></i></button>
-                        <a href="/webmin/suratpi" class="btn btn-info btn-flat"><i class="fas fa-circle-notch"></i></a>
-                        <a href="/webmin/suratpi/create" class="btn btn-primary btn-flat"><i class="fas fa-plus"></i></a>
+                        <a href="/webmin/suratobservasi" class="btn btn-info btn-flat"><i class="fas fa-circle-notch"></i></a>
+                        <a href="/webmin/suratobservasi/create" class="btn btn-primary btn-flat"><i class="fas fa-plus"></i></a>
                     </div>
                 </form>
                 <div class="row mt-4">
@@ -43,21 +44,21 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tempat/Lokasi</th>
+                                <th>Nama</th>
                                 <th>Jurusan</th>
-                                <th>Tanggal</th>
+                                <th>Lembaga/Instansi/Perusahaan</th>
                                 <th>No Surat</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($suratpi as $data)
+                            @foreach ($observasi as $data)
                                 <tr>
-                                    <td>{{ $suratpi->firstItem() + $loop->index }}</td>
-                                    <td>{{ $data->tempat }}</td>
-                                    <td>{{ $data->jurusan->jenjang }} {{ $data->jurusan->jurusan }}</td>
-                                    <td>{{ tanggal_indonesia($data->created_at) }}</td>
+                                    <td>{{ $observasi->firstItem() + $loop->index }}</td>
+                                    <td>{{ $data->mahasiswa->nama }}</td>
+                                    <td>{{ $data->mahasiswa->jurusan->jenjang }} {{ $data->mahasiswa->jurusan->jurusan }}</td>
+                                    <td>{{ $data->lembaga }}</td>
                                     <td>{{ $data->no_surat }}</td>
                                     <td>{!! App\Helpers\Codes::getStatusSuratPI($data->status) !!}</td>
                                     <td>
@@ -67,22 +68,21 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                             </button>
                                             <div class="dropdown-menu" role="menu">
-                                                <a class="dropdown-item" href="/webmin/suratpi/{{ $data->id }}/edit"><i class="fas fa-edit"></i> Edit / Lihat</a>
-                                                <button class="btn-link button-change dropdown-item" data-message="Pastikan Mahasiswa Yang PI/KP di {{ $data->tempat }} Sudah Melakukan Pembayaran" data-id="{{ $data->id }}"><i class="fas fa-file-pdf"></i> Status</button>
+                                                <a class="dropdown-item" href="/webmin/suratobservasi/{{ $data->id }}/edit"><i class="fas fa-edit"></i> Edit / Lihat</a>
                                                 @if ($data->status == 0)
-                                                    {{-- <form action="/webmin/suratpi/surat/{{ $data->id }}" method="post" class="d-inline">
+                                                    {{-- <form action="/webmin/suratobservasi/surat/{{ $data->id }}" method="post" class="d-inline">
                                                         @method('put')
                                                         @csrf
                                                         <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
                                                         <button class="btn-link button-change dropdown-item" data-message="Pastikan Mahasiswa Yang PI/KP di {{ $data->tempat }} Sudah Melakukan Pembayaran"><i class="fas fa-file-pdf"></i> Terbitkan Surat</button>
                                                     </form> --}}
-                                                    <button class="btn-link button-change dropdown-item" data-message="Pastikan Mahasiswa Yang PI/KP di {{ $data->tempat }} Sudah Melakukan Pembayaran" data-id="{{ $data->id }}"><i class="fas fa-file-pdf"></i> Status</button>
+                                                    <button class="btn-link button-change dropdown-item" data-message="Pastikan {{ $data->mahasiswa->nama }} Yang Melakukan Observasi Sudah Melakukan Terdaftar Sebagai Mahasiswa Skripsi" data-id="{{ $data->id }}"><i class="fas fa-file-pdf"></i> Verifikasi</button>
                                                 @else
-                                                    <a class="dropdown-item" href="/webmin/suratpi/surat/{{ $data->id }}" target="_blank"><i class="fas fa-file-pdf"></i> Cetak Surat</a>
+                                                    <a class="dropdown-item" href="/webmin/suratobservasi/surat/{{ $data->id }}" target="_blank"><i class="fas fa-file-pdf"></i> Cetak Surat</a>
                                                 @endif
                                                 @if (Auth::guard('admin')->user()->role == 'root')
                                                     <div class="dropdown-divider"></div>
-                                                    <form action="/webmin/suratpi/{{ $data->id }}" method="post" class="d-inline">
+                                                    <form action="/webmin/suratobservasi/{{ $data->id }}" method="post" class="d-inline">
                                                         @method('delete')
                                                         @csrf
                                                         <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
@@ -98,7 +98,7 @@
                     </table>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    {{ $suratpi->links() }}
+                    {{ $observasi->links() }}
                 </div>
             </div>
         </div>
@@ -125,19 +125,20 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $.post("{{ url('webmin/suratpi/status') . '/' }}" + id, {
+                    $.post("{{ url('webmin/suratobervasi/status') . '/' }}" + id, {
                         _method : "put",
-                        _token: CSRF_TOKEN,
+                        _token: "{{ csrf_token() }}",
+                        redirect_to: "{!! URL::full() !!}",
                         datastatus: "1"
                     })
-                    window.location.replace("{!! URL::full() !!}")
+                    // form.submit();
                 } else if (result.isDenied) {
-                    $.post("{{ url('webmin/suratpi/status') . '/' }}" + id, {
+                    $.post("{{ url('webmin/suratobervasi/status') . '/' }}" + id, {
                         _method : "put",
-                        _token: CSRF_TOKEN,
+                        _token: "{{ csrf_token() }}",
+                        redirect_to: "{!! URL::full() !!}",
                         datastatus: "2"
                     })
-                    window.location.replace("{!! URL::full() !!}")
                 }
             })
         });

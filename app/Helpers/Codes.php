@@ -151,7 +151,9 @@ class Codes
         if ($id == 0) {
             $result = '<button class="btn btn-primary btn-xs">Baru</button>';
         } elseif ($id == 1) {
-            $result = '<button class="btn btn-success btn-xs">Publish</button>';
+            $result = '<button class="btn btn-success btn-xs">Valid</button>';
+        } elseif ($id == 2) {
+            $result = '<button class="btn btn-danger btn-xs">Tidak</button>';
         }
 
         return $result;

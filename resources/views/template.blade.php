@@ -14,7 +14,7 @@
     <title>Fakultas Teknik</title>
 </head>
 
-<body class="p-3 mb-2 bg-primary text-white">
+<body class="p-3 mb-2 bg-success text-white">
     <main class="container">
         <div class="text-left">
             <div class="row">

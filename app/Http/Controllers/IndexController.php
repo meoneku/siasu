@@ -17,7 +17,7 @@ class IndexController extends Controller
     {
         $now = date('Y-m-d');
         $batch = Batch::where('kegiatan_id', 4)->whereRaw('? between mulai and selesai', $now)->first();
-        return view('skripsi', [
+        return view('skripsi.skripsi', [
             'batch'     => $batch
         ]);
     }
@@ -26,7 +26,7 @@ class IndexController extends Controller
     {
         $now = date('Y-m-d');
         $batch = Batch::where('kegiatan_id', 5)->whereRaw('? between mulai and selesai', $now)->first();
-        return view('seminar', [
+        return view('skripsi.seminar', [
             'batch'     => $batch
         ]);
     }
@@ -35,7 +35,7 @@ class IndexController extends Controller
     {
         $now = date('Y-m-d');
         $batch = Batch::where('kegiatan_id', 6)->whereRaw('? between mulai and selesai', $now)->first();
-        return view('semhas', [
+        return view('skripsi.semhas', [
             'batch'     => $batch
         ]);
     }
@@ -51,8 +51,13 @@ class IndexController extends Controller
 
     public function suratpi()
     {
-        return view('suratpi', [
+        return view('surat.suratpi', [
             'jurusan'      => Jurusan::all()
         ]);
+    }
+
+    public function suratobservasi()
+    {
+        return view('surat.observasi');
     }
 }
