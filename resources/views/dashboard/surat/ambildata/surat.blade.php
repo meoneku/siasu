@@ -65,7 +65,7 @@
             <tr>
                 <td width="115px">H A L</td>
                 <td width="5px" class="top-text" style="padding: 0px 0px 0px 0px">:</td>
-                <td class="top-text" style="padding: 0px 0px 0px 5px"><strong><u>Permohonan Izin Observasi</strong></u></td>
+                <td class="top-text" style="padding: 0px 0px 0px 5px"><strong><u>Permohonan Izin Pengambilan Data</strong></u></td>
             </tr>
         </table>
         <br />
@@ -127,22 +127,20 @@
             </tr>
             <tr>
                 <td colspan="4" class="justify inden">
-                    Untuk melakukan pengambilan data di Lembaga/Institusi/Perusahaan Bapak/Ibu guna penyusunan skripsi dengan judul :
+                    Untuk melakukan pengambilan data di Lembaga/Institusi/Perusahaan Bapak/Ibu guna penyusunan skripsi dengan judul skripsi di atas. Untuk data yang dibutuhkan adalah sebagai berikut:
                 </td>
             </tr>
             <tr>
-                <td colspan="4" class="justify">
-                    {{ $surat->judul_skripsi }}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" class="justify">
-                    Untuk data yang dibutuhkan adalah sebagai berikut:
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" class="justify">
-                    1. xxxx xxxxxxx xx xxxxx xxxxxxx
+                <td colspan="4" class="justify" style="padding-left: 0.7in">
+                    @php
+                        $data = explode(';', $surat->kebutuhan);
+                        $no = 1;
+
+                        foreach ($data as $d) {
+                            echo $no .'. '. $d .'<br/>';
+                            $no++;
+                        }
+                    @endphp
                 </td>
             </tr>
             <tr>

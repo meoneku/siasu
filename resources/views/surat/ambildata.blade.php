@@ -90,7 +90,7 @@
         </div>
         <div class="d-flex justify-content-end">
             <a href="/" class="btn btn-warning"><i class="fa-solid fa-arrow-left"></i> Kembali</a>&nbsp;
-            <button type="button" class="btn btn-success" id="addData">Tambah Data</button>&nbsp;
+            <button type="button" class="btn btn-success" id="addData"><i class="fa-solid fa-plus"></i> Tambah Data</button>&nbsp;
             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Daftar</button>
         </div>
     </form>

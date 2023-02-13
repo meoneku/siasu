@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SuratAmbilData;
+use App\Helpers\ESurat;
+use App\Models\Dosen;
+use App\Models\Jurusan;
+use App\Models\Surat;
+use App\Models\Suratambildata;
 use Illuminate\Http\Request;
 
 class SuratAmbilDataController extends Controller
@@ -14,7 +18,11 @@ class SuratAmbilDataController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.surat.ambildata.index', [
+            'title'     => 'Mahasiswa | Data Pemohon Pengambilan Data',
+            'surat'     => Suratambildata::with('mahasiswa')->filter(request(['nama', 'jurusan', 'lembaga']))->latest()->paginate(10)->withQueryString(),
+            'jurusan'   => Jurusan::all()
+        ]);
     }
 
     /**
@@ -24,7 +32,9 @@ class SuratAmbilDataController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.surat.ambildata.create', [
+            'title'     => 'Mahasiswa | Data Pemohon Pengambilan Data',
+        ]);
     }
 
     /**
@@ -35,8 +45,6 @@ class SuratAmbilDataController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-
         $validateData   = $request->validate([
             'lembaga'           => 'required',
             'alamat'            => 'required',
@@ -47,6 +55,8 @@ class SuratAmbilDataController extends Controller
             'judul_skripsi'     => 'required',
             'kebutuhan'         => 'required'
         ]);
+
+        $validateData['kebutuhan'] = implode(';', $request->kebutuhan);
 
         SuratAmbilData::create($validateData);
 
@@ -59,7 +69,7 @@ class SuratAmbilDataController extends Controller
      * @param  \App\Models\SuratAmbilData  $suratAmbilData
      * @return \Illuminate\Http\Response
      */
-    public function show(SuratAmbilData $suratAmbilData)
+    public function show(Suratambildata $suratambildata)
     {
         //
     }
@@ -70,9 +80,9 @@ class SuratAmbilDataController extends Controller
      * @param  \App\Models\SuratAmbilData  $suratAmbilData
      * @return \Illuminate\Http\Response
      */
-    public function edit(SuratAmbilData $suratAmbilData)
+    public function edit(Suratambildata $suratambildata)
     {
-        //
+        dd($suratambildata);
     }
 
     /**
@@ -82,7 +92,7 @@ class SuratAmbilDataController extends Controller
      * @param  \App\Models\SuratAmbilData  $suratAmbilData
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SuratAmbilData $suratAmbilData)
+    public function update(Request $request, Suratambildata $suratambildata)
     {
         //
     }
@@ -93,8 +103,40 @@ class SuratAmbilDataController extends Controller
      * @param  \App\Models\SuratAmbilData  $suratAmbilData
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SuratAmbilData $suratAmbilData)
+    public function destroy(Suratambildata $suratambildata, Request $request)
     {
-        //
+        Suratambildata::destroy($suratambildata->id);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Hapus');
+    }
+
+    public function status(Request $request, Suratambildata $suratambildata)
+    {
+        $nosurat = "";
+        if ($request->datastatus == 1) {
+            $nosurat = ESurat::makeNomorSurat($suratambildata->mahasiswa->jurusan_id, $suratambildata->mahasiswa->jurusan->singkatan, $suratambildata->mahasiswa->jurusan->kode_surat);
+            $data = [
+                'no_surat'      => $nosurat,
+                'jurusan_id'    => $suratambildata->mahasiswa->jurusan_id,
+                'jenis_surat'   => 'Surat Izin Observasi',
+                'tahun'         => date('Y')
+            ];
+            Surat::create($data);
+        }
+
+        $dataU = [
+            'status'        => $request->datastatus,
+            'no_surat'      => $nosurat
+        ];
+
+        Suratambildata::where('id', $suratambildata->id)->update($dataU);
+        return redirect($request->redirect_to)->with('success', 'Status Telah Dirubah');
+    }
+
+    public function cetak(Suratambildata $suratambildata)
+    {
+        return view('dashboard.surat.ambildata.surat', [
+            'surat'     => $suratambildata,
+            'kaprodi'   => Dosen::where('jurusan_id', $suratambildata->mahasiswa->jurusan_id)->where('jabatan', 'Kaprodi')->first()
+        ]);
     }
 }

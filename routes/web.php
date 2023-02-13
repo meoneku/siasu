@@ -105,6 +105,9 @@ Route::group(['middleware' => 'is_login'], function () {
 
         //Surat Observasi Route Delete
         Route::delete('webmin/suratobservasi/{suratobservasi}', [SuratObservasiController::class, 'destroy'])->name('suratobservasi.destroy');
+        
+        //Surat Observasi Route Delete
+        Route::delete('webmin/suratambildata/{suratambildata}', [SuratAmbilDataController::class, 'destroy'])->name('suratobservasi.destroy');
     });
 
     //Profil And Password Changes Routes
@@ -266,6 +269,16 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::put('webmin/suratobservasi/{suratobservasi}', [SuratObservasiController::class, 'update'])->name('suratobservasi.update');
     Route::put('webmin/suratobservasi/status/{suratobservasi}', [SuratObservasiController::class, 'status'])->name('suratobservasi.status');
     Route::get('webmin/suratobservasi/surat/{suratobservasi}', [SuratObservasiController::class, 'cetak'])->name('suratobservasi.cetak');
+
+    //Surat Ambil Data Routes
+    // Route::resources(['webmin/suratambildata' => SuratAmbilDataController::class]);
+    Route::get('webmin/suratambildata', [SuratAmbilDataController::class, 'index'])->name('suratambildata.index');
+    Route::get('webmin/suratambildata/create', [SuratAmbilDataController::class, 'create'])->name('suratambildata.create');
+    Route::post('webmin/suratambildata', [SuratAmbilDataController::class, 'store'])->name('suratambildata.store');
+    Route::get('webmin/suratambildata/{suratambildata}/edit', [SuratAmbilDataController::class, 'edit'])->name('suratambildata.edit');
+    Route::put('webmin/suratambildata/{suratambildata}', [SuratAmbilDataController::class, 'update'])->name('suratambildata.update');
+    Route::put('webmin/suratambildata/status/{suratambildata}', [SuratAmbilDataController::class, 'status'])->name('suratambildata.status');
+    Route::get('webmin/suratambildata/surat/{suratambildata}', [SuratAmbilDataController::class, 'cetak'])->name('suratambildata.cetak');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

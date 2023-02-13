@@ -97,7 +97,7 @@
             </tr>
             <tr>
                 <td colspan="4" class="justify inden">
-                    Dengan hormar, bersama ini kami sampaikan bahwa dalam rangka melengkapi syarat-syarat pelaksanaan Skripsi, mahasiswa {{ $surat->mahasiswa->jurusan->jenjang }} {{ $surat->mahasiswa->jurusan->jurusan }} Fakultas {{ $surat->mahasiswa->jurusan->fakultas }} Universitas Hasyim Asy'ari Tebuireng perlu mendapatkan data dengan melakukan penelitian pada sebuah Lembaga/Institusi/Perusahaan.
+                    Dengan hormat, bersama ini kami sampaikan bahwa dalam rangka melengkapi syarat-syarat pelaksanaan Skripsi, mahasiswa {{ $surat->mahasiswa->jurusan->jenjang }} {{ $surat->mahasiswa->jurusan->jurusan }} Fakultas {{ $surat->mahasiswa->jurusan->fakultas }} Universitas Hasyim Asy'ari Tebuireng perlu mendapatkan data dengan melakukan penelitian pada sebuah Lembaga/Institusi/Perusahaan.
                 </td>
             </tr>
             <tr>

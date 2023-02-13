@@ -89,7 +89,7 @@
                                         <li><a tabindex="-1" href="{{ url('webmin/prank') }}" class="dropdown-item">Surat Keterangan Kuliah</a></li>
                                         <li><a tabindex="-1" href="{{ url('webmin/suratpi') }}" class="dropdown-item">Surat Permohonan PI/KP</a></li>
                                         <li><a tabindex="-1" href="{{ url('webmin/suratobservasi') }}" class="dropdown-item">Surat Izin Observasi</a></li>
-                                        <li><a tabindex="-1" href="{{ url('webmin/prank') }}" class="dropdown-item">Surat Izin Pengambilan Data</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/suratambildata') }}" class="dropdown-item">Surat Izin Pengambilan Data</a></li>
                                     </ul>
                                 </li>
                             </ul>
