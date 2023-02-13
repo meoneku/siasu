@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('surat_observasi', function (Blueprint $table) {
+        Schema::create('surat_ambildata', function (Blueprint $table) {
             $table->id();
             $table->string('lembaga', 200);
             $table->string('alamat', 200);
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('provinsi', 128);
             $table->unsignedBigInteger('mahasiswa_id');
             $table->text('judul_skripsi');
+            $table->text('kebutuhan');
             $table->string('no_surat')->nullable();
             $table->tinyInteger('status')->default('0');
             $table->text('keterangan')->nullable();
@@ -38,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surat_observasi');
+        Schema::dropIfExists('surat_ambildata');
     }
 };

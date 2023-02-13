@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Suratobservasi extends Model
+class SuratAmbilData extends Model
 {
     use HasFactory;
 
-    protected $table = 'surat_observasi';
+    protected $table = 'surat_ambildata';
 
     protected $guarded = ['id'];
 

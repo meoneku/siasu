@@ -21,6 +21,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\PiController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SemhasController;
+use App\Http\Controllers\SuratAmbilDataController;
 use App\Http\Controllers\SuratObservasiController;
 use App\Http\Controllers\SuratPIController;
 
@@ -49,6 +50,8 @@ Route::get('/suratpi', [IndexController::class, 'suratpi'])->name('home.suratpi.
 Route::post('/suratpi', [SuratPIController::class, 'store'])->name('home.suratpi.store');
 Route::get('/suratobservasi', [IndexController::class, 'suratobservasi'])->name('home.suratobservasi.index');
 Route::post('/suratobservasi', [SuratObservasiController::class, 'store'])->name('home.suratobservasi.store');
+Route::get('/ambildata', [IndexController::class, 'ambildata'])->name('home.ambildata.index');
+Route::post('/ambildata', [SuratAmbilDataController::class, 'store'])->name('home.suratobservasi.store');
 
 Route::get('/webmin/prank', function () {
     return view('hello');
@@ -99,6 +102,9 @@ Route::group(['middleware' => 'is_login'], function () {
 
         //Surat PI Route Delete
         Route::delete('webmin/suratpi/{suratpi}', [SuratPIController::class, 'destroy'])->name('suratpi.destroy');
+
+        //Surat Observasi Route Delete
+        Route::delete('webmin/suratobservasi/{suratobservasi}', [SuratObservasiController::class, 'destroy'])->name('suratobservasi.destroy');
     });
 
     //Profil And Password Changes Routes
@@ -248,11 +254,18 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::post('webmin/suratpi', [SuratPIController::class, 'store'])->name('suratpi.store');
     Route::get('webmin/suratpi/{suratpi}/edit', [SuratPIController::class, 'edit'])->name('suratpi.edit');
     Route::put('webmin/suratpi/{suratpi}', [SuratPIController::class, 'update'])->name('suratpi.update');
-    Route::put('webmin/suratpi/status/{suratpi}', [SuratPIController::class, 'status'])->name('suratpi.surat.status');
-    Route::get('webmin/suratpi/surat/{suratpi}', [SuratPIController::class, 'cetak'])->name('suratpi.surat.print');
+    Route::put('webmin/suratpi/status/{suratpi}', [SuratPIController::class, 'status'])->name('suratpi.status');
+    Route::get('webmin/suratpi/surat/{suratpi}', [SuratPIController::class, 'cetak'])->name('suratpi.cetak');
 
     //Surat Observasi Routes
-    Route::resources(['webmin/suratobservasi' => SuratObservasiController::class]);
+    // Route::resources(['webmin/suratobservasi' => SuratObservasiController::class]);
+    Route::get('webmin/suratobservasi', [SuratObservasiController::class, 'index'])->name('suratobservasi.index');
+    Route::get('webmin/suratobservasi/create', [SuratObservasiController::class, 'create'])->name('suratobservasi.create');
+    Route::post('webmin/suratobservasi', [SuratObservasiController::class, 'store'])->name('suratobservasi.store');
+    Route::get('webmin/suratobservasi/{suratobservasi}/edit', [SuratObservasiController::class, 'edit'])->name('suratobservasi.edit');
+    Route::put('webmin/suratobservasi/{suratobservasi}', [SuratObservasiController::class, 'update'])->name('suratobservasi.update');
+    Route::put('webmin/suratobservasi/status/{suratobservasi}', [SuratObservasiController::class, 'status'])->name('suratobservasi.status');
+    Route::get('webmin/suratobservasi/surat/{suratobservasi}', [SuratObservasiController::class, 'cetak'])->name('suratobservasi.cetak');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

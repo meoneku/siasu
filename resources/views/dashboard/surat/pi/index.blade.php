@@ -68,16 +68,9 @@
                                             </button>
                                             <div class="dropdown-menu" role="menu">
                                                 <a class="dropdown-item" href="/webmin/suratpi/{{ $data->id }}/edit"><i class="fas fa-edit"></i> Edit / Lihat</a>
-                                                <button class="btn-link button-change dropdown-item" data-message="Pastikan Mahasiswa Yang PI/KP di {{ $data->tempat }} Sudah Melakukan Pembayaran" data-id="{{ $data->id }}"><i class="fas fa-file-pdf"></i> Status</button>
-                                                @if ($data->status == 0)
-                                                    {{-- <form action="/webmin/suratpi/surat/{{ $data->id }}" method="post" class="d-inline">
-                                                        @method('put')
-                                                        @csrf
-                                                        <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                                        <button class="btn-link button-change dropdown-item" data-message="Pastikan Mahasiswa Yang PI/KP di {{ $data->tempat }} Sudah Melakukan Pembayaran"><i class="fas fa-file-pdf"></i> Terbitkan Surat</button>
-                                                    </form> --}}
+                                                @if ($data->status == 0 or $data->status == 2)
                                                     <button class="btn-link button-change dropdown-item" data-message="Pastikan Mahasiswa Yang PI/KP di {{ $data->tempat }} Sudah Melakukan Pembayaran" data-id="{{ $data->id }}"><i class="fas fa-file-pdf"></i> Status</button>
-                                                @else
+                                                @elseif ($data->status == 1)
                                                     <a class="dropdown-item" href="/webmin/suratpi/surat/{{ $data->id }}" target="_blank"><i class="fas fa-file-pdf"></i> Cetak Surat</a>
                                                 @endif
                                                 @if (Auth::guard('admin')->user()->role == 'root')
@@ -117,27 +110,29 @@
                 icon: 'warning',
                 showCancelButton: true,
                 showDenyButton: true,
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#006400',
                 denyButtonColor: '#d33',
-                cancelButtonColor: '#ffff00',
+                cancelButtonColor: '#3085d6',
                 confirmButtonText: 'Valid',
                 denyButtonText: 'Tidak Valid',
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.post("{{ url('webmin/suratpi/status') . '/' }}" + id, {
-                        _method : "put",
+                        _method: "put",
                         _token: CSRF_TOKEN,
+                        redirect_to: "{!! URL::full() !!}",
                         datastatus: "1"
                     })
-                    window.location.replace("{!! URL::full() !!}")
+                    location.replace("{!! URL::full() !!}")
                 } else if (result.isDenied) {
                     $.post("{{ url('webmin/suratpi/status') . '/' }}" + id, {
-                        _method : "put",
+                        _method: "put",
                         _token: CSRF_TOKEN,
+                        redirect_to: "{!! URL::full() !!}",
                         datastatus: "2"
                     })
-                    window.location.replace("{!! URL::full() !!}")
+                    location.replace("{!! URL::full() !!}")
                 }
             })
         });

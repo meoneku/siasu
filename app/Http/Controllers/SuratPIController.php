@@ -109,9 +109,9 @@ class SuratPIController extends Controller
             'jurusan_id'        => 'required'
         ]);
 
-        $pisurat = Suratpi::where('id', $suratpi->id)
+        Suratpi::where('id', $suratpi->id)
             ->update($validateData);
-        $pisurat->mahasiswa()->sync($request->mahasiswa_id);
+        Suratpi::find($suratpi->id)->mahasiswa()->sync($request->mahasiswa_id);
 
         return redirect($request->redirect_to)->with('success', 'Data Sudah Berhasil Di Rubah');
     }

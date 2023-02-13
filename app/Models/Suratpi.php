@@ -15,7 +15,7 @@ class Suratpi extends Model
 
     public function mahasiswa()
     {
-        return $this->belongsToMany(Mahasiswa::class);
+        return $this->belongsToMany(Mahasiswa::class)->withTimestamps();
     }
 
     public function surat()

@@ -9,7 +9,7 @@
     <div class="col-lg-12">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="card-title m-0">Data Pendaftar Seminar Hasil Skripsi | Tambah</h5>
+                <h5 class="card-title m-0">Data Permohonan Surat PI/KP | Tambah</h5>
             </div>
             <div class="card-body">
                 <form class="form-horizontal" method="post" action="{{ url('webmin/suratpi') }}" enctype="multipart/form-data">

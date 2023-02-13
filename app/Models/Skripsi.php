@@ -19,7 +19,7 @@ class Skripsi extends Model
 
     public function dosen()
     {
-        return $this->belongsToMany(Dosen::class)->withPivot('ke')->orderBy('ke', 'asc');;
+        return $this->belongsToMany(Dosen::class)->withPivot('ke')->orderBy('ke', 'asc')->withTimestamps();
     }
 
     public function batch()

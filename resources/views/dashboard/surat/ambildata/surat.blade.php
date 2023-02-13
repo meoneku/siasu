@@ -40,7 +40,7 @@
             border-collapse: collapse;
         }
     </style>
-    <title>Surat Izin PI/KP</title>
+    <title>Surat Permohonan Pengambilan Data</title>
 </head>
 
 <body class="container" onload="window.print()">
@@ -65,7 +65,7 @@
             <tr>
                 <td width="115px">H A L</td>
                 <td width="5px" class="top-text" style="padding: 0px 0px 0px 0px">:</td>
-                <td class="top-text" style="padding: 0px 0px 0px 5px"><strong><u>Permohonan Izin Praktik Industri</strong></u></td>
+                <td class="top-text" style="padding: 0px 0px 0px 5px"><strong><u>Permohonan Izin Observasi</strong></u></td>
             </tr>
         </table>
         <br />
@@ -74,7 +74,7 @@
             <tr>
                 <td width="115px">Kepada</td>
                 <td width="5px" class="top-text" style="padding: 5px 0px 5px 0px">:</td>
-                <td class="top-text" style="padding: 5px 0px 5px 5px">{{ $surat->tempat }}</td>
+                <td class="top-text" style="padding: 5px 0px 5px 5px">{{ $surat->lembaga }}</td>
             </tr>
             <tr>
                 <td width="115px"></td>
@@ -97,38 +97,62 @@
             </tr>
             <tr>
                 <td colspan="4" class="justify inden">
-                    Guna meningkatkan pemahaman materi mata kuliah bagi mahasiswa Prodi {{ $surat->jurusan->jenjang }} {{ $surat->jurusan->jurusan }} Fakultas Teknik Universitas Hasyim Asy'ari Tebuireng Jombang, dengan ini kami mohon diberi izin untuk Praktik Industri. Yang rencana pelaksanaannya dilakukan pada tanggal {{ tanggal_indonesia($surat->mulai_tanggal, false) }} s.d. {{ tanggal_indonesia($surat->selesai_tanggal, false) }} . Adapun nama mahasiswa tersebut sebagai berikut :
+                    Dengan hormat, Kami dari Prodi {{ $surat->mahasiswa->jurusan->jenjang }} {{ $surat->mahasiswa->jurusan->jurusan }} Fakultas {{ $surat->mahasiswa->jurusan->fakultas }} Universitas Hasyim Asy'ari Tebuireng Jombang dengan ini mengajukan permohonan kepada Bapak/Ibu untuk dapat kiranya menerima mahasiswa kami berikut ini:
+                </td>
+            </tr>
+            <tr>
+                <td width="150px">Nama</td>
+                <td width="5px" class="top-text" style="padding: 0px 0px 0px 0px">:</td>
+                <td colspan="2" class="top-text" style="padding: 0px 0px 0px 5px">{{ $surat->mahasiswa->nama }}</td>
+            </tr>
+            <tr>
+                <td width="150px">NIM</td>
+                <td width="5px" class="top-text" style="padding: 0px 0px 0px 0px">:</td>
+                <td colspan="2" class="top-text" style="padding: 0px 0px 0px 5px">{{ $surat->mahasiswa->nim }}</td>
+            </tr>
+            <tr>
+                <td width="150px">Prodi</td>
+                <td width="5px" class="top-text" style="padding: 0px 0px 0px 0px">:</td>
+                <td colspan="2" class="top-text" style="padding: 0px 0px 0px 5px">{{ $surat->mahasiswa->jurusan->jenjang }} {{ $surat->mahasiswa->jurusan->jurusan }}</td>
+            </tr>
+            <tr>
+                <td width="150px">Fakultas</td>
+                <td width="5px" class="top-text" style="padding: 0px 0px 0px 0px">:</td>
+                <td colspan="2" class="top-text" style="padding: 0px 0px 0px 5px">{{ $surat->mahasiswa->jurusan->fakultas }}</td>
+            </tr>
+            <tr>
+                <td width="150px" class="top-text">Judul Skripsi</td>
+                <td width="5px" class="top-text" style="padding: 0px 0px 0px 0px">:</td>
+                <td colspan="2" class="top-text" style="padding: 0px 0px 0px 5px">{{ strip_tags($surat->judul_skripsi) }}</td>
+            </tr>
+            <tr>
+                <td colspan="4" class="justify inden">
+                    Untuk melakukan pengambilan data di Lembaga/Institusi/Perusahaan Bapak/Ibu guna penyusunan skripsi dengan judul :
                 </td>
             </tr>
             <tr>
                 <td colspan="4" class="justify">
-                    <table width="800px" class="paragraf table-konten">
-                        <tr>
-                            <td width="25px" style="text-align:center"><strong>No</strong></td>
-                            <td width="120px" style="text-align:center"><strong>NIM</strong></td>
-                            <td><strong>Nama</strong></td>
-                            <td width="200px" style="text-align:center"><strong>Prodi</strong></td>
-                        </tr>
-                        @php
-                            $no = 1;
-                        @endphp
-                        @foreach ($surat->mahasiswa as $mahasiswa)
-                            <tr>
-                                <td style="text-align:center">{{ $no }}</td>
-                                <td style="text-align:center">{{ $mahasiswa->nim }}</td>
-                                <td>{{ $mahasiswa->nama }}</td>
-                                <td style="text-align:center">{{ $mahasiswa->jurusan->jenjang }} {{ $mahasiswa->jurusan->jurusan }}</td>
-                            </tr>
-                            @php
-                                $no++;
-                            @endphp
-                        @endforeach
-                    </table>
+                    {{ $surat->judul_skripsi }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="justify">
+                    Untuk data yang dibutuhkan adalah sebagai berikut:
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="justify">
+                    1. xxxx xxxxxxx xx xxxxx xxxxxxx
                 </td>
             </tr>
             <tr>
                 <td colspan="4" class="justify inden">
-                    Demikian atas kerjasama dan bantuannya kami sampaikan terima kasih.
+                    Pelaksanaan pengambilan data yang dibutuhkan oleh mahasiswa tersebut dapat disesuaikan dengan jadwal yang ditentukan oleh Lembaga/Institusi/Perusahaan Bapak/Ibu.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="justify inden">
+                    Demikian permohonan ini kami sampaikan. Atas perhatian dan kerjasamanya, kami ucapkan terima kasih.
                 </td>
             </tr>
             <tr>

@@ -60,4 +60,9 @@ class IndexController extends Controller
     {
         return view('surat.observasi');
     }
+
+    public function ambildata()
+    {
+        return view('surat.ambildata');
+    }
 }

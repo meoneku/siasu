@@ -13,6 +13,7 @@
             </div>
             <div class="card-body">
                 <form class="form-horizontal" method="post" action="{{ url('webmin/suratpi') . '/' . $suratpi->id }}" enctype="multipart/form-data">
+                    @method('put')
                     @csrf
                     <input type="hidden" name="redirect_to" value="{!! URL::previous() !!}">
                     <div class="form-group row">
@@ -70,7 +71,11 @@
                         <div class="col-sm-8">
                             <select class="form-control" id="jurusan_id" name="jurusan_id" required>
                                 @foreach ($jurusan as $j)
-                                    <option value="{{ $j->id }}">{{ $j->jenjang }} {{ $j->jurusan }}</option>
+                                    @if ($j->id == $suratpi->jurusan_id)
+                                        <option value="{{ $j->id }}" selected>{{ $j->jenjang }} {{ $j->jurusan }}</option>
+                                    @else
+                                        <option value="{{ $j->id }}">{{ $j->jenjang }} {{ $j->jurusan }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
