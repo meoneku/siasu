@@ -30,7 +30,7 @@
         </div>
         <div class="col-6 col-md-3 mb-1">
             <div class="card p-2 h-100" data-tilt>
-                <a href="#"><img src="img/svg/folder-office-organize-svgrepo-com.svg" class="card-img-top" alt="SIP!" height="96px" width="96px" /></a>
+                <a href="/suket"><img src="img/svg/folder-office-organize-svgrepo-com.svg" class="card-img-top" alt="SIP!" height="96px" width="96px" /></a>
                 <div class="card-body text-center">
                     <span class="fw-bold fs-6">Surat Keterangan Mahasiswa</span>
                 </div>
@@ -89,13 +89,21 @@
     </div>
     <div class="row mt-2">
         <div class="mt-2 mb-2">
-            <h5>Yudisium</h5>
+            <h5>Lain-lain</h5>
         </div>
         <div class="col-6 col-md-3 mb-1">
             <div class="card p-2 h-100" data-tilt>
                 <a href="#"><img src="img/svg/page-general-document-svgrepo-com.svg" class="card-img-top" alt="SIP!" height="96px" width="96px" /></a>
                 <div class="card-body text-center">
                     <span class="fw-bold fs-6">Pendaftaran Yudisium</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-1">
+            <div class="card p-2 h-100" data-tilt>
+                <a href="#"><img src="img/svg/undraw_add_files_re_v09g.svg" class="card-img-top" alt="SIP!" height="96px" width="96px" /></a>
+                <div class="card-body text-center">
+                    <span class="fw-bold fs-6">Setor Berkas</span>
                 </div>
             </div>
         </div>

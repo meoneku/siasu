@@ -9,6 +9,6 @@ class UjiController extends Controller
 {
     public function index(Request $request)
     {
-        echo Codes::getTA(20221);
+        echo ltrim('011', '0');
     }
 }

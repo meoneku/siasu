@@ -14,7 +14,8 @@ class ESurat
         $number = 1;
         if ($surat) {
             $lastNumber = substr($surat->no_surat, 0, 3);
-            $intNumber =  preg_replace('/[0]/', '', $lastNumber);
+            // $intNumber =  preg_replace('/[0]/', '', $lastNumber);
+            $intNumber =  ltrim($lastNumber, '0');
             $autonumber = sprintf("%03s", abs($intNumber + 1)) . '/' . $begin . '/' . $roma[date('n')] . '/' . date('Y');
         } else {
             $autonumber = sprintf("%03s", $number) . '/' . $begin . '/' . $roma[date('n')] . '/' . date('Y');

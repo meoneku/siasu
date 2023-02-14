@@ -21,6 +21,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\PiController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SemhasController;
+use App\Http\Controllers\SuketController;
 use App\Http\Controllers\SuratAmbilDataController;
 use App\Http\Controllers\SuratObservasiController;
 use App\Http\Controllers\SuratPIController;
@@ -51,7 +52,9 @@ Route::post('/suratpi', [SuratPIController::class, 'store'])->name('home.suratpi
 Route::get('/suratobservasi', [IndexController::class, 'suratobservasi'])->name('home.suratobservasi.index');
 Route::post('/suratobservasi', [SuratObservasiController::class, 'store'])->name('home.suratobservasi.store');
 Route::get('/ambildata', [IndexController::class, 'ambildata'])->name('home.ambildata.index');
-Route::post('/ambildata', [SuratAmbilDataController::class, 'store'])->name('home.suratobservasi.store');
+Route::post('/ambildata', [SuratAmbilDataController::class, 'store'])->name('home.ambildata.store');
+Route::get('/suket', [IndexController::class, 'suket'])->name('home.suket.index');
+Route::post('/suket', [SuketController::class, 'store'])->name('home.suket.store');
 
 Route::get('/webmin/prank', function () {
     return view('hello');
@@ -105,9 +108,12 @@ Route::group(['middleware' => 'is_login'], function () {
 
         //Surat Observasi Route Delete
         Route::delete('webmin/suratobservasi/{suratobservasi}', [SuratObservasiController::class, 'destroy'])->name('suratobservasi.destroy');
-        
+
         //Surat Observasi Route Delete
         Route::delete('webmin/suratambildata/{suratambildata}', [SuratAmbilDataController::class, 'destroy'])->name('suratobservasi.destroy');
+
+        //Surat Observasi Route Delete
+        Route::delete('webmin/suket/{suket}', [SuketController::class, 'destroy'])->name('suket.destroy');
     });
 
     //Profil And Password Changes Routes
@@ -279,6 +285,16 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::put('webmin/suratambildata/{suratambildata}', [SuratAmbilDataController::class, 'update'])->name('suratambildata.update');
     Route::put('webmin/suratambildata/status/{suratambildata}', [SuratAmbilDataController::class, 'status'])->name('suratambildata.status');
     Route::get('webmin/suratambildata/surat/{suratambildata}', [SuratAmbilDataController::class, 'cetak'])->name('suratambildata.cetak');
+
+    //Surat Keterangan Routes
+    // Route::resources(['webmin/suket' => SuketController::class]);
+    Route::get('webmin/suket', [SuketController::class, 'index'])->name('suket.index');
+    Route::get('webmin/suket/create', [SuketController::class, 'create'])->name('suket.create');
+    Route::post('webmin/suket', [SuketController::class, 'store'])->name('suket.store');
+    Route::get('webmin/suket/{suket}/edit', [SuketController::class, 'edit'])->name('suket.edit');
+    Route::put('webmin/suket/{suket}', [SuketController::class, 'update'])->name('suket.update');
+    Route::put('webmin/suket/status/{suket}', [SuketController::class, 'status'])->name('suket.status');
+    Route::get('webmin/suket/surat/{suket}', [SuketController::class, 'cetak'])->name('suket.cetak');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

@@ -86,7 +86,7 @@
                                 <li class="dropdown-submenu dropdown-hover">
                                     <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Mahasiswa</a>
                                     <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                                        <li><a tabindex="-1" href="{{ url('webmin/prank') }}" class="dropdown-item">Surat Keterangan Kuliah</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/suket') }}" class="dropdown-item">Surat Keterangan Kuliah</a></li>
                                         <li><a tabindex="-1" href="{{ url('webmin/suratpi') }}" class="dropdown-item">Surat Permohonan PI/KP</a></li>
                                         <li><a tabindex="-1" href="{{ url('webmin/suratobservasi') }}" class="dropdown-item">Surat Izin Observasi</a></li>
                                         <li><a tabindex="-1" href="{{ url('webmin/suratambildata') }}" class="dropdown-item">Surat Izin Pengambilan Data</a></li>

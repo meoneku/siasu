@@ -65,4 +65,9 @@ class IndexController extends Controller
     {
         return view('surat.ambildata');
     }
+
+    public function suket()
+    {
+        return view('surat.suket');
+    }
 }

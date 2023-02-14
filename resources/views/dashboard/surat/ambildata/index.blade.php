@@ -80,7 +80,7 @@
                                                         @method('delete')
                                                         @csrf
                                                         <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                                        <button class="btn-link button-delete dropdown-item" data-message="Data Pemohon {{ $data->tempat }}"><i class="fas fa-trash"></i> Hapus</button>
+                                                        <button class="btn-link button-delete dropdown-item" data-message="Data Pemohon {{ $data->mahasiswa->nama }}"><i class="fas fa-trash"></i> Hapus</button>
                                                     </form>
                                                 @endif
                                             </div>
