@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JenisInventaris;
+use App\Models\Jenisinven;
 use Illuminate\Http\Request;
 
 class JenisInvenController extends Controller
@@ -14,7 +14,10 @@ class JenisInvenController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.jenis_inven.index', [
+            'title'     => 'Master | Data Jenis Inventaris',
+            'jenis'     => Jenisinven::paginate(10)->withQueryString(),
+        ]);
     }
 
     /**
@@ -24,7 +27,9 @@ class JenisInvenController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.jenis_inven.create', [
+            'title'     => 'Master | Data Jenis Inventaris'
+        ]);
     }
 
     /**
@@ -35,7 +40,13 @@ class JenisInvenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'nama'           => 'required|max:128',
+            'kode'           => 'required|max:10'
+        ]);
+
+        Jenisinven::create($validateData);
+        return redirect('webmin/jenisinven')->with('success', 'Data Berhasil Di Simpan');
     }
 
     /**
@@ -44,7 +55,7 @@ class JenisInvenController extends Controller
      * @param  \App\Models\JenisInventaris  $jenisInventaris
      * @return \Illuminate\Http\Response
      */
-    public function show(JenisInventaris $jenisInventaris)
+    public function show(Jenisinven $jenisInventaris)
     {
         //
     }
@@ -55,9 +66,12 @@ class JenisInvenController extends Controller
      * @param  \App\Models\JenisInventaris  $jenisInventaris
      * @return \Illuminate\Http\Response
      */
-    public function edit(JenisInventaris $jenisInventaris)
+    public function edit(Jenisinven $jenisinven)
     {
-        //
+        return view('dashboard.jenis_inven.edit', [
+            'title'     => 'Master | Data Jenis Inventaris',
+            'jenis'     => $jenisinven
+        ]);
     }
 
     /**
@@ -67,9 +81,16 @@ class JenisInvenController extends Controller
      * @param  \App\Models\JenisInventaris  $jenisInventaris
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, JenisInventaris $jenisInventaris)
+    public function update(Request $request, Jenisinven $jenisinven)
     {
-        //
+        $validateData = $request->validate([
+            'nama'           => 'required|max:128',
+            'kode'           => 'required|max:10'
+        ]);
+
+        Jenisinven::where('id', $jenisinven->id)
+            ->update($validateData);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Ubah');
     }
 
     /**
@@ -78,8 +99,9 @@ class JenisInvenController extends Controller
      * @param  \App\Models\JenisInventaris  $jenisInventaris
      * @return \Illuminate\Http\Response
      */
-    public function destroy(JenisInventaris $jenisInventaris)
+    public function destroy(Jenisinven $jenisinven, Request $request)
     {
-        //
+        Jenisinven::destroy($jenisinven->id);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Hapus');
     }
 }

@@ -19,6 +19,7 @@ use App\Http\Controllers\UjiController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\InvenController;
+use App\Http\Controllers\JenisInvenController;
 use App\Http\Controllers\PiController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SemhasController;
@@ -77,10 +78,13 @@ Route::group(['middleware' => 'is_login'], function () {
     //For Superuser Routes
     Route::group(['middleware' => 'root'], function () {
         //Jurusan Routes
-        Route::resources(['webmin/jurusan' => JurusanController::class,]);
+        Route::resources(['webmin/jurusan' => JurusanController::class]);
 
         //Jabatan Routes
-        Route::resources(['webmin/jabatan' => JabatanController::class,]);
+        Route::resources(['webmin/jabatan' => JabatanController::class]);
+
+        //Jenis Inventaris Routes
+        Route::resources(['webmin/jenisinven' => JenisInvenController::class]);
 
         //Lulusan Route Delete
         Route::delete('webmin/lulusan/{lulusan}', [LulusanController::class, 'destroy'])->name('lulusan.destroy');

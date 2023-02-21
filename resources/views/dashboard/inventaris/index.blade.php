@@ -37,7 +37,6 @@
                                 <th>No</th>
                                 <th>Nama Barang</th>
                                 <th>Jenis Barang</th>
-                                <th>Tanggal Pembelian</th>
                                 <th>Penempatan</th>
                                 <th>Kondisi</th>
                                 <th>Asal Barang</th>
@@ -52,7 +51,6 @@
                                     <td>{{ $surat->firstItem() + $loop->index }}</td>
                                     <td>{{ $data->nama_barang }}</td>
                                     <td>{{ $data->jenis->nama }}</td>
-                                    <td>{{ tanggal_indo($data->tanggal_beli) }}</td>
                                     <td>{{ $data->penempatan }}</td>
                                     <td>{{ $data->kondisi }}</td>
                                     <td>{{ $data->asal_barang }}</td>

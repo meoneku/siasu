@@ -111,6 +111,7 @@
                                     <li><a href="{{ url('webmin/jurusan') }}" class="dropdown-item">Data Jurusan</a></li>
                                     <li><a href="{{ url('webmin/kegiatan') }}" class="dropdown-item">Data Kegiatan</a></li>
                                     <li><a href="{{ url('webmin/batch') }}" class="dropdown-item">Gelombang / Batch Kegiatan</a></li>
+                                    <li><a href="{{ url('webmin/jenisinven') }}" class="dropdown-item">Data Jenis Inventaris</a></li>
                                     <li class="dropdown-divider"></li>
                                 @endif
                                 <li><a href="{{ url('webmin/kata') }}" class="dropdown-item">List Kata</a></li>
