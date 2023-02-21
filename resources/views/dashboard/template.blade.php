@@ -114,6 +114,8 @@
                                     <li class="dropdown-divider"></li>
                                 @endif
                                 <li><a href="{{ url('webmin/kata') }}" class="dropdown-item">List Kata</a></li>
+                                <li class="dropdown-divider"></li>
+                                <li><a href="{{ url('webmin/inventaris') }}" class="dropdown-item">Data Inventaris</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
