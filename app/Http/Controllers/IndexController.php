@@ -51,7 +51,7 @@ class IndexController extends Controller
 
     public function suratpi()
     {
-        return view('surat.suratpi', [
+        return view('surat.pi', [
             'jurusan'      => Jurusan::all()
         ]);
     }
