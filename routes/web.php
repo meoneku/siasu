@@ -18,6 +18,7 @@ use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\UjiController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\InvenController;
 use App\Http\Controllers\PiController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SemhasController;
@@ -295,6 +296,9 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::put('webmin/suket/{suket}', [SuketController::class, 'update'])->name('suket.update');
     Route::put('webmin/suket/status/{suket}', [SuketController::class, 'status'])->name('suket.status');
     Route::get('webmin/suket/surat/{suket}', [SuketController::class, 'cetak'])->name('suket.cetak');
+
+    //Inventaris Routes
+    Route::resources(['webmin/inventaris' => InvenController::class]);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');
