@@ -15,7 +15,7 @@
                         <select name="penempatan" class="form-control w-25">
                             <option value="">Semua Penempatan</option>
                             @foreach ($penempatan as $tempat)
-                                @if ($tempat == request(penempatan))
+                                @if ($tempat == request('penempatan'))
                                     <option value="{{ $tempat }}" selected>{{ $tempat }}</option>
                                 @else
                                     <option value="{{ $tempat }}">{{ $tempat }}</option>

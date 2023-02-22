@@ -11,6 +11,12 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class DosenController extends Controller
 {
+    private $jabatan    = ["Tenaga Pengajar", "Dekan", "Wakil Dekan", "Kaprodi", "GPM", "Pembina Ormawa", "Koordinator Skripsi"];
+    private $jafung     = ["Dosen", "Asisten Ahli", "Lektor", "Lektor Kepala", "Guru Besar"];
+    private $golongan   = ["III/a", "III/b", "III/c", "III/d", "IV/a", "IV/b", "IV/c", "IV/d"];
+    private $status     = ["Dosen Tetap", "Dosen Tidak Tetap"];
+    private $pendidikan = ["S1", "S2", "S3"];
+
     /**
      * Display a listing of the resource.
      *
@@ -32,20 +38,14 @@ class DosenController extends Controller
      */
     public function create()
     {
-        $jabatan    = ["Tenaga Pengajar", "Dekan", "Wakil Dekan", "Kaprodi", "GPM", "Pembina Ormawa", "Koordinator Skripsi"];
-        $jafung     = ["Dosen", "Asisten Ahli", "Lektor", "Lektor Kepala", "Guru Besar"];
-        $golongan   = ["III/a", "III/b", "III/c", "III/d", "IV/a", "IV/b", "IV/c", "IV/d"];
-        $status     = ["Dosen Tetap", "Dosen Tidak Tetap"];
-        $pendidikan = ["S1", "S2", "S3"];
-
         return view('dashboard.dosen.create', [
             'title'     => 'Dosen | Data Dosen',
             'jurusan'   => Jurusan::all(),
-            'jabatan'   => $jabatan,
-            'jafung'    => $jafung,
-            'golongan'  => $golongan,
-            'status'    => $status,
-            'pendidikan' => $pendidikan
+            'jabatan'   => $this->jabatan,
+            'jafung'    => $this->jafung,
+            'golongan'  => $this->golongan,
+            'status'    => $this->status,
+            'pendidikan' => $this->pendidikan
         ]);
     }
 
@@ -101,21 +101,15 @@ class DosenController extends Controller
      */
     public function edit(Dosen $dosen)
     {
-        $jabatan    = ["Tenaga Pengajar", "Dekan", "Wakil Dekan", "Kaprodi", "GPM", "Pembina Ormawa", "Koordinator Skripsi"];
-        $jafung     = ["Dosen", "Asisten Ahli", "Lektor", "Lektor Kepala", "Guru Besar"];
-        $golongan   = ["III/a", "III/b", "III/c", "III/d", "IV/a", "IV/b", "IV/c", "IV/d"];
-        $status     = ["Dosen Tetap", "Dosen Tidak Tetap"];
-        $pendidikan = ["S1", "S2", "S3"];
-
         return view('dashboard.dosen.edit', [
             'title'     => 'Dosen | Data Dosen',
             'jurusan'   => Jurusan::all(),
-            'jabatan'   => $jabatan,
-            'jafung'    => $jafung,
-            'golongan'  => $golongan,
+            'jabatan'   => $this->jabatan,
+            'jafung'    => $this->jafung,
+            'golongan'  => $this->golongan,
             'dosen'     => $dosen,
-            'status'    => $status,
-            'pendidikan' => $pendidikan
+            'status'    => $this->status,
+            'pendidikan' => $this->pendidikan
         ]);
     }
 
