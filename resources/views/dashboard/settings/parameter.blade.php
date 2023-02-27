@@ -50,11 +50,11 @@
                         <label for="pin" class="col-sm-3 col-form-label">Tampilkan PIN</label>
                         <div class="row align-items-center col-sm-8">
                             <div class="form-check form-check-inline">
-                                <input type="radio" class="form-check-input" id="pin-true" name="pin" value="useCumlaude" @if (env('PIN') == 'show') checked @endif>
+                                <input type="radio" class="form-check-input" id="pin-true" name="pin" value="show" @if (env('PIN') == 'show') checked @endif>
                                 <label class="form-check-label" for="pin-true">Tampilkan</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input type="radio" class="form-check-input" id="pin-false" name="pin" value="none" @if (env('PIN') == 'hide') checked @endif>
+                                <input type="radio" class="form-check-input" id="pin-false" name="pin" value="hide" @if (env('PIN') == 'hide') checked @endif>
                                 <label class="form-check-label" for="pin-false">Sembunyikan</label>
                             </div>
                         </div>

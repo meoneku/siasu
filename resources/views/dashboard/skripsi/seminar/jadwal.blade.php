@@ -81,20 +81,20 @@
                 <th>Ruang</th>
             </tr>
             @foreach ($seminar as $data)
-                <td style="margin-left: 20px">{{ tanggal_indonesia($data->tanggal_seminar) }}</td>
-                <td>{{ date('G:i', strtotime($data->jam_mulai)) }} - {{ date('G:i', strtotime($data->jam_selesai)) }}</td>
-                <td>{{ $data->mahasiswa->nim }}</td>
-                <td>{{ $data->mahasiswa->nama }}</td>
-                <td class="justify">{{ strip_tags($data->judul_skripsi) }}</td>
-                <td width="20%">
-                    @foreach ($data->dosen as $dosen)
-                        {{ $dosen->pivot->ke }}. {{ $dosen->nama }}<br />
-                    @endforeach
-                </td>
-                <td>{{ $data->ruang }}</td>
+                <tr>
+                    <td style="margin-left: 20px">{{ tanggal_indonesia($data->tanggal_seminar) }}</td>
+                    <td>{{ date('G:i', strtotime($data->jam_mulai)) }} - {{ date('G:i', strtotime($data->jam_selesai)) }}</td>
+                    <td>{{ $data->mahasiswa->nim }}</td>
+                    <td>{{ $data->mahasiswa->nama }}</td>
+                    <td class="justify">{{ strip_tags($data->judul_skripsi) }}</td>
+                    <td width="20%">
+                        @foreach ($data->dosen as $dosen)
+                            {{ $dosen->pivot->ke }}. {{ $dosen->nama }}<br />
+                        @endforeach
+                    </td>
+                    <td>{{ $data->ruang }}</td>
+                </tr>
             @endforeach
-            <tr>
-            </tr>
         </table>
         <br />
         <table width="100%" class="ttd">

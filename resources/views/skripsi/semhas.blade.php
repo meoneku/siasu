@@ -34,7 +34,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <form class="form-control" method="post" action="/ujianskripsi" enctype="multipart/form-data">
+        <form class="form-control" method="post" action="/semhas" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="redirect_to" value="{{ url('ujianskripsi') }}">
             <div class="mb-3 mt-3 row">
