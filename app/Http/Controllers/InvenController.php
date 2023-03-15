@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventaris;
+use App\Models\Jenisinven;
 use Illuminate\Http\Request;
 
 class InvenController extends Controller
@@ -18,8 +19,7 @@ class InvenController extends Controller
     {
         return view('dashboard.inventaris.index', [
             'title'     => 'Master | Data Inventaris',
-            'inventaris' => Inventaris::filter(request(['nama', 'kondisi', 'tahun', 'penempatan']))->paginate(10)->withQueryString(),
-            'penempatan' => $this->penempatan
+            'inventaris' => Inventaris::filter(request(['nama', 'kondisi', 'tahun', 'penempatan']))->paginate(10)->withQueryString()
         ]);
     }
 
@@ -32,7 +32,8 @@ class InvenController extends Controller
     {
         return view('dashboard.inventaris.create', [
             'title'     => 'Master | Data Inventaris',
-            'penempatan' => $this->penempatan
+            'penempatan' => $this->penempatan,
+            'jenis'    => Jenisinven::all()
         ]);
     }
 
