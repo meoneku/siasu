@@ -82,7 +82,11 @@ class SuratAmbilDataController extends Controller
      */
     public function edit(Suratambildata $suratambildata)
     {
-        dd($suratambildata);
+        return view('dashboard.surat.ambildata.edit', [
+            'title'     => 'Mahasiswa | Data Pemohon Pengambilan Data',
+            'surat'     => $suratambildata,
+            'butuh'     => explode(";", $suratambildata->kebutuhan)
+        ]);
     }
 
     /**
@@ -94,7 +98,21 @@ class SuratAmbilDataController extends Controller
      */
     public function update(Request $request, Suratambildata $suratambildata)
     {
-        //
+        $validateData   = $request->validate([
+            'lembaga'           => 'required',
+            'alamat'            => 'required',
+            'kecamatan'         => 'required',
+            'kabupaten'         => 'required',
+            'provinsi'          => 'required',
+            'mahasiswa_id'      => 'required',
+            'judul_skripsi'     => 'required',
+            'kebutuhan'         => 'required'
+        ]);
+
+        Suratambildata::where('id', $suratambildata->id)
+            ->update($validateData);
+
+        return redirect($request->redirect_to)->with('success', 'Status Telah Dirubah');
     }
 
     /**

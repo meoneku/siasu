@@ -66,9 +66,11 @@
                     </div>
                     <div class="form-group row">
                         <label for="kebutuhan" class="col-sm-3 col-form-label">Data Yang Diambil</label>
-                        <div class="col-sm-8" id="moreData">
-                            <input type="text" class="form-control" id="kebutuhan" name="kebutuhan[]" required>
-                        </div>
+                        @foreach ($butuh as $data)
+                            <div class="col-sm-8" id="moreData">
+                                <input type="text" class="form-control" id="kebutuhan" name="kebutuhan[]" value="{{ $data }}" required>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-warning" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali</button>&nbsp;

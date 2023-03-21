@@ -34,7 +34,7 @@ class SemhasController extends Controller
      */
     public function create()
     {
-        return view('dashboard.skripsi.semhas.create', [
+        return view('dashboard.skripsi.ujian.create', [
             'title'     => 'Mahasiswa | Data Pendaftar Seminar Hasil Skripsi',
             'batchs'    => Batch::where('kegiatan_id', 6)->get()
         ]);
