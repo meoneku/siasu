@@ -20,6 +20,7 @@ use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\InvenController;
 use App\Http\Controllers\JenisInvenController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PiController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SemhasController;
@@ -119,6 +120,13 @@ Route::group(['middleware' => 'is_login'], function () {
 
         //Surat Observasi Route Delete
         Route::delete('webmin/suket/{suket}', [SuketController::class, 'destroy'])->name('suket.destroy');
+
+        Route::get('webmin/laporan/skripsi', [LaporanController::class, 'indexSkripsi'])->name('laporan.skripsi.index');
+        Route::get('webmin/laporan/skripsi/view', [LaporanController::class, 'viewSkripsi'])->name('laporan.skripsi.view');
+
+        Route::get('webmin/laporan/seminar/view', [LaporanController::class, 'viewSeminar'])->name('laporan.seminar.view');
+
+        Route::get('webmin/laporan/semhas/view', [LaporanController::class, 'viewSemhas'])->name('laporan.semhas.view');
     });
 
     //Profil And Password Changes Routes

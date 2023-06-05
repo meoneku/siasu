@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('nama_barang', 128);
             $table->string('penempatan', 128);
-            $table->integer('tahun_beli');
             $table->string('kondisi', 128);
             $table->string('no_inventaris', 128);
             $table->string('asal_barang', 128);

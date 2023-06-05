@@ -58,20 +58,21 @@
                     <strong><span style="font-size: 18px">DATA PENDAFTARA SKRIPSI</strong>
                 </td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td style="text-align:center;">
                     <strong><span style="font-size: 18px">PRODI {{ strtoupper($jurusan->jenjang) }} {{ strtoupper($jurusan->jurusan) }} FAKULTAS {{ strtoupper($jurusan->fakultas) }} UNIVERSITAS HASYIM ASY'ARI TEBUIRENG JOMBANG</strong>
                 </td>
-            </tr>
-            <tr>
+            </tr> --}}
+            {{-- <tr>
                 <td style="text-align:center;">
                     <strong><span style="font-size: 18px">TAHUN {{ $batch->tahun }}</strong>
                 </td>
-            </tr>
+            </tr> --}}
         </table>
         <br />
         <table width="100%" class="jadwal">
             <tr>
+                <th>No.</th>
                 <th>Tanggal Daftar</th>
                 <th>NIM</th>
                 <th>Nama</th>
@@ -86,7 +87,8 @@
             </tr>
             @foreach ($skripsi as $data)
                 <tr>
-                    <td style="margin-left: 20px">{{ tanggal_indonesia($data->created_at) }}</td>
+                    <td style="margin-left: 20px">{{ $loop->iteration }}</td>
+                    <td>{{ tanggal_indonesia($data->created_at) }}</td>
                     <td>{{ $data->mahasiswa->nim }}</td>
                     <td>{{ $data->mahasiswa->nama }}</td>
                     <td>{{ $data->mahasiswa->jurusan->jurusan }}</td>

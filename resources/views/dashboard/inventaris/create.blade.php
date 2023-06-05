@@ -26,15 +26,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="tahun_beli" class="col-sm-2 col-form-label">Tahun Beli</label>
-                        <div class="col-sm-2">
-                            <input type="number" class="form-control @error('tahun_beli') is-invalid @enderror" id="tahun_beli" name="tahun_beli" placeholder="Tahun" value="{{ old('tahun_beli') }}" maxlength="4" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label for="asal_barang" class="col-sm-2 col-form-label">Asal Barang</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control @error('asal_barang') is-invalid @enderror" id="asal_barang" name="asal_barang" placeholder="Asal Barang" value="{{ old('asal_barang') }}" maxlength="128" required>
+                            <select id="asal_barang" name="asal_barang" class="form-control" required>
+                                <option value="">Pilih Salah Satu</option>
+                                @foreach ($asal as $data)
+                                    <option value="{{ $data }}">{{ $data }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -55,9 +54,27 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="harga_barang" class="col-sm-2 col-form-label">Harga Barang</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control @error('harga_barang') is-invalid @enderror" id="harga_barang" name="harga_barang" placeholder="Harga Barang" value="{{ old('harga_barang') }}" maxlength="20">
+                            <span class="text-xs text-danger">Kosongkan Bila Tidak Mengetahui Harga</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="no_inventaris" class="col-sm-2 col-form-label">No Inventaris</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control @error('no_inventaris') is-invalid @enderror" id="no_inventaris" name="no_inventaris" placeholder="Nomor Inventaris" value="{{ old('no_inventaris') }}" maxlength="128" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="kondisi" class="col-sm-2 col-form-label">Kondisi</label>
+                        <div class="col-sm-6">
+                            <select id="kondisi" name="kondisi" class="form-control" required>
+                                <option value="">Pilih Salah Satu</option>
+                                @foreach ($kondisi as $data)
+                                    <option value="{{ $data }}">{{ $data }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
@@ -72,4 +89,65 @@
 
         </form>
     </div>
+@endsection
+@section('addjs')
+    <script>
+        $("#harga_barang").on({
+            keyup: function() {
+                formatCurrency($(this));
+            },
+            blur: function() {
+                formatCurrency($(this), "blur");
+            }
+        });
+
+        function formatNumber(n) {
+            return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        }
+
+        function formatCurrency(input, blur) {
+            var input_val = input.val();
+
+            if (input_val === "") {
+                return;
+            }
+
+            var original_len = input_val.length;
+
+            var caret_pos = input.prop("selectionStart");
+
+            if (input_val.indexOf(",") >= 0) {
+                var decimal_pos = input_val.indexOf(",");
+
+                var left_side = input_val.substring(0, decimal_pos);
+                var right_side = input_val.substring(decimal_pos);
+
+                left_side = formatNumber(left_side);
+
+                right_side = formatNumber(right_side);
+
+                if (blur === "blur") {
+                    right_side += "00";
+                }
+
+                right_side = right_side.substring(0, 2);
+
+                input_val = left_side + "," + right_side;
+
+            } else {
+                input_val = formatNumber(input_val);
+                input_val = input_val;
+
+                if (blur === "blur") {
+                    input_val += "";
+                }
+            }
+
+            input.val(input_val);
+
+            var updated_len = input_val.length;
+            caret_pos = updated_len - original_len + caret_pos;
+            input[0].setSelectionRange(caret_pos, caret_pos);
+        }
+    </script>
 @endsection

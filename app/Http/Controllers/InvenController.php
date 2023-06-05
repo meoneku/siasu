@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 class InvenController extends Controller
 {
     private $penempatan = ['Kantor Fakultas', 'Kantor Prodi', 'Kantor Laboratorium', 'Kelas Perkuliahan', 'Laboratorium'];
+    private $asal = ['Universitas', 'Fakultas', 'Prodi', 'Bantuan', 'Hibah', 'Lain-lain'];
+    private $kondisi = ['Baik', 'Sedang', 'Rusak'];
 
     /**
      * Display a listing of the resource.
@@ -19,6 +21,7 @@ class InvenController extends Controller
     {
         return view('dashboard.inventaris.index', [
             'title'     => 'Master | Data Inventaris',
+            'penempatan' => $this->penempatan,
             'inventaris' => Inventaris::filter(request(['nama', 'kondisi', 'tahun', 'penempatan']))->paginate(10)->withQueryString()
         ]);
     }
@@ -33,7 +36,9 @@ class InvenController extends Controller
         return view('dashboard.inventaris.create', [
             'title'     => 'Master | Data Inventaris',
             'penempatan' => $this->penempatan,
-            'jenis'    => Jenisinven::all()
+            'asal'      => $this->asal,
+            'kondisi'      => $this->kondisi,
+            'jenis'     => Jenisinven::all()
         ]);
     }
 

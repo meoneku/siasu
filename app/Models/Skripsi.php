@@ -34,6 +34,12 @@ class Skripsi extends Model
 
     public function scopeFilter($query, array $filters)
     {
+        $query->when($filters['tahun'] ?? false, function ($query, $tahun) {
+            return $query->where(function ($query) use ($tahun) {
+                $query->whereYear('create_at', $tahun);
+            });
+        });
+
         $query->when(
             $filters['nama'] ?? false,
             fn ($query, $nama) =>
