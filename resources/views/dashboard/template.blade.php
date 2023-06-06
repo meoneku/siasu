@@ -94,6 +94,13 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Inventaris</a>
+                            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                <li><a href="{{ url('webmin/inventaris') }}" class="dropdown-item">Data Inventaris</a></li>
+                                <li><a href="{{ url('webmin/jenisinven') }}" class="dropdown-item">Jenis Inventatis</a></li>
+                            </ul>
+                        </li>
                         @if (Auth::guard('admin')->user()->role == 'root')
                             <li class="nav-item dropdown">
                                 <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Keuangan</a>
@@ -111,12 +118,9 @@
                                     <li><a href="{{ url('webmin/jurusan') }}" class="dropdown-item">Data Jurusan</a></li>
                                     <li><a href="{{ url('webmin/kegiatan') }}" class="dropdown-item">Data Kegiatan</a></li>
                                     <li><a href="{{ url('webmin/batch') }}" class="dropdown-item">Gelombang / Batch Kegiatan</a></li>
-                                    <li><a href="{{ url('webmin/jenisinven') }}" class="dropdown-item">Data Jenis Inventaris</a></li>
                                     <li class="dropdown-divider"></li>
                                 @endif
                                 <li><a href="{{ url('webmin/kata') }}" class="dropdown-item">List Kata</a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a href="{{ url('webmin/inventaris') }}" class="dropdown-item">Data Inventaris</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

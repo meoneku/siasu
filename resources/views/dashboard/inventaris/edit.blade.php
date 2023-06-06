@@ -6,14 +6,16 @@
                 <h5 class="card-title m-0">Data Master | Inventaris</h5>
             </div>
             <div class="card-body">
-                <form class="form-horizontal" method="post" action="{{ url('webmin/inventaris') }}" enctype="multipart/form-data">
+                <form class="form-horizontal" method="post" action="{{ route('inventaris.update', $inven->id) }}" enctype="multipart/form-data">
+                    @method('put')
                     @csrf
-                    <input type="hidden" id="num_inv" name="num_inv" value="">
-                    <input type="hidden" id="tahun" name="tahun" value="">
+                    <input type="hidden" id="num_inv" name="num_inv" value="{{ $inven->no_inventaris }}">
+                    <input type="hidden" id="tahun" name="tahun" value="{{ substr($inven->tanggal_pembelian, 0, 4) }}">
+                    <input type="hidden" name="redirect_to" value="{!! URL::previous() !!}">
                     <div class="form-group row">
                         <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang" name="nama_barang" placeholder="Nama Barang" value="{{ old('nama_barang') }}" maxlength="128" required>
+                            <input type="text" class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang" name="nama_barang" placeholder="Nama Barang" value="{{ old('nama_barang', $inven->nama_barang) }}" maxlength="128" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -22,7 +24,11 @@
                             <select id="penempatan" name="penempatan" class="form-control" required>
                                 <option value="">Pilih Salah Satu</option>
                                 @foreach ($penempatan as $data)
-                                    <option value="{{ $data }}">{{ $data }}</option>
+                                    @if ($data == $inven->penempatan)
+                                        <option value="{{ $data }}" selected>{{ $data }}</option>
+                                    @else
+                                        <option value="{{ $data }}">{{ $data }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -33,7 +39,11 @@
                             <select id="asal_barang" name="asal_barang" class="form-control" required>
                                 <option value="">Pilih Salah Satu</option>
                                 @foreach ($asal as $data)
-                                    <option value="{{ $data }}">{{ $data }}</option>
+                                    @if ($data == $inven->asal_barang)
+                                        <option value="{{ $data }}" selected>{{ $data }}</option>
+                                    @else
+                                        <option value="{{ $data }}">{{ $data }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -44,7 +54,11 @@
                             <select id="jenis_inventaris" name="jenis_inventaris_id" class="form-control" required>
                                 <option value="">Pilih Salah Satu</option>
                                 @foreach ($jenis as $data)
-                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                    @if ($data->id == $inven->jenis_inventaris_id)
+                                        <option value="{{ $data->id }}" selected>{{ $data->nama }}</option>
+                                    @else
+                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -52,20 +66,20 @@
                     <div class="form-group row">
                         <label for="tanggal_pembelian" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
                         <div class="col-sm-3">
-                            <input type="date" class="form-control @error('tanggal_pembelian') is-invalid @enderror" id="tanggal_pembelian" name="tanggal_pembelian" placeholder="Tanggal Pembelian" value="{{ old('tanggal_pembelian') }}" required>
+                            <input type="date" class="form-control @error('tanggal_pembelian') is-invalid @enderror" id="tanggal_pembelian" name="tanggal_pembelian" placeholder="Tanggal Pembelian" value="{{ old('tanggal_pembelian', $inven->tanggal_pembelian) }}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="harga_barang" class="col-sm-2 col-form-label">Harga Barang</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control @error('harga_barang') is-invalid @enderror" id="harga_barang" name="harga_barang" placeholder="Harga Barang" value="{{ old('harga_barang') }}" maxlength="20">
+                            <input type="text" class="form-control @error('harga_barang') is-invalid @enderror" id="harga_barang" name="harga_barang" placeholder="Harga Barang" value="{{ old('harga_barang', number_format($inven->harga_barang, 0, ',', '.')) }}" maxlength="20">
                             <span class="text-xs text-danger">Kosongkan Bila Tidak Mengetahui Harga</span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="no_inventaris" class="col-sm-2 col-form-label">No Inventaris</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control @error('no_inventaris') is-invalid @enderror" id="no_inventaris" name="no_inventaris" placeholder="Nomor Inventaris" value="{{ old('no_inventaris') }}" maxlength="128" required>
+                            <input type="text" class="form-control @error('no_inventaris') is-invalid @enderror" id="no_inventaris" name="no_inventaris" placeholder="Nomor Inventaris" value="{{ old('no_inventaris', $inven->no_inventaris) }}" maxlength="128" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -74,7 +88,11 @@
                             <select id="kondisi" name="kondisi" class="form-control" required>
                                 <option value="">Pilih Salah Satu</option>
                                 @foreach ($kondisi as $data)
-                                    <option value="{{ $data }}">{{ $data }}</option>
+                                    @if ($data == $inven->kondisi)
+                                        <option value="{{ $data }}" selected>{{ $data }}</option>
+                                    @else
+                                        <option value="{{ $data }}">{{ $data }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -169,7 +187,7 @@
                     },
                     function(data, status) {
                         document.getElementById("no_inventaris").value = data
-                    });
+                    })
             }
         })
     </script>

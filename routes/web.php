@@ -84,9 +84,6 @@ Route::group(['middleware' => 'is_login'], function () {
         //Jabatan Routes
         Route::resources(['webmin/jabatan' => JabatanController::class]);
 
-        //Jenis Inventaris Routes
-        Route::resources(['webmin/jenisinven' => JenisInvenController::class]);
-
         //Lulusan Route Delete
         Route::delete('webmin/lulusan/{lulusan}', [LulusanController::class, 'destroy'])->name('lulusan.destroy');
 
@@ -311,6 +308,9 @@ Route::group(['middleware' => 'is_login'], function () {
 
     //Inventaris Routes
     Route::resources(['webmin/inventaris' => InvenController::class]);
+
+    //Jenis Inventaris Routes
+    Route::resources(['webmin/jenisinven' => JenisInvenController::class]);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

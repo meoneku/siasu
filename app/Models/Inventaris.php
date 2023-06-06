@@ -15,7 +15,7 @@ class Inventaris extends Model
 
     public function jenis()
     {
-        return $this->belongsTo(JenisInventaris::class);
+        return $this->belongsTo(JenisInventaris::class, 'jenis_inventaris_id', 'id');
     }
 
     public function scopeFilter($query, array $filters)

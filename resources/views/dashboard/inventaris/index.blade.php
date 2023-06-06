@@ -39,31 +39,31 @@
                                 <th>Jenis Barang</th>
                                 <th>Penempatan</th>
                                 <th>Kondisi</th>
-                                <th>Asal Barang</th>
-                                <th>Harga</th>
-                                <th>Status</th>
+                                <th>No Inventaris</th>
+                                <th>Tanggal Beli</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($inventaris as $data)
                                 <tr>
-                                    <td>{{ $surat->firstItem() + $loop->index }}</td>
+                                    <td>{{ $inventaris->firstItem() + $loop->index }}</td>
                                     <td>{{ $data->nama_barang }}</td>
                                     <td>{{ $data->jenis->nama }}</td>
                                     <td>{{ $data->penempatan }}</td>
                                     <td>{{ $data->kondisi }}</td>
-                                    <td>{{ $data->asal_barang }}</td>
-                                    <td>{{ $data->harga_barang }}</td>
-                                    <td>{{ $data->status }}</td>
+                                    <td>{{ $data->no_inventaris }}</td>
+                                    <td>{{ tanggal_indonesia($data->tanggal_pembelian, false) }}</td>
                                     <td>
                                         <a href="/webmin/inventaris/{{ $data->id }}/edit" class="badge bg-info me-1"><i class="fas fa-edit"></i></a>
-                                        <form action="/webmin/inventaris/{{ $data->id }}" method="post" class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                            <button class="badge bg-danger border-0 button-delete" data-message="Inventaris {{ $data->nama_barang }}"><i class="fas fa-trash"></i></button>
-                                        </form>
+                                        @if (Auth::guard('admin')->user()->role == 'root')
+                                            <form action="/webmin/inventaris/{{ $data->id }}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
+                                                <button class="badge bg-danger border-0 button-delete" data-message="Inventaris {{ $data->nama_barang }}"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

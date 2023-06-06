@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DosenController;
+use App\Http\Controllers\Api\InventarisController;
 use App\Http\Controllers\Api\MahasiswaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,4 @@ Route::post('/getMahasiswa', [MahasiswaController::class, 'getMahasiswa'])->name
 Route::get('/getMahasiswaId', [MahasiswaController::class, 'getMahasiswaId'])->name('getMahasiswaId.api');
 Route::post('/getDataSkripsi', [MahasiswaController::class, 'getDataSkripsi'])->name('getDataSkripsi.api');
 Route::post('/getDataSeminar', [MahasiswaController::class, 'getDataSeminar'])->name('getDataSeminar.api');
+Route::post('/getNoInventaris', [InventarisController::class, 'getNoInventaris'])->name('getNoInventaris.api');

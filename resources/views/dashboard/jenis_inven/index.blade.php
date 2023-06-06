@@ -31,12 +31,14 @@
                                 <td>{{ $data->nama }}</td>
                                 <td>{{ $data->kode }}</td>
                                 <td><a href="/webmin/jenisinven/{{ $data->id }}/edit" class="badge bg-info me-1"><i class="fas fa-edit"></i></a>
-                                    <form action="/webmin/jenisinven/{{ $data->id }}" method="post" class="d-inline">
-                                        @method('delete')
-                                        @csrf
-                                        <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
-                                        <button class="badge bg-danger border-0 button-delete" data-message="Jenis Inventaris {{ $data->nama }}"><i class="fas fa-trash"></i></button>
-                                    </form>
+                                    @if (Auth::guard('admin')->user()->role == 'root')
+                                        <form action="/webmin/jenisinven/{{ $data->id }}" method="post" class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <input type="hidden" name="redirect_to" value="{!! URL::full() !!}">
+                                            <button class="badge bg-danger border-0 button-delete" data-message="Jenis Inventaris {{ $data->nama }}"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

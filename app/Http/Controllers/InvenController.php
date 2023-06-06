@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventaris;
-use App\Models\Jenisinven;
+use App\Models\JenisInventaris;
 use Illuminate\Http\Request;
 
 class InvenController extends Controller
@@ -22,7 +22,7 @@ class InvenController extends Controller
         return view('dashboard.inventaris.index', [
             'title'     => 'Master | Data Inventaris',
             'penempatan' => $this->penempatan,
-            'inventaris' => Inventaris::filter(request(['nama', 'kondisi', 'tahun', 'penempatan']))->paginate(10)->withQueryString()
+            'inventaris' => Inventaris::latest()->with('jenis')->filter(request(['nama', 'kondisi', 'tahun', 'penempatan']))->paginate(10)->withQueryString()
         ]);
     }
 
@@ -38,7 +38,7 @@ class InvenController extends Controller
             'penempatan' => $this->penempatan,
             'asal'      => $this->asal,
             'kondisi'      => $this->kondisi,
-            'jenis'     => Jenisinven::all()
+            'jenis'     => JenisInventaris::all()
         ]);
     }
 
@@ -50,7 +50,24 @@ class InvenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData   = $request->validate([
+            'nama_barang'           => 'required',
+            'penempatan'            => 'required',
+            'kondisi'               => 'required',
+            'no_inventaris'         => 'required',
+            'asal_barang'           => 'required',
+            'jenis_inventaris_id'   => 'required',
+            'tanggal_pembelian'     => 'required'
+        ]);
+
+        if ($request->harga_barang) {
+            $validateData['harga_barang'] = preg_replace('/[^0-9-,]+/', '', $request->harga_barang);
+        }
+
+        $validateData['status'] = "in_house";
+
+        Inventaris::create($validateData);
+        return redirect('webmin/inventaris')->with('success', 'Data Berhasil Di Simpan');
     }
 
     /**
@@ -59,7 +76,7 @@ class InvenController extends Controller
      * @param  \App\Models\Inventaris  $inventaris
      * @return \Illuminate\Http\Response
      */
-    public function show(Inventaris $inventaris)
+    public function show(Inventaris $inventari)
     {
         //
     }
@@ -70,9 +87,16 @@ class InvenController extends Controller
      * @param  \App\Models\Inventaris  $inventaris
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inventaris $inventaris)
+    public function edit(Inventaris $inventari)
     {
-        //
+        return view('dashboard.inventaris.edit', [
+            'title'     => 'Master | Data Inventaris',
+            'penempatan' => $this->penempatan,
+            'asal'      => $this->asal,
+            'kondisi'   => $this->kondisi,
+            'jenis'     => JenisInventaris::all(),
+            'inven'     => $inventari
+        ]);
     }
 
     /**
@@ -82,9 +106,24 @@ class InvenController extends Controller
      * @param  \App\Models\Inventaris  $inventaris
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inventaris $inventaris)
+    public function update(Request $request, Inventaris $inventari)
     {
-        //
+        $validateData   = $request->validate([
+            'nama_barang'           => 'required',
+            'penempatan'            => 'required',
+            'kondisi'               => 'required',
+            'no_inventaris'         => 'required',
+            'asal_barang'           => 'required',
+            'jenis_inventaris_id'   => 'required',
+            'tanggal_pembelian'     => 'required'
+        ]);
+
+        if ($request->harga_barang) {
+            $validateData['harga_barang'] = preg_replace('/[^0-9-,]+/', '', $request->harga_barang);
+        }
+
+        Inventaris::where('id', $inventari->id)->update($validateData);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Ubah');
     }
 
     /**
@@ -93,8 +132,9 @@ class InvenController extends Controller
      * @param  \App\Models\Inventaris  $inventaris
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inventaris $inventaris)
+    public function destroy(Inventaris $inventari, Request $request)
     {
-        //
+        Inventaris::destroy($inventari->id);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Hapus');
     }
 }

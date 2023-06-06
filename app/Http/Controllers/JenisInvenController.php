@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jenisinven;
+use App\Models\JenisInventaris;
 use Illuminate\Http\Request;
 
 class JenisInvenController extends Controller
@@ -16,7 +16,7 @@ class JenisInvenController extends Controller
     {
         return view('dashboard.jenis_inven.index', [
             'title'     => 'Master | Data Jenis Inventaris',
-            'jenis'     => Jenisinven::paginate(10)->withQueryString(),
+            'jenis'     => JenisInventaris::paginate(10)->withQueryString(),
         ]);
     }
 
@@ -45,7 +45,7 @@ class JenisInvenController extends Controller
             'kode'           => 'required|max:10'
         ]);
 
-        Jenisinven::create($validateData);
+        JenisInventaris::create($validateData);
         return redirect('webmin/jenisinven')->with('success', 'Data Berhasil Di Simpan');
     }
 
@@ -55,7 +55,7 @@ class JenisInvenController extends Controller
      * @param  \App\Models\JenisInventaris  $jenisInventaris
      * @return \Illuminate\Http\Response
      */
-    public function show(Jenisinven $jenisInventaris)
+    public function show(JenisInventaris $jenisInventaris)
     {
         //
     }
@@ -66,7 +66,7 @@ class JenisInvenController extends Controller
      * @param  \App\Models\JenisInventaris  $jenisInventaris
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jenisinven $jenisinven)
+    public function edit(JenisInventaris $jenisinven)
     {
         return view('dashboard.jenis_inven.edit', [
             'title'     => 'Master | Data Jenis Inventaris',
@@ -81,14 +81,14 @@ class JenisInvenController extends Controller
      * @param  \App\Models\JenisInventaris  $jenisInventaris
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jenisinven $jenisinven)
+    public function update(Request $request, JenisInventaris $jenisinven)
     {
         $validateData = $request->validate([
             'nama'           => 'required|max:128',
             'kode'           => 'required|max:10'
         ]);
 
-        Jenisinven::where('id', $jenisinven->id)
+        JenisInventaris::where('id', $jenisinven->id)
             ->update($validateData);
         return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Ubah');
     }
@@ -99,9 +99,9 @@ class JenisInvenController extends Controller
      * @param  \App\Models\JenisInventaris  $jenisInventaris
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Jenisinven $jenisinven, Request $request)
+    public function destroy(JenisInventaris $jenisinven, Request $request)
     {
-        Jenisinven::destroy($jenisinven->id);
+        JenisInventaris::destroy($jenisinven->id);
         return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Hapus');
     }
 }
