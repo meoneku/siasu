@@ -78,7 +78,7 @@ class SemhasController extends Controller
      */
     public function edit(Semhas $semhas)
     {
-        return view('dashboard.skripsi.semhas.edit', [
+        return view('dashboard.skripsi.ujian.edit', [
             'title'     => 'Mahasiswa | Data Pendaftar Seminar Skripsi',
             'batchs'    => Batch::where('kegiatan_id', 6)->get(),
             'seminar'   => $semhas

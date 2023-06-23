@@ -9,7 +9,7 @@
             </div>
 
             <div class="card-body">
-                <form action="/webmin/suket">
+                <form action="/webmin/inventaris">
                     <div class="input-group">
                         <input type="text" name="nama" class="form-control rounded-0 w-25" placeholder="Semua Nama" value="{{ request('nama') }}">
                         <select name="penempatan" class="form-control w-25">
