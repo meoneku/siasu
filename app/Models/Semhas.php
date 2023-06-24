@@ -29,6 +29,11 @@ class Semhas extends Model
         return $this->BelongsToMany(Dosen::class)->withPivot('sebagai', 'ke')->orderBy('ke', 'asc');
     }
 
+    public function surat()
+    {
+        return $this->hasOne(Surat::class, 'no_surat', 'no_surat')->withDefault(['created_at' => date('Y-m-d')]);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when(
