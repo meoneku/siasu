@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batch;
-use App\Models\Jabatan;
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Ajar;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
-use App\Helpers\Codes;
 
 class AjarController extends Controller
 {
