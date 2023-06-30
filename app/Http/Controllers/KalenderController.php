@@ -75,7 +75,6 @@ class KalenderController extends Controller
     {
         $validateData = $request->validate([
             'judul'           => 'required|max:128',
-            'singkat'         => 'required',
             'body'            => 'required',
         ]);
 

@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-lg-12 pt-4 pt-lg-0" data-aos="fade-left">
                         <h3>{{ $sejarah->judul }}</h3>
-                        <h6 class="date-created mb-2"><i class="bi bi-clock"></i> {{ tanggal_indonesia($sejarah->publish_at) }}</h6>
+                        <h6 class="date-created mb-2"><i class="bi bi-clock"></i> {{ \App\Helpers\IndoTanggal::tanggal($sejarah->publish_at) }}</h6>
                         {!! $sejarah->body !!}
                     </div>
                 </div>
