@@ -35,9 +35,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "App/Helpers/IndonesianDates.php",
-            "App/Helpers/Codes.php",
-            "App/Helpers/ESurat.php"
+
         ]
     },
     "autoload-dev": {

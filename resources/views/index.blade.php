@@ -95,7 +95,7 @@
                                 <img src="{{ url('uploads') }}/{{ $brit->gambar }}" class="card-img-top" alt="..." />
                                 <div class="card-body">
                                     <h6 class="card-title">{{ \Illuminate\Support\Str::limit($brit->judul, 50, '...') }}</h6>
-                                    <h6 class="card-subtitle mb-2 date-created"><i class="bi bi-clock"></i> {{ tanggal_indonesia($brit->publish_at, false) }} in {{ $brit->kategori->name }} by {{ $brit->penulis }}</h6>
+                                    <h6 class="card-subtitle mb-2 date-created"><i class="bi bi-clock"></i> {{ \App\Helpers\IndoTanggal::tanggal($brit->publish_at, false) }} in {{ $brit->kategori->name }} by {{ $brit->penulis }}</h6>
                                     <p class="card-text">{{ \Illuminate\Support\Str::limit(strip_tags($brit->body), 170, '...') }}</p>
                                     <div class="d-flex justify-content-end">
                                         <a href="{{ url('berita') . '/' . $brit->slug }}" class="btn btn-success">Lanjutkan Baca</a>

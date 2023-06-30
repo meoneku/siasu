@@ -68,7 +68,7 @@
                                     <td>{{ $semhas->firstItem() + $loop->index }}</td>
                                     <td>{{ $data->mahasiswa->nama }}</td>
                                     <td>{{ $data->mahasiswa->jurusan->jenjang }} {{ $data->mahasiswa->jurusan->jurusan }}</td>
-                                    <td>{{ tanggal_indonesia($data->created_at) }}</td>
+                                    <td>{{ \App\Helpers\IndoTanggal::tanggal($data->created_at) }}</td>
                                     <td>{{ $data->batch->kegiatan->nama }} - {{ $data->batch->nama }} - {{ $data->batch->tahun }}</td>
                                     <td>{!! App\Http\Controllers\SkripsiController::getStatusPendaftaran($data->status) !!}</td>
                                     <td>

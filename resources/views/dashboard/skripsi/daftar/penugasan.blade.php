@@ -130,7 +130,7 @@
             <tr>
                 <td width="220px" colspan="2" class="top-text">Masa Berlaku Surat Tugas</td>
                 <td width="10px" class="top-text">:</td>
-                <td class="top-text">{{ tanggal_indonesia($skripsi->awal_penugasan, false) }} - {{ tanggal_indonesia($skripsi->akhir_penugasan, false) }}</td>
+                <td class="top-text">{{ \App\Helpers\IndoTanggal::tanggal($skripsi->awal_penugasan, false) }} - {{ \App\Helpers\IndoTanggal::tanggal($skripsi->akhir_penugasan, false) }}</td>
             </tr>
             <tr>
                 <td colspan="4">
@@ -148,7 +148,7 @@
             <tr>
                 <td width="320px"></td>
                 <td width=""></td>
-                <td width="320px">Jombang, {{ tanggal_indonesia($skripsi->surat->created_at, false) }}</td>
+                <td width="320px">Jombang, {{ \App\Helpers\IndoTanggal::tanggal($skripsi->surat->created_at, false) }}</td>
             </tr>
             <tr>
                 <td></td>

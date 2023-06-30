@@ -44,8 +44,8 @@
                                     <td>{{ $batchs->firstItem() + $loop->index }}</td>
                                     <td>{{ $batch->nama }}</td>
                                     <td>{{ $batch->kegiatan->nama }}</td>
-                                    <td>{{ tanggal_indonesia($batch->mulai) }}</td>
-                                    <td>{{ tanggal_indonesia($batch->selesai) }}</td>
+                                    <td>{{ \App\Helpers\IndoTanggal::tanggal($batch->mulai) }}</td>
+                                    <td>{{ \App\Helpers\IndoTanggal::tanggal($batch->selesai) }}</td>
                                     <td>{{ $batch->tahun }}</td>
                                     <td><a href="/webmin/batch/{{ $batch->id }}/edit" class="badge bg-info me-1" title="Edit Data Pengajaran"><i class="fas fa-edit"></i></a>
                                         <form action="/webmin/batch/{{ $batch->id }}" method="post" class="d-inline">

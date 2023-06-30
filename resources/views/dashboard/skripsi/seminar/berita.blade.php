@@ -55,7 +55,7 @@
             </tr>
             <tr>
                 <td colspan="3" class="justify">
-                    Pada hari ini {{ tanggal_indonesia($seminar->tanggal_seminar) }} jam {{ date('G:i', strtotime($seminar->jam_mulai)) }} - {{ date('G:i', strtotime($seminar->jam_selesai)) }} WIB. Bertempat di ruang {{ $seminar->ruang }} telah dilakukan Seminar Skripsi :
+                    Pada hari ini {{ \App\Helpers\IndoTanggal::tanggal($seminar->tanggal_seminar) }} jam {{ date('G:i', strtotime($seminar->jam_mulai)) }} - {{ date('G:i', strtotime($seminar->jam_selesai)) }} WIB. Bertempat di ruang {{ $seminar->ruang }} telah dilakukan Seminar Skripsi :
                 </td>
             </tr>
             <tr>
@@ -124,7 +124,7 @@
             <tr>
                 <td width="350px"></td>
                 <td width=""></td>
-                <td width="350px">Jombang, {{ tanggal_indonesia($seminar->tanggal_seminar, false) }}</td>
+                <td width="350px">Jombang, {{ \App\Helpers\IndoTanggal::tanggal($seminar->tanggal_seminar, false) }}</td>
             </tr>
             <tr>
                 <td></td>

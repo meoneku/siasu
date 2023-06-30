@@ -89,7 +89,7 @@
             @endforeach
             <tr>
                 <td colspan="4" class="justify">
-                    untuk bertugas sebagai Penguji Seminar Proposal Skripsi mahasiswa Jurusan {{ $seminar->mahasiswa->jurusan->jurusan}} berikut ini:
+                    untuk bertugas sebagai Penguji Seminar Proposal Skripsi mahasiswa Jurusan {{ $seminar->mahasiswa->jurusan->jurusan }} berikut ini:
                 </td>
             </tr>
             <tr>
@@ -100,12 +100,12 @@
             <tr>
                 <td width="210px" colspan="2" class="top-text">Nama Mahasiswa</td>
                 <td width="10px" class="top-text">:</td>
-                <td class="top-text">{{ $seminar->mahasiswa->nama}}</td>
+                <td class="top-text">{{ $seminar->mahasiswa->nama }}</td>
             </tr>
             <tr>
                 <td width="210px" colspan="2" class="top-text">NIM</td>
                 <td width="10px" class="top-text">:</td>
-                <td class="top-text">{{ $seminar->mahasiswa->nim}}</td>
+                <td class="top-text">{{ $seminar->mahasiswa->nim }}</td>
             </tr>
             <tr>
                 <td width="210px" colspan="2" class="top-text">Jenjang/Program Studi</td>
@@ -124,7 +124,7 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    
+
                 </td>
             </tr>
             <tr>
@@ -135,7 +135,7 @@
             <tr>
                 <td width="210px" colspan="2" class="top-text">Hari, Tanggal</td>
                 <td width="10px" class="top-text">:</td>
-                <td class="top-text">{{ tanggal_indonesia($seminar->tanggal_seminar) }}</td>
+                <td class="top-text">{{ \App\Helpers\IndoTanggal::tanggal($seminar->tanggal_seminar) }}</td>
             </tr>
             <tr>
                 <td width="210px" colspan="2" class="top-text">Waktu</td>
@@ -149,7 +149,7 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    
+
                 </td>
             </tr>
             <tr>
@@ -163,7 +163,7 @@
             <tr>
                 <td width="320px"></td>
                 <td width=""></td>
-                <td width="320px">Jombang, {{ tanggal_indonesia($seminar->surat->created_at, false) }}</td>
+                <td width="320px">Jombang, {{ \App\Helpers\IndoTanggal::tanggal($seminar->surat->created_at, false) }}</td>
             </tr>
             <tr>
                 <td></td>

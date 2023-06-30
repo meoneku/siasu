@@ -87,13 +87,13 @@
             @foreach ($seminar as $data)
                 <tr>
                     <td style="margin-left: 20px">{{ $loop->iteration }}</td>
-                    <td>{{ tanggal_indonesia($data->created_at, false) }}</td>
+                    <td>{{ \App\Helpers\IndoTanggal::tanggal($data->created_at, false) }}</td>
                     <td>{{ $data->mahasiswa->nim }}</td>
                     <td>{{ $data->mahasiswa->nama }}</td>
                     <td>{{ $data->mahasiswa->jurusan->jurusan }}</td>
                     <td class="justify">{{ strip_tags($data->judul_skripsi) }}</td>
                     <td class="justify">{{ $data->lokasi_penelitian }}</td>
-                    <td>{{ $data->tanggal_seminar === null ? '' : tanggal_indonesia($data->tanggal_seminar) }}</td>
+                    <td>{{ $data->tanggal_seminar === null ? '' : \App\Helpers\IndoTanggal::tanggal($data->tanggal_seminar) }}</td>
                     <td>{{ date('G:i', strtotime($data->jam_mulai)) }} - {{ date('G:i', strtotime($data->jam_selesai)) }}</td>
                     <td>{{ $data->ruang }}</td>
                     <td width="20%">

@@ -62,7 +62,7 @@
                                     <td>{{ $lulusan->firstItem() + $loop->index }}</td>
                                     <td>{{ $data->nim }}</td>
                                     <td>{{ $data->nama }}</td>
-                                    <td>{{ tanggal_indonesia($data->tanggal_lulus, false) }}</td>
+                                    <td>{{ \App\Helpers\IndoTanggal::tanggal($data->tanggal_lulus, false) }}</td>
                                     <td>{{ $data->jurusan->jurusan }}</td>
                                     <td><a href="/webmin/lulusan/{{ $data->id }}/edit" class="badge bg-info me-1" title="Edit Data Lulusan"><i class="fas fa-user-graduate"></i></a>
                                         <a href="/webmin/transkrip/edit?nim={{ $data->nim }}" class="badge bg-danger me-1" title="Edit Nilai"><i class="fas fa-file-invoice"></i></a>

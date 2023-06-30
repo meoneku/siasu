@@ -79,7 +79,7 @@
                         <tr>
                             <td>Tempat, Tanggal Lahir</td>
                             <td>:</td>
-                            <td>{{ $lulusan->tempat_lahir . ', ' . tanggal_indonesia($lulusan->tanggal_lahir, false) }}</td>
+                            <td>{{ $lulusan->tempat_lahir . ', ' . \App\Helpers\IndoTanggal::tanggal($lulusan->tanggal_lahir, false) }}</td>
                         </tr>
                         <tr>
                             <td>Nomor Pokok Mahasiswa</td>
@@ -89,7 +89,7 @@
                         <tr>
                             <td>Tanggal Kelulusan</td>
                             <td>:</td>
-                            <td>{{ tanggal_indonesia($lulusan->tanggal_lulus, false) }}</td>
+                            <td>{{ \App\Helpers\IndoTanggal::tanggal($lulusan->tanggal_lulus, false) }}</td>
                         </tr>
                     </table>
                 </td>
@@ -274,9 +274,9 @@
                 <td width="85px" rowspan="10"></td>
                 <td width="70"></td>
                 <td width="225px">Jombang, @if (request('final') == 'false')
-                        {{ tanggal_indonesia($lulusan->tanggal_lulus, false) }}
+                        {{ \App\Helpers\IndoTanggal::tanggal($lulusan->tanggal_lulus, false) }}
                     @else
-                        {{ tanggal_indonesia($lulusan->tanggal_wisuda, false) }}
+                        {{ \App\Helpers\IndoTanggal::tanggal($lulusan->tanggal_wisuda, false) }}
                     @endif
                 </td>
             </tr>

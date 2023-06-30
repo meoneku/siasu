@@ -88,7 +88,7 @@
             @foreach ($skripsi as $data)
                 <tr>
                     <td style="margin-left: 20px">{{ $loop->iteration }}</td>
-                    <td>{{ tanggal_indonesia($data->created_at) }}</td>
+                    <td>{{ \App\Helpers\IndoTanggal::tanggal($data->created_at) }}</td>
                     <td>{{ $data->mahasiswa->nim }}</td>
                     <td>{{ $data->mahasiswa->nama }}</td>
                     <td>{{ $data->mahasiswa->jurusan->jurusan }}</td>

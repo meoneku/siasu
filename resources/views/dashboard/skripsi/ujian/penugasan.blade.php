@@ -135,7 +135,7 @@
             <tr>
                 <td width="210px" colspan="2" class="top-text">Hari, Tanggal</td>
                 <td width="10px" class="top-text">:</td>
-                <td class="top-text">{{ tanggal_indonesia($seminar->tanggal_ujian) }}</td>
+                <td class="top-text">{{ \App\Helpers\IndoTanggal::tanggal($seminar->tanggal_ujian) }}</td>
             </tr>
             <tr>
                 <td width="210px" colspan="2" class="top-text">Waktu</td>
@@ -163,7 +163,7 @@
             <tr>
                 <td width="320px"></td>
                 <td width=""></td>
-                <td width="320px">Jombang, {{ tanggal_indonesia($seminar->surat->created_at, false) }}</td>
+                <td width="320px">Jombang, {{ \App\Helpers\IndoTanggal::tanggal($seminar->surat->created_at, false) }}</td>
             </tr>
             <tr>
                 <td></td>

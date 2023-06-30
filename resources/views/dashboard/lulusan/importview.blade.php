@@ -35,7 +35,7 @@
                                 <td>{{ $rows[$i]['no'] }}</td>
                                 <td>{{ $rows[$i]['nim'] }}</td>
                                 <td>{{ $rows[$i]['nama'] }}</td>
-                                <td>{{ tanggal_indonesia(date('Y-m-d', ($rows[$i]['tanggal_lahir'] - 25569) * 86400), false) }}</td>
+                                <td>{{ \App\Helpers\IndoTanggal::tanggal(date('Y-m-d', ($rows[$i]['tanggal_lahir'] - 25569) * 86400), false) }}</td>
                                 <td>{{ $jurusan->where('id', $rows[$i]['jurusan'])->first()->jurusan }}</td>
                             </tr>
                         @endfor

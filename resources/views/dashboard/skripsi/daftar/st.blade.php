@@ -102,7 +102,7 @@
                 <td width="10px" class="top-text">:</td>
                 <td class="top-text">
                     <ol>
-                        @foreach($skripsi->dosen as $dosen)
+                        @foreach ($skripsi->dosen as $dosen)
                             <li><strong>{{ $dosen->nama }}</strong></li>
                         @endforeach
                     </ol>
@@ -118,7 +118,7 @@
                         <li>Kegiatan bimbingan dilaksanakan sejak tanggal dikeluarkannya Surat Tugas ini dan agar mahasiswa menghubungi dan berkonsultasi dengan pembimbing.</li>
                         <li>Pelaksanaan penulisan proposal skripsi dan penelitian dimulai sejak ditanda tangani Surat Tugas ini.</li>
                         <li>Melaksanakan bimbingan proposal 3 (tiga) kali dan bimbingan skripsi minimal 6 (enam) kali sampai selesai penyusunan skripsi</li>
-                        <li>Surat Tugas ini berlaku sampai tanggal <strong>{{ tanggal_indonesia($selesai, false) }}</strong></li>
+                        <li>Surat Tugas ini berlaku sampai tanggal <strong>{{ \App\Helpers\IndoTanggal::tanggal($selesai, false) }}</strong></li>
                     </ol>
                 </td>
             </tr>
@@ -133,7 +133,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Pada Tanggal : {{ tanggal_indonesia($skripsi->surat->created_at, false) }}</td>
+                <td>Pada Tanggal : {{ \App\Helpers\IndoTanggal::tanggal($skripsi->surat->created_at, false) }}</td>
             </tr>
             <tr>
                 <td></td>

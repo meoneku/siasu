@@ -81,7 +81,7 @@
                 <th>Ruang</th>
             </tr>
             @foreach ($seminar as $data)
-                <td style="margin-left: 20px">{{ tanggal_indonesia($data->tanggal_seminar) }}</td>
+                <td style="margin-left: 20px">{{ \App\Helpers\IndoTanggal::tanggal($data->tanggal_seminar) }}</td>
                 <td>{{ date('G:i', strtotime($data->jam_mulai)) }} - {{ date('G:i', strtotime($data->jam_selesai)) }}</td>
                 <td>{{ $data->mahasiswa->nim }}</td>
                 <td>{{ $data->mahasiswa->nama }}</td>
@@ -100,7 +100,7 @@
         <table width="100%" class="ttd">
             <tr>
                 <td></td>
-                <td width="30%">Jombang, {{ tanggal_indonesia(date('Y-m-d'), false) }}</td>
+                <td width="30%">Jombang, {{ \App\Helpers\IndoTanggal::tanggal(date('Y-m-d'), false) }}</td>
             </tr>
             <tr>
                 <td></td>

@@ -135,9 +135,9 @@
                     @php
                         $data = explode(';', $surat->kebutuhan);
                         $no = 1;
-
+                        
                         foreach ($data as $d) {
-                            echo $no .'. '. $d .'<br/>';
+                            echo $no . '. ' . $d . '<br/>';
                             $no++;
                         }
                     @endphp
@@ -165,7 +165,7 @@
             <tr>
                 <td width="350px"></td>
                 <td width=""></td>
-                <td width="350px">Jombang, {{ tanggal_indonesia($surat->surat->created_at, false) }}</td>
+                <td width="350px">Jombang, {{ \App\Helpers\IndoTanggal::tanggal($surat->surat->created_at, false) }}</td>
             </tr>
             <tr>
                 <td></td>

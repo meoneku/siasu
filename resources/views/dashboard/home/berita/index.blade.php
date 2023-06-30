@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title"><strong>{{ \Illuminate\Support\Str::limit($berita->judul, 30, '...') }}</strong></h5><br />
-                                    <h5 class="card-title text-muted text-xs"><i class="far fa-clock"></i> {{ tanggal_indonesia($berita->publish_at, false) }} in {{ $berita->kategori->name }} by {{ $berita->penulis }}</h5>
+                                    <h5 class="card-title text-muted text-xs"><i class="far fa-clock"></i> {{ \App\Helpers\IndoTanggal::tanggal($berita->publish_at, false) }} in {{ $berita->kategori->name }} by {{ $berita->penulis }}</h5>
                                     <p class="card-text">{{ \Illuminate\Support\Str::limit(strip_tags($berita->body), 120, '...') }}</p>
                                     <div class="d-flex justify-content-end">
                                         <a href="{{ route('berita.edit', $berita->slug) }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>&nbsp;

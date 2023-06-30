@@ -52,7 +52,7 @@
                                         <div class="col-sm-4 border-right">
                                             <div class="description-block">
                                                 <h5 class="description-header">LULUS</h5>
-                                                <span class="description-text">{{ tanggal_indonesia($lulus->tanggal_lulus, false) }}</span>
+                                                <span class="description-text">{{ \App\Helpers\IndoTanggal::tanggal($lulus->tanggal_lulus, false) }}</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-4 border-right">

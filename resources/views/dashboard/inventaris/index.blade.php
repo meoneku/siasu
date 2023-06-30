@@ -53,7 +53,7 @@
                                     <td>{{ $data->penempatan }}</td>
                                     <td>{{ $data->kondisi }}</td>
                                     <td>{{ $data->no_inventaris }}</td>
-                                    <td>{{ tanggal_indonesia($data->tanggal_pembelian, false) }}</td>
+                                    <td>{{ \App\Helpers\IndoTanggal::tanggal($data->tanggal_pembelian, false) }}</td>
                                     <td>
                                         <a href="/webmin/inventaris/{{ $data->id }}/edit" class="badge bg-info me-1"><i class="fas fa-edit"></i></a>
                                         @if (Auth::guard('admin')->user()->role == 'root')

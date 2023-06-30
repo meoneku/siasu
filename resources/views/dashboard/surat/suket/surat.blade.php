@@ -150,7 +150,7 @@
             <tr>
                 <td width="320px"></td>
                 <td width=""></td>
-                <td width="320px">Jombang, {{ tanggal_indonesia($surat->surat->created_at, false) }}</td>
+                <td width="320px">Jombang, {{ \App\Helpers\IndoTanggal::tanggal($surat->surat->created_at, false) }}</td>
             </tr>
             <tr>
                 <td></td>

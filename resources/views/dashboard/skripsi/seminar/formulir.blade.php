@@ -99,7 +99,7 @@
         <br />
         <table width="850px" class="ttd">
             <tr>
-                <td width="320px">Jombang, {{ tanggal_indonesia($seminar->created_at, false) }}</td>
+                <td width="320px">Jombang, {{ \App\Helpers\IndoTanggal::tanggal($seminar->created_at, false) }}</td>
                 <td width=""></td>
                 <td width="320px">Menyetujui</td>
             </tr>

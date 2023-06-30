@@ -57,7 +57,7 @@
                                     <td>{{ $suratpi->firstItem() + $loop->index }}</td>
                                     <td>{{ $data->tempat }}</td>
                                     <td>{{ $data->jurusan->jenjang }} {{ $data->jurusan->jurusan }}</td>
-                                    <td>{{ tanggal_indonesia($data->created_at) }}</td>
+                                    <td>{{ \App\Helpers\IndoTanggal::tanggal($data->created_at) }}</td>
                                     <td>{{ $data->no_surat }}</td>
                                     <td>{!! App\Helpers\Codes::getStatusSuratPI($data->status) !!}</td>
                                     <td>

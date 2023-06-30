@@ -52,13 +52,13 @@
             <tr>
                 <td width="200px">Waktu Pelaksanaan</td>
                 <td width="10px">:</td>
-                <td>{{ tanggal_indonesia($kppi->mulai, false) }} s/d {{ tanggal_indonesia($kppi->selesai, false) }}</td>
+                <td>{{ \App\Helpers\IndoTanggal::tanggal($kppi->mulai, false) }} s/d {{ \App\Helpers\IndoTanggal::tanggal($kppi->selesai, false) }}</td>
             </tr>
             <tr>
                 <td colspan="3"></td>
             </tr>
             <tr>
-                <td colspan="3" class="justify">Saya berjanji akan mematuhi semua peraturan yang berlaku selama pelaksanaan Praktik Industri/   Kerja Praktik yang di tetapkan oleh Kantor/Intansi/Lembaga/Perusahaan dan Fakultas Teknik Universitas Hasyim Asy'ari Tebuireng Jombang.</td>
+                <td colspan="3" class="justify">Saya berjanji akan mematuhi semua peraturan yang berlaku selama pelaksanaan Praktik Industri/ Kerja Praktik yang di tetapkan oleh Kantor/Intansi/Lembaga/Perusahaan dan Fakultas Teknik Universitas Hasyim Asy'ari Tebuireng Jombang.</td>
             </tr>
             <tr>
                 <td colspan="3"></td>
@@ -67,7 +67,7 @@
         <br />
         <table width="850px" class="ttd">
             <tr>
-                <td width="320px">Jombang, {{ tanggal_indonesia($kppi->created_at, false) }}</td>
+                <td width="320px">Jombang, {{ \App\Helpers\IndoTanggal::tanggal($kppi->created_at, false) }}</td>
                 <td width=""></td>
                 <td width="320px">Menyetujui</td>
             </tr>
@@ -91,9 +91,9 @@
                 <td>NIY : {{ $kaprodi->niy }}</td>
             </tr>
         </table>
-        <br/>
-        <br/>
-        <span style="font-size:16px"><i>Lampiran</i></span><br/>
+        <br />
+        <br />
+        <span style="font-size:16px"><i>Lampiran</i></span><br />
         <ul style="margin-top:0px">
             <li><i>Bukti Pembayaran Praktik Industri/Kerja Praktik</i></li>
             <li><i>Surat balasan diterima dari tempat Praktik Industri/Kerja Praktik</i></li>

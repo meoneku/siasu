@@ -49,7 +49,7 @@
 
                             <div class="entry-meta">
                                 <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{ $pengumuman->publish_at }}">{{ tanggal_indonesia($pengumuman->publish_at, false) }}</time></a></li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="{{ $pengumuman->publish_at }}">{{ \App\Helpers\IndoTanggal::tanggal($pengumuman->publish_at, false) }}</time></a></li>
                                 </ul>
                             </div>
 
@@ -90,7 +90,7 @@
                                     <div class="post-item clearfix">
                                         <img src="{{ url('uploads') . '/' . $data->gambar }}" alt="...">
                                         <h4><a href="{{ route('home.pengumuman.detail', $data->slug) }}">{{ $data->judul }}</a></h4>
-                                        <time datetime="{{ $data->publish_at }}">{{ tanggal_indonesia($data->publish_at, false) }}</time>
+                                        <time datetime="{{ $data->publish_at }}">{{ \App\Helpers\IndoTanggal::tanggal($data->publish_at, false) }}</time>
                                     </div>
                                 @endforeach
                             </div><!-- End sidebar recent posts-->

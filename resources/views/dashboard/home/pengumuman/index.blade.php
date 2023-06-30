@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title"><strong>{{ \Illuminate\Support\Str::limit($pengumuman->judul, 30, '...') }}</strong></h5><br />
-                                    <h5 class="card-title text-muted text-xs"><i class="far fa-clock"></i> {{ tanggal_indonesia($pengumuman->publish_at, false) }}</h5>
+                                    <h5 class="card-title text-muted text-xs"><i class="far fa-clock"></i> {{ \App\Helpers\IndoTanggal::tanggal($pengumuman->publish_at, false) }}</h5>
                                     <p class="card-text">{{ \Illuminate\Support\Str::limit(strip_tags($pengumuman->body), 120, '...') }}</p>
                                     <div class="d-flex justify-content-end">
                                         <a href="{{ route('pengumuman.edit', $pengumuman->slug) }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>&nbsp;
