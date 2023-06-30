@@ -81,6 +81,46 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
+                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Halaman Depan</a>
+                            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                                <li><a href="{{ url('webmin/homepage/fasilitas') }}" class="dropdown-item">Fasilitas</a></li>
+                                <li><a href="{{ url('webmin/homepage/pengumuman') }}" class="dropdown-item">Pengumuman</a></li>
+                                <li><a href="{{ url('webmin/homepage/kerjasama') }}" class="dropdown-item">Kerjasama</a></li>
+                                <li class="dropdown-divider"></li>
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="skripsi" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Berita</a>
+                                    <ul aria-labelledby="skripsi" class="dropdown-menu border-0 shadow">
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/berita') }}" class="dropdown-item">Berita</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/kategori') }}" class="dropdown-item">Kategori Berita</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="skripsi" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Profil</a>
+                                    <ul aria-labelledby="skripsi" class="dropdown-menu border-0 shadow">
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/sejarah') }}" class="dropdown-item">Sejarah</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/visi') }}" class="dropdown-item">Visi Dan Misi</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/profil') }}" class="dropdown-item">Halaman Profil</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Akademik</a>
+                                    <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/prodi') }}" class="dropdown-item">Tentang Prodi</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/kalender') }}" class="dropdown-item">Kalender Akademik</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/ejournal') }}" class="dropdown-item">EJournal</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu dropdown-hover">
+                                    <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Kemahasiswaan</a>
+                                    <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/bem') }}" class="dropdown-item">BEM</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/hmp') }}" class="dropdown-item">HMP</a></li>
+                                        <li><a tabindex="-1" href="{{ url('webmin/homepage/kemahasiswaan') }}" class="dropdown-item">Halaman Kemahasiswaan</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
                             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Surat</a>
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                 <li class="dropdown-submenu dropdown-hover">

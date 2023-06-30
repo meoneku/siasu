@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('jabatan', 100);
             $table->string('jafung', 30);
             $table->string('golongan', 4);
-            $table->string('foto', 255)->default('dosen/default.png');;
+            $table->string('foto', 255)->default('dosen/default.png');
             $table->timestamps();
 
             $table->foreign('jurusan_id')->references('id')->on('jurusan');

@@ -18,16 +18,30 @@ use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\UjiController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\BemController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\HmpController;
 use App\Http\Controllers\InvenController;
 use App\Http\Controllers\JenisInvenController;
+use App\Http\Controllers\JournalController;
+use App\Http\Controllers\KalenderController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KemahasiswaanContoller;
+use App\Http\Controllers\KerjasamaController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PiController;
+use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\SejarahController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SemhasController;
 use App\Http\Controllers\SuketController;
 use App\Http\Controllers\SuratAmbilDataController;
 use App\Http\Controllers\SuratObservasiController;
 use App\Http\Controllers\SuratPIController;
+use App\Http\Controllers\VisiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +55,27 @@ use App\Http\Controllers\SuratPIController;
 */
 
 // Front Page
-Route::get('/', [IndexController::class, 'index'])->name('home.index');
+Route::group(['middleware' => 'visitor'], function () {
+    Route::get('/', [IndexController::class, 'index'])->name('home.index');
+    Route::get('/sejarah', [IndexController::class, 'sejarah'])->name('home.sejarah');
+    Route::get('/visi/{visi:slug}', [IndexController::class, 'visi'])->name('home.visi');
+    Route::get('/profil/{profil:slug}', [IndexController::class, 'profil'])->name('home.profil');
+    Route::get('/prodi/{prodi:slug}', [IndexController::class, 'prodi'])->name('home.prodi');
+    Route::get('/kalender', [IndexController::class, 'kalender'])->name('home.kalender');
+    Route::get('/bem', [IndexController::class, 'bem'])->name('home.bem');
+    Route::get('/hmp/{hmp:slug}', [IndexController::class, 'hmp'])->name('home.hmp');
+    Route::get('/kemahasiswaan/{kemahasiswaan:slug}', [IndexController::class, 'kemahasiswaan'])->name('home.kemahasiswaan');
+    Route::get('/pimpinan', [IndexController::class, 'pimpinan'])->name('home.pimpinan');
+    Route::get('/dosen', [IndexController::class, 'dosen'])->name('home.dosen');
+    Route::get('/staf', [IndexController::class, 'staf'])->name('home.staf');
+    Route::get('/pengumuman', [IndexController::class, 'pengumuman'])->name('home.pengumuman');
+    Route::get('/pengumuman/{pengumuman:slug}', [IndexController::class, 'getpengumuman'])->name('home.pengumuman.detail');
+    Route::get('/berita', [IndexController::class, 'berita'])->name('home.berita');
+    Route::get('/berita/{berita:slug}', [IndexController::class, 'getberita'])->name('home.berita.detail');
+});
+
+//Layanan Page
+Route::get('/layanan', [IndexController::class, 'layanan'])->name('home.layanan.index');
 Route::get('/skripsi', [IndexController::class, 'skripsi'])->name('home.skripsi.index');
 Route::post('/skripsi', [SkripsiController::class, 'store'])->name('home.skripsi.store');
 Route::get('/seminar', [IndexController::class, 'seminar'])->name('home.seminar.index');
@@ -311,6 +345,68 @@ Route::group(['middleware' => 'is_login'], function () {
 
     //Jenis Inventaris Routes
     Route::resources(['webmin/jenisinven' => JenisInvenController::class]);
+
+    //For Halaman Depan Webmin Routes
+    //Fasilitas Route
+    Route::resources(['webmin/homepage/fasilitas' => FasilitasController::class]);
+
+    //Pengumuman Route
+    Route::resource('webmin/homepage/pengumuman', PengumumanController::class)->parameters([
+        'webmin/homepage/pengumuman' => 'pengumuman:slug',
+    ]);
+
+    //Kerjsama Route
+    Route::resources(['webmin/homepage/kerjasama' => KerjasamaController::class]);
+
+    //Kategori Route
+    Route::resource('webmin/homepage/kategori', KategoriController::class)->parameters([
+        'webmin/homepage/kategori' => 'kategori:slug',
+    ]);
+
+    //Berita Route
+    Route::resource('webmin/homepage/berita', BeritaController::class)->parameters([
+        'webmin/homepage/berita' => 'berita:slug',
+    ]);
+
+    //Sejarah Route
+    Route::get('webmin/homepage/sejarah/', [SejarahController::class, 'index'])->name('sejarah.index');
+    Route::put('webmin/homepage/sejarah/{sejarah}', [SejarahController::class, 'update'])->name('sejarah.update');
+
+    //Visi Misi Route
+    Route::resource('webmin/homepage/visi', VisiController::class)->parameters([
+        'webmin/homepage/visi' => 'visi:slug',
+    ]);
+
+    //Profil Route
+    Route::resource('webmin/homepage/profil', ProfilController::class)->parameters([
+        'webmin/homepage/profil' => 'profil:slug',
+    ]);
+
+    //Prodi Route
+    Route::resource('webmin/homepage/prodi', ProdiController::class)->parameters([
+        'webmin/homepage/prodi' => 'prodi:slug',
+    ]);
+
+    //Link EJournal Route
+    Route::resources(['webmin/homepage/ejournal' => JournalController::class]);
+
+    //BEM Route
+    Route::get('webmin/homepage/bem/', [BemController::class, 'index'])->name('bem.index');
+    Route::put('webmin/homepage/bem/{bem}', [BemController::class, 'update'])->name('bem.update');
+
+    //Kalender Akademik Route
+    Route::get('webmin/homepage/kalender/', [KalenderController::class, 'index'])->name('kalender.index');
+    Route::put('webmin/homepage/kalender/{kalender}', [KalenderController::class, 'update'])->name('kalender.update');
+
+    //HMP Route
+    Route::resource('webmin/homepage/hmp', HmpController::class)->parameters([
+        'webmin/homepage/hmp' => 'hmp:slug',
+    ]);
+
+    //HMP Route
+    Route::resource('webmin/homepage/kemahasiswaan', KemahasiswaanContoller::class)->parameters([
+        'webmin/homepage/kemahasiswaan' => 'kemahasiswaan:slug',
+    ]);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');
