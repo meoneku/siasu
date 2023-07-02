@@ -68,7 +68,7 @@
                     <h2>Fasilitas</h2>
                 </div>
 
-                <div class="row">
+                <div class="row d-flex justify-content-center">
                     @foreach ($fasilitas as $fal)
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mb-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
                             <div class="card">
@@ -114,7 +114,7 @@
                     <h2>Kerjasama</h2>
                 </div>
 
-                <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">
+                <div class="row no-gutters clients-wrap clearfix d-flex justify-content-center" data-aos="fade-up">
                     @foreach ($kerjasama as $kerja)
                         <div class="col-lg-3 col-md-4 col-6">
                             <div class="client-logo">

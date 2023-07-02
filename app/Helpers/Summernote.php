@@ -8,7 +8,7 @@ class Summernote
     {
         $content = $data;
         $dom = new \DomDocument();
-        $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        @$dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $imageFile = $dom->getElementsByTagName('img');
 
         foreach ($imageFile as $item => $image) {

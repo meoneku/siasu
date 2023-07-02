@@ -99,25 +99,7 @@
                             <div class="progress progress-xs" id="progressi" style="display: none">
                                 <div class="progress-bar progress-xs progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                             </div>
-                            <span class="text-danger text-xs">Maksimal Gambar 2 Mb</span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="file" class="col-sm-2 col-form-label">File Pengumuman</label>
-                        <div class="col-sm-10">
-                            <div class="input-grup">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('file') is-invalid @enderror" id="file" name="file">
-                                    <label class="custom-file-label" for="file">Pilih Berkas</label>
-                                    @error('file')
-                                        <span class="text-sm text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="progress progress-xs" id="progress" style="display: none">
-                                <div class="progress-bar progress-xs progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-                            </div>
-                            <span class="text-danger text-xs">Maksimal file 2 Mb</span>
+                            <span class="text-danger text-xs">Maksimal Gambar 2 Mb, Disarankan menggunakan gambar dengan resolusi 1920 x 1080 piksel</span>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end mt-2">

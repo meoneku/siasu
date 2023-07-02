@@ -35,7 +35,7 @@
             <div class="container" data-aos="fade-up">
                 <div class="section-title" data-aos="fade-up">
                     <h2>Dosen <strong>Fakultas Teknik</strong></h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                    <p>Dosen Fakultas Teknik Terdiri Dari Dosen S1 Teknik Mesin, S1 Teknik Elektro, S1 Teknik Sipil Dan S1 Teknik Industri Dengan Jumlah Keseluruhan Sebanyak {{ $count }} Dosen Tetap</p>
                 </div>
 
                 <div class="row content">

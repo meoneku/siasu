@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('body');
             $table->string('penulis', 128);
             $table->string('is_banner', 3)->default('no');
-            $table->string('gambar', 128)->default('image/default.png');
+            $table->string('gambar', 128)->default('images/default.png');
             $table->string('file', 128)->nullable();
             $table->timestamp('publish_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();

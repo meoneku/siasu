@@ -34,7 +34,7 @@
 
                 <div class="section-title" data-aos="fade-up">
                     <h2>Pimpinan <strong>Fakultas Teknik</strong></h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                    <p>Pimpinan Fakultas Teknik Universitas Hasyim Asy'ari Tebuireng Jombang Terdiri Dari Dekan Dan Wakil Dekan</p>
                 </div>
 
                 <div class="row d-flex justify-content-center">
@@ -82,7 +82,7 @@
 
                 <div class="section-title" data-aos="fade-up">
                     <h2>Kaprodi <strong>Fakultas Teknik</strong></h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                    <p>Kaprodi Fakultas Teknik Universitas Hasyim Asy'ari Tebuireng Jombang Terdiri Dari Kaprodi S1 Teknik Mesin, S1 Teknik Elektro, S1 Teknik Sipil Dan S1 Teknik Industri</p>
                 </div>
 
                 <div class="row">

@@ -63,11 +63,6 @@ class BeritaController extends Controller
             $validateData['gambar'] = $request->file('gambar')->storeAs('images', Str::random() . '.' . $ext);
         }
 
-        if ($request->file('file')) {
-            $ext = $request->file('file')->extension();
-            $validateData['file'] = $request->file('file')->storeAs('dokumen', Str::random() . '.' . $ext);
-        }
-
         $validateData['body'] = Summernote::ImgUpload($request->body);
 
         Berita::create($validateData);
@@ -125,11 +120,6 @@ class BeritaController extends Controller
         if ($request->file('gambar')) {
             $ext = $request->file('gambar')->extension();
             $validateData['gambar'] = $request->file('gambar')->storeAs('images', Str::random() . '.' . $ext);
-        }
-
-        if ($request->file('file')) {
-            $ext = $request->file('file')->extension();
-            $validateData['file'] = $request->file('file')->storeAs('dokumen', Str::random() . '.' . $ext);
         }
 
         $validateData['body'] = Summernote::ImgUpload($request->body);
