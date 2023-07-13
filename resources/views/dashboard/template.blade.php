@@ -118,6 +118,7 @@
                                         <li><a tabindex="-1" href="{{ url('webmin/homepage/kemahasiswaan') }}" class="dropdown-item">Halaman Kemahasiswaan</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="{{ url('webmin/homepage/lab') }}" class="dropdown-item">Laboratorium</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

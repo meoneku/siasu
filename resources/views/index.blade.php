@@ -19,7 +19,7 @@
         <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 @foreach ($banner as $ban)
-                    <div class="carousel-item active" style="background-image: url({{ url('uploads') }}/{{ $ban->gambar }})">
+                    <div class="carousel-item @if ($loop->first) active @endif" style="background-image: url({{ url('uploads') }}/{{ $ban->gambar }})">
                         <div class="carousel-container">
                             <div class="carousel-content animate__animated animate__fadeInUp">
                                 <h2>{{ $ban->judul }}</h2>

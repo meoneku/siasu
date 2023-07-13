@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\HmpApi;
 use App\Http\Controllers\Api\InventarisController;
 use App\Http\Controllers\Api\KategoriApi;
 use App\Http\Controllers\Api\KemahasiswaanApi;
+use App\Http\Controllers\Api\LabApi;
 use App\Http\Controllers\Api\MahasiswaController;
 use App\Http\Controllers\Api\PengumumanController;
 use App\Http\Controllers\Api\ProdiApi;
@@ -42,6 +43,7 @@ Route::get('/kategori/makeSlug', [KategoriApi::class, 'makeSlug'])->name('api.ka
 Route::get('/berita/makeSlug', [BeritaApi::class, 'makeSlug'])->name('api.berita.makeslug');
 Route::get('/visi/makeSlug', [VisiApi::class, 'makeSlug'])->name('api.visi.makeslug');
 Route::get('/profil/makeSlug', [ProfilApi::class, 'makeSlug'])->name('api.profil.makeslug');
+Route::get('/lab/makeSlug', [LabApi::class, 'makeSlug'])->name('api.lab.makeslug');
 Route::get('/prodi/makeSlug', [ProdiApi::class, 'makeSlug'])->name('api.prodi.makeslug');
 Route::get('/hmp/makeSlug', [HmpApi::class, 'makeSlug'])->name('api.hmp.makeslug');
 Route::get('/kemahasiswaan/makeSlug', [KemahasiswaanApi::class, 'makeSlug'])->name('api.kemahsiswaan.makeslug');

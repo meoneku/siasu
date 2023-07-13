@@ -75,6 +75,14 @@
                         @endforeach
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#"><span>Lab</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        @foreach (\App\Models\Lab::all() as $lab)
+                            <li><a href="{{ route('home.lab', $lab->slug) }}">{{ $lab->nm_menu }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
                 <li><a href="{{ route('home.pengumuman') }}">Pengumuman</a></li>
                 <li><a href="{{ route('home.berita') }}">Berita</a></li>
             </ul>

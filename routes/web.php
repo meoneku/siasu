@@ -29,6 +29,7 @@ use App\Http\Controllers\KalenderController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KemahasiswaanContoller;
 use App\Http\Controllers\KerjasamaController;
+use App\Http\Controllers\LabController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PiController;
@@ -63,6 +64,7 @@ Route::group(['middleware' => 'visitor'], function () {
     Route::get('/prodi/{prodi:slug}', [IndexController::class, 'prodi'])->name('home.prodi');
     Route::get('/kalender', [IndexController::class, 'kalender'])->name('home.kalender');
     Route::get('/bem', [IndexController::class, 'bem'])->name('home.bem');
+    Route::get('/lab/{lab:slug}', [IndexController::class, 'lab'])->name('home.lab');
     Route::get('/hmp/{hmp:slug}', [IndexController::class, 'hmp'])->name('home.hmp');
     Route::get('/kemahasiswaan/{kemahasiswaan:slug}', [IndexController::class, 'kemahasiswaan'])->name('home.kemahasiswaan');
     Route::get('/pimpinan', [IndexController::class, 'pimpinan'])->name('home.pimpinan');
@@ -385,6 +387,11 @@ Route::group(['middleware' => 'is_login'], function () {
     //Prodi Route
     Route::resource('webmin/homepage/prodi', ProdiController::class)->parameters([
         'webmin/homepage/prodi' => 'prodi:slug',
+    ]);
+
+    //Prodi Route
+    Route::resource('webmin/homepage/lab', LabController::class)->parameters([
+        'webmin/homepage/lab' => 'lab:slug',
     ]);
 
     //Link EJournal Route

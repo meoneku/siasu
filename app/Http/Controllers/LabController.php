@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profil;
+use App\Models\Lab;
 use Illuminate\Http\Request;
 use App\Helpers\Summernote;
 
-class ProfilController extends Controller
+class LabController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        return view('dashboard.home.profil.index', [
-            'title'     => 'Homepage | Profil',
-            'profil'      => Profil::filter(request(['judul']))->paginate(6)->withQueryString(),
+        return view('dashboard.home.lab.index', [
+            'title'     => 'Homepage | Laboratorium',
+            'lab'       => Lab::filter(request(['judul']))->paginate(6)->withQueryString(),
         ]);
     }
 
@@ -28,8 +28,8 @@ class ProfilController extends Controller
      */
     public function create()
     {
-        return view('dashboard.home.profil.create', [
-            'title'     => 'Homepage | Profil'
+        return view('dashboard.home.lab.create', [
+            'title'     => 'Homepage | Laboratorium'
         ]);
     }
 
@@ -53,17 +53,17 @@ class ProfilController extends Controller
 
         $validateData['body'] = Summernote::ImgUpload($request->body);
 
-        Profil::create($validateData);
-        return redirect(route('profil.index'))->with('success', 'Data Berhasil Di Simpan');
+        Lab::create($validateData);
+        return redirect(route('lab.index'))->with('success', 'Data Berhasil Di Simpan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Profil  $profil
+     * @param  \App\Models\Lab  $lab
      * @return \Illuminate\Http\Response
      */
-    public function show(Profil $profil)
+    public function show(Lab $lab)
     {
         //
     }
@@ -71,14 +71,14 @@ class ProfilController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Profil  $profil
+     * @param  \App\Models\Lab  $lab
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profil $profil)
+    public function edit(Lab $lab)
     {
-        return view('dashboard.home.profil.edit', [
-            'title'     => 'Homepage | Profil',
-            'profil'    => $profil
+        return view('dashboard.home.lab.edit', [
+            'title'     => 'Homepage | Laboratorium',
+            'lab'       => $lab
         ]);
     }
 
@@ -86,10 +86,10 @@ class ProfilController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Profil  $profil
+     * @param  \App\Models\Lab  $lab
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profil $profil)
+    public function update(Request $request, Lab $lab)
     {
         $validateData = $request->validate([
             'judul'           => 'required|max:128',
@@ -103,19 +103,19 @@ class ProfilController extends Controller
 
         $validateData['body'] = Summernote::ImgUpload($request->body);
 
-        Profil::where('id', $profil->id)->update($validateData);
+        Lab::where('id', $lab->id)->update($validateData);
         return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Simpan');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Profil  $profil
+     * @param  \App\Models\Lab  $lab
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profil $profil, Request $request)
+    public function destroy(Lab $lab, Request $request)
     {
-        Profil::destroy($profil->id);
+        Lab::destroy($lab->id);
         return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Hapus');
     }
 }

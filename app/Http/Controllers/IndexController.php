@@ -19,6 +19,7 @@ use App\Models\Prodi;
 use App\Models\Profil;
 use App\Models\Sejarah;
 use App\Models\Visi;
+use App\Models\Lab;
 
 class IndexController extends Controller
 {
@@ -142,6 +143,13 @@ class IndexController extends Controller
     {
         return view('hmp', [
             'hmp'      => $hmp
+        ]);
+    }
+
+    public function lab(Lab $lab)
+    {
+        return view('lab', [
+            'lab'      => $lab
         ]);
     }
 
