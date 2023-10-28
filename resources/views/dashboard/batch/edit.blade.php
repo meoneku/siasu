@@ -46,7 +46,7 @@
                         <label for="tahun" class="col-sm-2 col-form-label">Tahun Pelaksanaan</label>
                         <div class="col-sm-3">
                             <select name="tahun" id="tahun" class="form-control" required>
-                                @for ($tahun = date('Y'); $tahun >= env('GRADUATION_YEAR_BEGIN'); $tahun -= 1)
+                                @for ($tahun = date('Y') + 1; $tahun >= env('GRADUATION_YEAR_BEGIN'); $tahun -= 1)
                                     @if ($tahun == $batch->tahun)
                                         <option value="{{ $tahun }}" selected>{{ $tahun }}</option>
                                     @else

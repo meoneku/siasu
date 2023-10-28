@@ -107,7 +107,15 @@ class TranskripController extends Controller
         if ($request->predikat == 'useCumlaude') {
             $Yudisium = $this->cariYudisium($IPK);
         } else {
-            $Yudisium = $this->cariYudisiumOld($IPK);
+            $angkatantemp = substr($request->nim, 0, 2);
+            $lulusantemp  = Lulusan::where('nim', $request->nim)->first();
+            $lulusantahun = substr($lulusantemp->tanggal_wisuda, 2, 2);
+            $angkatan = $angkatantemp + 4;
+            if ($angkatan == $lulusantahun) {
+                $Yudisium = $this->cariYudisiumOld($IPK);
+            } else {
+                $Yudisium = $this->cariYudisiumTelat($IPK);
+            }
         }
         
         $nilai = [];
@@ -297,6 +305,20 @@ class TranskripController extends Controller
             $result = "Sangat Memuaskan";
         } elseif ($ipk >= 3.51 AND $ipk <= 4.00) {
             $result = "Dengan Pujian";
+        } else {
+            $result = "Error";
+        }
+        return $result;
+    }
+    
+    public function cariYudisiumTelat($ipk)
+    {
+        if ($ipk >= 2.00 AND $ipk <= 2.75) {
+            $result = "Memuaskan";
+        } elseif ($ipk >= 2.76 AND $ipk <= 3.50) {
+            $result = "Sangat Memuaskan";
+        } elseif ($ipk >= 3.51 AND $ipk <= 4.00) {
+            $result = "Sangat Memuaskan";
         } else {
             $result = "Error";
         }

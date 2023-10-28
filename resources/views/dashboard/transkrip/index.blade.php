@@ -42,6 +42,7 @@
                                 <th>NIM</th>
                                 <th>Nama</th>
                                 <th>Tanggal Lulus</th>
+                                <th>Tanggal Wisuda</th>
                                 <th>Jurusan</th>
                                 <th></th>
                             </tr>
@@ -63,6 +64,7 @@
                                     <td>{{ $data->nim }}</td>
                                     <td>{{ $data->nama }}</td>
                                     <td>{{ \App\Helpers\IndoTanggal::tanggal($data->tanggal_lulus, false) }}</td>
+                                    <td>{{ \App\Helpers\IndoTanggal::tanggal($data->tanggal_wisuda, false) }}</td>
                                     <td>{{ $data->jurusan->jurusan }}</td>
                                     <td><a href="/webmin/lulusan/{{ $data->id }}/edit" class="badge bg-info me-1" title="Edit Data Lulusan"><i class="fas fa-user-graduate"></i></a>
                                         <a href="/webmin/transkrip/edit?nim={{ $data->nim }}" class="badge bg-danger me-1" title="Edit Nilai"><i class="fas fa-file-invoice"></i></a>

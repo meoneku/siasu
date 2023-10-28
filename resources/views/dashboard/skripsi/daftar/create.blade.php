@@ -70,7 +70,7 @@
                         <div class="col-sm-4">
                             <select name="batch_id" id="batch_id" class="form-control">
                                 @foreach ($batchs as $batch)
-                                    <option value="{{ $batch->id }}">{{ $batch->nama }} - {{ $batch->kegiatan->nama }}</option>
+                                    <option value="{{ $batch->id }}">{{ $batch->nama }} - {{ $batch->kegiatan->nama }} - {{ $batch->tahun }}</option>
                                 @endforeach
                             </select>
                         </div>

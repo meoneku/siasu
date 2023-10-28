@@ -23,8 +23,7 @@
             <h4 class="alert-heading">Syarat Pendaftaran Skripsi</h4>
             <p>
                 1. Telah Melunasi Pembayaran Semester Berjalan<br />
-                2. Telah Melunasi Pembayaran Proposal Skripsi<br />
-                3. Tidak memiliki nilai D Dan E pada transkrip
+                2. Tidak memiliki nilai D Dan E pada transkrip
             </p>
             <hr>
             <p class="mb-0"><i>* Pastikan semua persyaratan di atas terpenuhi</i></p>
@@ -85,9 +84,9 @@
             <div class="mb-3 row">
                 <label for="sks" class="col-sm-2 col-form-label">SKS Yang Ditempuh</label>
                 <div class="col-sm-2">
-                    <input type="number" class="form-control" id="sks" name="sks" min="144" required>
+                    <input type="number" class="form-control" id="sks" name="sks" min="110" required>
                 </div>
-                <label for="sks" class="col-sm-2 col-form-label"><i>* Minimal 144 Sks</i></label>
+                <label for="sks" class="col-sm-2 col-form-label"><i>* Minimal 110 Sks</i></label>
             </div>
             <div class="mb-3 row">
                 <label for="ipk" class="col-sm-2 col-form-label">IPK</label>

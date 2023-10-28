@@ -72,9 +72,9 @@
                             <select name="batch_id" id="batch_id" class="form-control">
                                 @foreach ($batchs as $batch)
                                     @if ($batch->id == $skripsi->batch_id)
-                                        <option value="{{ $batch->id }}" selected>{{ $batch->nama }} - {{ $batch->kegiatan->nama }}</option>
+                                        <option value="{{ $batch->id }}" selected>{{ $batch->nama }} - {{ $batch->kegiatan->nama }} - {{ $batch->tahun }}</option>
                                     @else
-                                        <option value="{{ $batch->id }}">{{ $batch->nama }} - {{ $batch->kegiatan->nama }}</option>
+                                        <option value="{{ $batch->id }}">{{ $batch->nama }} - {{ $batch->kegiatan->nama }} - {{ $batch->tahun }}</option>
                                     @endif
                                 @endforeach
                             </select>

@@ -26,12 +26,13 @@ class IndexController extends Controller
     public function index()
     {
         return view('index', [
-            'fasilitas'     => Fasilitas::all(),
-            'kerjasama'     => Kerjasama::all(),
-            'sejarah'       => Sejarah::find(1),
-            'berita'        => Berita::orderBy('publish_at', 'desc')->limit(3)->get(),
-            'banner'        => Berita::where('is_banner', 'yes')->orderBy('publish_at', 'desc')->get()
+           'fasilitas'     => Fasilitas::all(),
+           'kerjasama'     => Kerjasama::all(),
+           'sejarah'       => Sejarah::find(1),
+           'berita'        => Berita::orderBy('publish_at', 'desc')->limit(3)->get(),
+           'banner'        => Berita::where('is_banner', 'yes')->orderBy('publish_at', 'desc')->get()
         ]);
+        // return view('dashboard.notfound');
     }
 
     public function skripsi()

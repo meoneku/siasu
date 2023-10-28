@@ -31,10 +31,8 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Batch</th>
-                                <th>Kegiatan</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Tanggal Selesai</th>
-                                <th>Tahun</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -42,11 +40,9 @@
                             @foreach ($batchs as $batch)
                                 <tr>
                                     <td>{{ $batchs->firstItem() + $loop->index }}</td>
-                                    <td>{{ $batch->nama }}</td>
-                                    <td>{{ $batch->kegiatan->nama }}</td>
+                                    <td>{{ $batch->kegiatan->nama }} {{ $batch->tahun }} {{ $batch->nama }}</td>
                                     <td>{{ \App\Helpers\IndoTanggal::tanggal($batch->mulai) }}</td>
                                     <td>{{ \App\Helpers\IndoTanggal::tanggal($batch->selesai) }}</td>
-                                    <td>{{ $batch->tahun }}</td>
                                     <td><a href="/webmin/batch/{{ $batch->id }}/edit" class="badge bg-info me-1" title="Edit Data Pengajaran"><i class="fas fa-edit"></i></a>
                                         <form action="/webmin/batch/{{ $batch->id }}" method="post" class="d-inline">
                                             @method('delete')

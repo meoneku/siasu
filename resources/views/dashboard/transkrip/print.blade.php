@@ -32,7 +32,7 @@
             border: none;
         }
     </style>
-    <title>Cetak Transkrip</title>
+    <title>{{ $lulusan->nim }} - {{ $lulusan->nama }}</title>
 </head>
 
 <body>
@@ -62,7 +62,9 @@
                                         &nbsp;S E M E N T A R A
                                     @endif
                                 </u></br>
-                                <font style="font-size:13px; font-family:Arial;">Nomor SK Akreditasi: {{ $lulusan->jurusan->nomor_akreditasi }}</font>
+                                @if (request('final') == 'true')
+                                    <font style="font-size:13px; font-family:Arial;">Nomor SK Akreditasi: {{ $lulusan->jurusan->nomor_akreditasi }}</font>
+                                @endif
                         </center>
                     </strong></strong></td>
             </tr>
@@ -72,9 +74,9 @@
                 <td width="425px" valign="top">
                     <table border="0" style="font-size:13px; font-family:Arial;">
                         <tr>
-                            <td width="150px">Nama</td>
-                            <td>:</td>
-                            <td>{{ $lulusan->nama }}</td>
+                            <td width="150px" valign="top">Nama</td>
+                            <td valign="top">:</td>
+                            <td valign="top">{{ $lulusan->nama }}</td>
                         </tr>
                         <tr>
                             <td>Tempat, Tanggal Lahir</td>
@@ -137,13 +139,13 @@
                 <th width="258px">Mata Kuliah</th>
                 <th width="25px">SKS</th>
                 <th width="30px">Nilai</th>
-                <th width="42px">AK</th>
+                <th width="43px">AK</th>
                 <th width="20px">No</th>
                 <th width="60px">Kode</th>
                 <th width="258px">Mata Kuliah</th>
                 <th width="25px">SKS</th>
                 <th width="30px">Nilai</th>
-                <th width="42px">AK</th>
+                <th width="41px">AK</th>
             </tr>
             @foreach ($nilai as $data)
                 <tr valign="middle" align="center">

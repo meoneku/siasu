@@ -31,7 +31,6 @@ use App\Http\Controllers\KemahasiswaanContoller;
 use App\Http\Controllers\KerjasamaController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PiController;
 use App\Http\Controllers\ProdiController;
@@ -95,11 +94,6 @@ Route::get('/ambildata', [IndexController::class, 'ambildata'])->name('home.ambi
 Route::post('/ambildata', [SuratAmbilDataController::class, 'store'])->name('home.ambildata.store');
 Route::get('/suket', [IndexController::class, 'suket'])->name('home.suket.index');
 Route::post('/suket', [SuketController::class, 'store'])->name('home.suket.store');
-
-Route::get('/layanan/login', [LayananController::class, 'login'])->name('layanan.login');
-Route::post('/layanan/login', [LayananController::class, 'auth'])->name('layanan.auth');
-
-Route::get('/layanan/aktivasi', [LayananController::class, 'aktivasi'])->name('layanan.aktivasi');
 
 Route::get('/webmin/prank', function () {
     return view('hello');

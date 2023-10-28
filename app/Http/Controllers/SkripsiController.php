@@ -87,7 +87,7 @@ class SkripsiController extends Controller
     {
         return view('dashboard.skripsi.daftar.edit', [
             'title'     => 'Mahasiswa | Data Pendaftar Skripsi',
-            'batchs'    => Batch::all(),
+            'batchs'    => Batch::where('kegiatan_id', 4)->get(),
             'skripsi'   => $skripsi
         ]);
     }
