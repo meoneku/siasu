@@ -20,6 +20,7 @@ use App\Models\Profil;
 use App\Models\Sejarah;
 use App\Models\Visi;
 use App\Models\Lab;
+use App\Models\Mahasiswa;
 
 class IndexController extends Controller
 {
@@ -215,5 +216,16 @@ class IndexController extends Controller
             'recent'       => Berita::orderBy('publish_at', 'desc')->limit(5)->get(),
             'kategori'     => Kategori::all()
         ]);
+    }
+
+    public function tes()
+    {
+        $mahasiswa = Mahasiswa::where('nim', '1994094001')->first();
+
+        return $mahasiswa->kegiatan()->where('kegiatan_id', '2')->first()->pivot;
+
+        // foreach ( $mahasiswa->kegiatan as $kegiatan) {
+        //     echo $kegiatan->nama . ' ' . $kegiatan->pivot->va . '</br>';
+        // }
     }
 }

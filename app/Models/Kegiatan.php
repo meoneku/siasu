@@ -12,4 +12,9 @@ class Kegiatan extends Model
     protected $table = 'kegiatan';
 
     protected $guarded = ['id'];
+
+    public function mahasiswa()
+    {
+        return $this->belongsToMany(Mahasiswa::class);
+    }
 }

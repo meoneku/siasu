@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticate;
 
-class Mahasiswa extends Model
+class Mahasiswa extends Authenticate
 {
     use HasFactory;
 
@@ -16,6 +17,11 @@ class Mahasiswa extends Model
     public function jurusan()
     {
         return $this->belongsTo(Jurusan::class);
+    }
+
+    public function kegiatan()
+    {
+        return $this->belongsToMany(Kegiatan::class)->withPivot('va', 'status');
     }
 
     public function scopeFilter($query, array $filters)

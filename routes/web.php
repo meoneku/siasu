@@ -43,6 +43,9 @@ use App\Http\Controllers\SuratAmbilDataController;
 use App\Http\Controllers\SuratObservasiController;
 use App\Http\Controllers\SuratPIController;
 use App\Http\Controllers\VisiController;
+use App\Http\Controllers\Mahasiswa\HomeController as MahasiswaHome;
+use App\Http\Controllers\Mahasiswa\LoginController as LoginMahasiswa;
+use App\Http\Controllers\Mahasiswa\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +79,8 @@ Route::group(['middleware' => 'visitor'], function () {
     Route::get('/berita/{berita:slug}', [IndexController::class, 'getberita'])->name('home.berita.detail');
 });
 
+Route::get('/tes', [IndexController::class, 'tes'])->name('home.tes');
+
 //Layanan Page
 Route::get('/layanan', [IndexController::class, 'layanan'])->name('home.layanan.index');
 Route::get('/skripsi', [IndexController::class, 'skripsi'])->name('home.skripsi.index');
@@ -95,8 +100,8 @@ Route::post('/ambildata', [SuratAmbilDataController::class, 'store'])->name('hom
 Route::get('/suket', [IndexController::class, 'suket'])->name('home.suket.index');
 Route::post('/suket', [SuketController::class, 'store'])->name('home.suket.store');
 
-Route::get('/webmin/prank', function () {
-    return view('hello');
+Route::get('/welcome', function () {
+    return view('welcome');
 });
 
 //Login
@@ -414,6 +419,19 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::resource('webmin/homepage/kemahasiswaan', KemahasiswaanContoller::class)->parameters([
         'webmin/homepage/kemahasiswaan' => 'kemahasiswaan:slug',
     ]);
+});
+
+//Login Mahasiswa
+Route::group(['middleware' => 'guestmhs'], function () {
+    Route::get('/mahasiswa/login', [LoginMahasiswa::class, 'index'])->name('mahasiswa.login');
+    Route::post('/mahasiswa/login', [LoginMahasiswa::class, 'auth'])->name('mahasiswa.auth');
+});
+Route::get('/mahasiswa/logout', [LoginMahasiswa::class, 'logout'])->name('mahasiswa.logout');
+
+//Mahasiswa Routes
+Route::group(['middleware' => 'is_mhs_login'], function () {
+    Route::get('/mahasiswa/home', [MahasiswaHome::class, 'index'])->name('mahasiswa.beranda');
+    Route::get('/mahasiswa/addpassword', [MahasiswaHome::class, 'addPassword'])->name('system.AddPasswordMhs');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');
