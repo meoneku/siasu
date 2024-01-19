@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('mahasiswa_id');
             $table->unsignedBigInteger('kegiatan_id');
             $table->string('va', 150)->nullable();
+            $table->bigInteger('nominal');
             $table->string('status', 150)->default('AKT');
             $table->timestamps();
 

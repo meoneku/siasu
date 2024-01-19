@@ -165,6 +165,8 @@ Route::group(['middleware' => 'is_login'], function () {
         Route::get('webmin/laporan/seminar/view', [LaporanController::class, 'viewSeminar'])->name('laporan.seminar.view');
 
         Route::get('webmin/laporan/semhas/view', [LaporanController::class, 'viewSemhas'])->name('laporan.semhas.view');
+
+        Route::get('/webmin/mahasiswa/addpassword', [MahasiswaHome::class, 'addPassword'])->name('system.AddPasswordMhs');
     });
 
     //Profil And Password Changes Routes
@@ -431,7 +433,6 @@ Route::get('/mahasiswa/logout', [LoginMahasiswa::class, 'logout'])->name('mahasi
 //Mahasiswa Routes
 Route::group(['middleware' => 'is_mhs_login'], function () {
     Route::get('/mahasiswa/home', [MahasiswaHome::class, 'index'])->name('mahasiswa.beranda');
-    Route::get('/mahasiswa/addpassword', [MahasiswaHome::class, 'addPassword'])->name('system.AddPasswordMhs');
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');
