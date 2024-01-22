@@ -15,6 +15,6 @@ class Kegiatan extends Model
 
     public function mahasiswa()
     {
-        return $this->belongsToMany(Mahasiswa::class);
+        return $this->belongsToMany(Mahasiswa::class)->withPivot('va', 'nominal', 'status');
     }
 }

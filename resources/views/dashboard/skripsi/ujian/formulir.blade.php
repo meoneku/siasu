@@ -55,14 +55,13 @@
             <tr>
                 <td colspan="3">
                     <ol type="1">
-                        <li>Menyertakan Foto Kopi KRS Berjalan Yang Telah Di Setujui</li>
+                        <li>Menyertakan Foto Kopi Berita Acara Seminar Skripsi</li>
                         <li>Telah Melakukan Pembayaran Seminar Hasil</li>
-                        <li>Tiga (3) Eksemplar Draft Proposal Skripsi Yang Sudah Di Setujui Oleh Pembimbing Skripsi</li>
                     </ol>
                 </td>
             </tr>
             <tr>
-                <td colspan="3">Dosen Penguji (<i>Di Isi Oleh Koordinator Skripsi/Kaprodi</i>)</td>
+                <td colspan="3">Dosen Penguji (<i>Di Isi Oleh Kaprodi</i>)</td>
             </tr>
             <tr>
                 <td width="150px">Penguji 1</td>
@@ -106,7 +105,7 @@
             <tr>
                 <td>Pendaftar</td>
                 <td></td>
-                <td>Koordinator Skripsi</td>
+                <td>Kaprodi</td>
             </tr>
             <tr>
                 <td height="80px"></td>
@@ -115,19 +114,19 @@
             </tr>
             <tr>
                 <td colspan="2"><u>{{ $seminar->mahasiswa->nama }}</u></td>
-                <td><u>{{ $koord->nama }}</u></td>
+                <td><u>{{ $kaprodi->nama }}</u></td>
             </tr>
             <tr>
                 <td>NIM : {{ $seminar->mahasiswa->nim }}</td>
                 <td></td>
-                <td>NIY : {{ $koord->niy }}</td>
+                <td>NIY : {{ $kaprodi->niy }}</td>
             </tr>
             <tr>
                 <td height="20px"></td>
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td></td>
                 <td>Mengetahui</td>
                 <td></td>
@@ -150,7 +149,7 @@
                 <td></td>
                 <td>NIY : {{ $kaprodi->niy }}</td>
                 <td></td>
-            </tr>
+            </tr> --}}
         </table>
         <br />
         <br />

@@ -23,7 +23,7 @@
             <h4 class="alert-heading">Syarat Pendaftaran Skripsi</h4>
             <p>
                 1. Telah Melunasi Pembayaran Semester Berjalan<br />
-                2. Tidak memiliki nilai D Dan E pada transkrip
+                2. Menyertakan foto kopi Transkrip Nilai
             </p>
             <hr>
             <p class="mb-0"><i>* Pastikan semua persyaratan di atas terpenuhi</i></p>

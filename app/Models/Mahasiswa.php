@@ -21,7 +21,7 @@ class Mahasiswa extends Authenticate
 
     public function kegiatan()
     {
-        return $this->belongsToMany(Kegiatan::class)->withPivot('va', 'status');
+        return $this->belongsToMany(Kegiatan::class)->withPivot('va', 'nominal', 'status');
     }
 
     public function scopeFilter($query, array $filters)

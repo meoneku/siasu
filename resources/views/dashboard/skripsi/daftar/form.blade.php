@@ -66,15 +66,12 @@
                 <td colspan="3">
                     <ol type="1">
                         <li>Telah melunasi pembayaran semester berjalan</li>
-                        <li>Menyertakan foto kopi slip pembayaran semester</li>
-                        <li>Menyertakan bukti telah melakukan pembayaran skripsi</li>
-                        <li>Menyertakan foto kopi Kartu Hasil Studi (KHS)</li>
-                        <li>Menyertakan foto kopi Kartu Rencana Studi (KRS) semester berjalan</li>
+                        <li>Menyertakan foto kopi Transkrip Nilai</li>
                     </ol>
                 </td>
             </tr>
             <tr>
-                <td colspan="3">Dosen Pembimbing (<i>Di Isi Oleh Koordinator Skripsi/Kaprodi</i>)</td>
+                <td colspan="3">Dosen Pembimbing (<i>Di Isi Oleh Kaprodi</i>)</td>
             </tr>
             <tr>
                 <td width="150px">Pembimbing</td>
@@ -108,7 +105,7 @@
             <tr>
                 <td>Pendaftar</td>
                 <td></td>
-                <td>Koordinator Skripsi</td>
+                <td>Kaprodi</td>
             </tr>
             <tr>
                 <td height="80px"></td>
@@ -117,19 +114,19 @@
             </tr>
             <tr>
                 <td colspan="2"><u>{{ $skripsi->mahasiswa->nama }}</u></td>
-                <td><u>{{ $koord->nama }}</u></td>
+                <td><u>{{ $kaprodi->nama }}</u></td>
             </tr>
             <tr>
                 <td>NIM : {{ $skripsi->mahasiswa->nim }}</td>
                 <td></td>
-                <td>NIY : {{ $koord->niy }}</td>
+                <td>NIY : {{ $kaprodi->niy }}</td>
             </tr>
             <tr>
                 <td height="20px"></td>
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td></td>
                 <td>Mengetahui</td>
                 <td></td>
@@ -152,7 +149,7 @@
                 <td></td>
                 <td>NIY : {{ $kaprodi->niy }}</td>
                 <td></td>
-            </tr>
+            </tr> --}}
         </table>
         <br />
         <br />

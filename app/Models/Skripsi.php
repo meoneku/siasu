@@ -40,6 +40,12 @@ class Skripsi extends Model
             });
         });
 
+        $query->when($filters['judul'] ?? false, function ($query, $judul) {
+            return $query->where(function ($query) use ($judul) {
+                $query->where('judul_skripsi', 'like', '%' . $judul . '%');
+            });
+        });
+
         $query->when(
             $filters['nama'] ?? false,
             fn ($query, $nama) =>

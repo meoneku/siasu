@@ -22,9 +22,8 @@
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Syarat Pendaftaran Seminar Skripsi</h4>
             <p>
-                1. Telah Mendapat Persetujuan Draft Proposal Skripsi Dari Pembimbing<br />
-                2. Telah Melunasi Pembayaran Proposal Skripsi<br />
-                3. Telah Melakukan KRS Semester Berjalan
+                1. Menyertakan Foto Kopi KRS Berjalan Yang Telah Di Setujui<br />
+                2. Telah Melakukan Pembayaran Seminar Proposal
             </p>
             <hr>
             <p class="mb-0"><i>* Pastikan semua persyaratan di atas terpenuhi</i></p>

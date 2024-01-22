@@ -10,7 +10,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('mahasiswa.home');
+        return view('mahasiswa.home', [
+            'title'         => 'Beranda',
+            'breadcumbs'    => array(['judul' => 'Beranda', 'link' => 'r'])
+        ]);
     }
 
     public function addPassword()

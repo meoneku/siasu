@@ -45,7 +45,8 @@ use App\Http\Controllers\SuratPIController;
 use App\Http\Controllers\VisiController;
 use App\Http\Controllers\Mahasiswa\HomeController as MahasiswaHome;
 use App\Http\Controllers\Mahasiswa\LoginController as LoginMahasiswa;
-use App\Http\Controllers\Mahasiswa\LoginController;
+use App\Http\Controllers\Mahasiswa\Skripsi\JudulController as JudulSkripsi;
+use App\Http\Controllers\VAController;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,6 +125,9 @@ Route::group(['middleware' => 'is_login'], function () {
 
         //Jabatan Routes
         Route::resources(['webmin/jabatan' => JabatanController::class]);
+
+        //For VA Routes
+        Route::resources(['webmin/va' => VAController::class]);
 
         //Lulusan Route Delete
         Route::delete('webmin/lulusan/{lulusan}', [LulusanController::class, 'destroy'])->name('lulusan.destroy');
@@ -433,6 +437,7 @@ Route::get('/mahasiswa/logout', [LoginMahasiswa::class, 'logout'])->name('mahasi
 //Mahasiswa Routes
 Route::group(['middleware' => 'is_mhs_login'], function () {
     Route::get('/mahasiswa/home', [MahasiswaHome::class, 'index'])->name('mahasiswa.beranda');
+    Route::resource('mahasiswa/skripsi/judul', JudulSkripsi::class);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

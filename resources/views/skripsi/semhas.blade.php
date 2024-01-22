@@ -22,7 +22,7 @@
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Syarat Pendaftaran Seminar Hasil</h4>
             <p>
-                1. Telah Mendapat Persetujuan Draft Skripsi Dari Pembimbing<br />
+                1. Menyertakan Foto Kopi Berita Acara Seminar Skripsi<br />
                 2. Telah Melunasi Pembayaran Ujian Skripsi
             </p>
             <hr>
