@@ -7,6 +7,8 @@
             <th>jurusan</th>
             <th>kegiatan</th>
             <th>va</th>
+            <th>mulai_aktif</th>
+            <th>akhir_aktif</th>
             <th>nominal</th>
             <th></th>
             <th></th>
@@ -22,14 +24,18 @@
             <td>S1 Ilmu Ghoib</td>
             <td>1 (ID Kegiatan)</td>
             <td>12345678987654321</td>
+            <td>22/01/2022</td>
+            <td>22/01/2023</td>
             <td>250000</td>
             <td></td>
             <td></td>
-            <td><strong>ID/Kode Jurusan</strong></td>
-            <td>Jurusan/Prodi</td>
+            <td><strong>ID/Kode Kegiatan</strong></td>
+            <td>Jenis Kegiatan</td>
         </tr>
         @foreach ($kegiatan as $k)
             <tr>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

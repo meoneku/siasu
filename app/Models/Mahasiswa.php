@@ -19,11 +19,6 @@ class Mahasiswa extends Authenticate
         return $this->belongsTo(Jurusan::class);
     }
 
-    public function kegiatan()
-    {
-        return $this->belongsToMany(Kegiatan::class)->withPivot('va', 'nominal', 'status');
-    }
-
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['nama'] ?? false, function ($query, $nama) {
@@ -32,8 +27,12 @@ class Mahasiswa extends Authenticate
             });
         });
 
-        $query->when($filters['jurusan'] ?? false, fn ($query, $jurusan) =>
-            $query->whereHas('jurusan', fn ($query) =>
+        $query->when(
+            $filters['jurusan'] ?? false,
+            fn ($query, $jurusan) =>
+            $query->whereHas(
+                'jurusan',
+                fn ($query) =>
                 $query->where('jurusan_id', $jurusan)
             )
         );

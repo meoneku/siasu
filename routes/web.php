@@ -127,6 +127,9 @@ Route::group(['middleware' => 'is_login'], function () {
         Route::resources(['webmin/jabatan' => JabatanController::class]);
 
         //For VA Routes
+        Route::get('webmin/va/impor', [VAController::class, 'import'])->name('va.import');
+        Route::post('webmin/va/impor', [VAController::class, 'importData'])->name('va.import.post');
+        Route::get('webmin/va/template', [VAController::class, 'templateImport'])->name('va.template');
         Route::resources(['webmin/va' => VAController::class]);
 
         //Lulusan Route Delete
