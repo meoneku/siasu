@@ -79,6 +79,11 @@
                 <td class="top-text">{{ $seminar->mahasiswa->jurusan->jenjang }} {{ $seminar->mahasiswa->jurusan->jurusan }}</td>
             </tr>
             <tr>
+                <td width="200px" class="top-text">Judul Skripsi</td>
+                <td width="10px" class="top-text">:</td>
+                <td class="top-text">{{ strip_tags($seminar->judul_skripsi) }}</td>
+            </tr>
+            <tr>
                 <td colspan="3">
 
                 </td>

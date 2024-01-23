@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Seminar;
 use App\Models\Batch;
 use App\Models\Skripsi;
+use App\Models\Dosen;
 use App\Models\VA;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class SeminarController extends Controller
             'title'         => 'Pendaftaran Seminar Skripsi',
             'menu'          => 'skripsi.seminar',
             'breadcumbs'    => array(['judul' => 'Beranda', 'link' => route('mahasiswa.beranda')], ['judul' => 'Daftar Seminar', 'link' => '']),
-            'seminars'      => Seminar::with('mahasiswa')->with('batch')->where('mahasiswa_id', Auth::guard('mahasiswa')->user()->id )->filter(request(['judul']))->latest()->paginate(10)->withQueryString()
+            'seminars'      => Seminar::with('mahasiswa')->with('batch')->where('mahasiswa_id', Auth::guard('mahasiswa')->user()->id)->filter(request(['judul']))->latest()->paginate(10)->withQueryString()
         ]);
     }
 
@@ -31,14 +32,14 @@ class SeminarController extends Controller
     public function create()
     {
         $now = date('Y-m-d');
-        $batch = Batch::where('kegiatan_id', 4)->whereRaw('? between mulai and selesai', $now)->first();
+        $batch = Batch::where('kegiatan_id', 5)->whereRaw('? between mulai and selesai', $now)->first();
 
         return view('mahasiswa.skripsi.seminar.create', [
             'title'         => 'Pendaftaran Seminar Skripsi',
             'menu'          => 'skripsi.seminar',
             'breadcumbs'    => array(['judul' => 'Beranda', 'link' => route('mahasiswa.beranda')], ['judul' => 'List Seminar', 'link' => route('seminar.index')], ['judul' => 'Daftar Seminar', 'link' => '']),
             'batch'         => $batch,
-            'skripsi'       => Skripsi::where('mahasiswa_id', Auth::guard('mahasiswa')->user()->id)->first()
+            'skripsi'       => Skripsi::where([['mahasiswa_id', Auth::guard('mahasiswa')->user()->id], ['status', 5]])->first()
         ]);
     }
 
@@ -54,10 +55,15 @@ class SeminarController extends Controller
             'batch_id'          => 'required'
         ]);
 
-        $va = VA::where([['mahasiswa_id', $request->mahasiswa_id], ['kegiatan_id', 5]])->first();
-        
-        $validateData['va']     = $va->nomor_va;
-        $validateData['nominal']= $va->nominal;
+        $va = VA::where([['mahasiswa_id', $request->mahasiswa_id], ['kegiatan_id', 5], ['status', 'AKT']])->first();
+
+        if (empty($va)) {
+            $validateData['va']     = 'UNDIFINED';
+            $validateData['nominal'] = 0;
+        } else {
+            $validateData['va']     = $va->nomor_va;
+            $validateData['nominal'] = $va->nominal;
+        }
 
         Seminar::create($validateData);
         return redirect(route('seminar.index'))->with('success', 'Data Telah Tersimpan');
@@ -66,7 +72,7 @@ class SeminarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Seminar $seminar)
+    public function show($seminar)
     {
         //
     }
@@ -74,17 +80,36 @@ class SeminarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Seminar $seminar)
+    public function edit($seminar)
     {
-        //
+        $id = decrypt($seminar);
+        $data = Seminar::find($id);
+
+        return view('mahasiswa.skripsi.seminar.edit', [
+            'title'         => 'Pendaftaran Seminar Skripsi',
+            'menu'          => 'skripsi.seminar',
+            'breadcumbs'    => array(['judul' => 'Beranda', 'link' => route('mahasiswa.beranda')], ['judul' => 'List Seminar', 'link' => route('seminar.index')], ['judul' => 'Edit Pendaftaran Seminar', 'link' => '']),
+            'data'          => $data
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Seminar $seminar)
+    public function update($seminar, Request $request)
     {
-        //
+        $id = decrypt($seminar);
+
+        $validateData   = $request->validate([
+            'mahasiswa_id'      => 'required',
+            'judul_skripsi'     => 'required',
+            'lokasi_penelitian' => 'required',
+            'batch_id'          => 'required'
+        ]);
+
+        Seminar::where('id', $id)
+            ->update($validateData);
+        return redirect($request->redirect_to)->with('success', 'Data Berhasil Di Ubah');
     }
 
     /**
@@ -93,5 +118,59 @@ class SeminarController extends Controller
     public function destroy(Seminar $seminar)
     {
         //
+    }
+
+    public function cetakForm($id)
+    {
+        $id = decrypt($id);
+        $seminar = Seminar::find($id);
+
+        return view('dashboard.skripsi.seminar.formulir', [
+            'seminar'       => $seminar,
+            'kaprodi'       => Dosen::where('jabatan', 'Kaprodi')->where('jurusan_id', $seminar->mahasiswa->jurusan->id)->first(),
+        ]);
+    }
+
+    public function cetakPeng($id)
+    {
+        $id = decrypt($id);
+        $seminar = Seminar::find($id);
+
+        if ($seminar->status != 5) {
+            return redirect(route('seminar.index'))->with('success', 'Error 501');
+        }
+
+        return view('dashboard.skripsi.seminar.bimbingan', [
+            'seminar'       => $seminar
+        ]);
+    }
+
+    public function cetakBrica($id)
+    {
+        $id = decrypt($id);
+        $seminar = Seminar::find($id);
+
+        if ($seminar->status != 5) {
+            return redirect(route('seminar.index'))->with('success', 'Error 501');
+        }
+
+        return view('dashboard.skripsi.seminar.berita', [
+            'seminar'       => $seminar
+        ]);
+    }
+
+    public function cetakSurat($id)
+    {
+        $id = decrypt($id);
+        $seminar = Seminar::find($id);
+
+        if ($seminar->status != 5) {
+            return redirect(route('seminar.index'))->with('success', 'Error 501');
+        }
+
+        return view('dashboard.skripsi.seminar.penugasan', [
+            'seminar'       => $seminar,
+            'kaprodi'       => Dosen::where('jurusan_id', $seminar->mahasiswa->jurusan_id)->where('jabatan', 'Kaprodi')->first()
+        ]);
     }
 }
