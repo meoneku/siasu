@@ -3,7 +3,7 @@
     <div class="col-lg-12">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="card-title m-0">Data Mahasiswa</h5>
+                <h5 class="card-title m-0">Data Virtual Account Mahasiswa</h5>
             </div>
 
             <div class="card-body">
@@ -20,7 +20,7 @@
                                 @endif
                             @endforeach
                         </select>
-                        <select name="jurusan" class="form-control w-25">
+                        <select name="kegiatan" class="form-control w-25">
                             <option value="">Semua Kegiatan</option>
                             @foreach ($kegiatans as $kegiatan)
                                 @if (request('kegiatan') == $kegiatan->id)

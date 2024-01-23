@@ -43,12 +43,12 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                             </button>
                                             <div class="dropdown-menu" role="menu">
-                                                <a class="dropdown-item" href="{{ route('judul.edit', $skripsi->id) }}"><i class="fas fa-edit"></i> Edit / Lihat</a>
-                                                <a class="dropdown-item" href="/mahasiswa/skripsi/judul/{{ $skripsi->id }}/form" target="_blank"><i class="fas fa-file-pdf"></i> Form Pendaftaran</a>
-                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="{{ route('judul.edit', encrypt($skripsi->id)) }}"><i class="fas fa-edit"></i> Edit / Lihat</a>
+                                                <a class="dropdown-item" href="{{ route('judul.cetakForm', encrypt($skripsi->id))}}" target="_blank"><i class="fas fa-file-pdf"></i> Form Pendaftaran</a>
                                                 @if ($skripsi->status == 5)
-                                                    <a class="dropdown-item" href="/mahasiswa/skripsi/judul/{{ $skripsi->id }}/formbimbing" target="_blank"><i class="fas fa-sticky-note"></i> Form Pembimbing</a>
-                                                    <a class="dropdown-item" href="/mahasiswa/skripsi/judul/penugasan/{{ $skripsi->id }}" target="_blank"><i class="fas fa-envelope"></i> Cetak Surat Tugas</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="{{ route('judul.cetakBimb', encrypt($skripsi->id))}}" target="_blank"><i class="fas fa-sticky-note"></i> Form Pembimbing</a>
+                                                    <a class="dropdown-item" href="{{ route('judul.cetakSurat', encrypt($skripsi->id))}}" target="_blank"><i class="fas fa-envelope"></i> Cetak Surat Tugas</a>
                                                 @endif
                                             </div>
                                         </div>

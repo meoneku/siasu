@@ -19,7 +19,7 @@
     @yield('addcss')
 </head>
 
-<body class="hold-transition sidebar-mini sidebar-collapse">
+<body class="hold-transition sidebar-mini sidebar-collapse" @if (session()->has('success')) onload="loadMessage()" @endif>
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -87,7 +87,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ url('mahasiswa/beranda') }}" class="nav-link active">
+                            <a href="{{ url('mahasiswa/home') }}" class="nav-link {{ ($menu === 'beranda' ? 'active' : '') }}">
                                 <i class="nav-icon fas fa-laptop-house"></i>
                                 <p>
                                     Beranda
@@ -138,7 +138,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ strstr($menu, '.', true) === 'skripsi' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-graduation-cap"></i>
                                 <p>
                                     Pendaftaran Skripsi
@@ -147,19 +147,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('judul.index') }}" class="nav-link">
+                                    <a href="{{ route('judul.index') }}" class="nav-link {{ $menu === 'skripsi.judul' ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Judul</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('seminar.index') }}" class="nav-link  {{ $menu === 'skripsi.seminar' ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Seminar Porposal</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="#" class="nav-link  {{ $menu === 'skripsi.semhas' ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Seminar Hasil</p>
                                     </a>
@@ -272,7 +272,6 @@
 
     <!-- jQuery -->
     <script src="{{ url('plugins/jquery/jquery.js') }}"></script>
-    <script src="{{ url('plugins/jquery/jquery-ui.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ url('plugins/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->

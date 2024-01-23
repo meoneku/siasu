@@ -46,6 +46,7 @@ use App\Http\Controllers\VisiController;
 use App\Http\Controllers\Mahasiswa\HomeController as MahasiswaHome;
 use App\Http\Controllers\Mahasiswa\LoginController as LoginMahasiswa;
 use App\Http\Controllers\Mahasiswa\Skripsi\JudulController as JudulSkripsi;
+use App\Http\Controllers\Mahasiswa\Skripsi\SeminarController as SeminarSkripsi;
 use App\Http\Controllers\VAController;
 
 /*
@@ -440,7 +441,17 @@ Route::get('/mahasiswa/logout', [LoginMahasiswa::class, 'logout'])->name('mahasi
 //Mahasiswa Routes
 Route::group(['middleware' => 'is_mhs_login'], function () {
     Route::get('/mahasiswa/home', [MahasiswaHome::class, 'index'])->name('mahasiswa.beranda');
+    
+    Route::get('/mahasiswa/skripsi/judul/{id}/formulir', [JudulSkripsi::class, 'cetakForm'])->name('judul.cetakForm');
+    Route::get('/mahasiswa/skripsi/judul/{id}/bimbingan', [JudulSkripsi::class, 'cetakFormBimb'])->name('judul.cetakBimb');
+    Route::get('/mahasiswa/skripsi/judul/{id}/surat', [JudulSkripsi::class, 'cetakSurat'])->name('judul.cetakSurat');
     Route::resource('mahasiswa/skripsi/judul', JudulSkripsi::class);
+
+    Route::get('/mahasiswa/skripsi/seminar/{id}/formulir', [SeminarSkripsi::class, 'cetakForm'])->name('seminar.cetakForm');
+    Route::get('/mahasiswa/skripsi/seminar/{id}/brica', [SeminarSkripsi::class, 'cetakBrica'])->name('seminar.cetakBrica');
+    Route::get('/mahasiswa/skripsi/seminar/{id}/bimbingan', [SeminarSkripsi::class, 'cetakPeng'])->name('seminar.cetakPeng');
+    Route::get('/mahasiswa/skripsi/seminar/{id}/surat', [SeminarSkripsi::class, 'cetakSurat'])->name('seminar.cetakSurat');
+    Route::resource('mahasiswa/skripsi/seminar', SeminarSkripsi::class);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

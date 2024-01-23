@@ -12,6 +12,7 @@ class HomeController extends Controller
     {
         return view('mahasiswa.home', [
             'title'         => 'Beranda',
+            'menu'          => 'beranda',
             'breadcumbs'    => array(['judul' => 'Beranda', 'link' => 'r'])
         ]);
     }

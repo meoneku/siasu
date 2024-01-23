@@ -220,6 +220,14 @@ class IndexController extends Controller
 
     public function tes()
     {
-        echo Mahasiswa::where('nim', '1994094001')->first()->nama;
+        $str = "Hello world!";
+
+        // Encode the string
+        $encodeString = convert_uuencode($str);
+        echo $encodeString . "<br>";
+
+        // Decode the string
+        $decodeString = convert_uudecode($encodeString);
+        echo $decodeString;
     }
 }
