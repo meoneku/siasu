@@ -1,78 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mahasiswa Login</title>
-
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url('plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{ url('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('css/adminlte.min.css') }}">
+	<title>OSS FT</title>
+	<link rel="stylesheet" type="text/css" href="{{ url('') }}/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <!-- /.login-logo -->
-        <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <a href="#" class="h1">OSS FT</a>
-            </div>
-            <div class="card-body">
-                <p class="login-box-msg">
-                    @if (session()->has('message'))
-                        {{ session('message') }}
-                    @else
-                        Masuk Layanan
-                    @endif
-                </p>
-
-                <form action="{{ url('mahasiswa/login') }}" method="post">
-                    @csrf
-                    <div class="input-group mb-3">
-                        <input type="text" name="nim" class="form-control" placeholder="NIM">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock-open"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Masuk!</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                </form>
-            </div>
-            <!-- /.card-body -->
+<body>
+	<img class="wave" src="{{ url('') }}/img/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="{{ url('') }}/img/bg.svg">
+		</div>
+		<div class="login-content">
+			<form action="{{ url('mahasiswa/login') }}" method="post" action="index.html">
+                @csrf
+				<img src="{{ url('') }}/img/avatar.svg">
+				<h2 class="title">Selamat Datang</h2>
+                @if (session()->has('message'))
+                    <h5>NIM Atau Password Salah</h5>
+                @endif
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>NIM</h5>
+           		   		<input type="text" class="input" id="nim" name="nim">
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input type="password" class="input" id="password" name="password">
+            	   </div>
+            	</div>
+            	<a href="#">Forgot Password?</a>
+            	<input type="submit" class="btn" value="Login">
+            </form>
         </div>
-        <!-- /.card -->
     </div>
-    <!-- /.login-box -->
-
-    <!-- jQuery -->
-    <script src="{{ url('plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ url('plugins/bootstrap/bootstrap.bundle.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ url('js/adminlte.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('') }}/js/main.js"></script>
 </body>
-
 </html>
