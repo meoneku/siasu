@@ -173,4 +173,37 @@ class SeminarController extends Controller
             'kaprodi'       => Dosen::where('jurusan_id', $seminar->mahasiswa->jurusan_id)->where('jabatan', 'Kaprodi')->first()
         ]);
     }
+
+    public function formUnggah($id)
+    {
+        $id = decrypt($id);
+        $data = Seminar::find($id);
+
+        return view('mahasiswa.skripsi.seminar.upload', [
+            'title'         => 'Pendaftaran Seminar Skripsi',
+            'menu'          => 'skripsi.seminar',
+            'breadcumbs'    => array(['judul' => 'Beranda', 'link' => route('mahasiswa.beranda')], ['judul' => 'List Seminar', 'link' => route('seminar.index')], ['judul' => 'Unggah Berkas', 'link' => '']),
+            'data'          => $data
+        ]);
+    }
+
+    public function Unggah($id, Request $request)
+    {
+        $id = decrypt($id);
+        $data = Seminar::find($id);
+
+        if ($request->file('file_pembayaran')) {
+            $ext = $request->file('file_pembayaran')->extension();
+            $validateData['file_pembayaran'] = $request->file('file_pembayaran')->storeAs('seminar', 'bukti-bayar-' . $data->mahasiswa->nim . '.' . $ext);
+        }
+
+        if ($request->file('file_krs')) {
+            $ext = $request->file('file_krs')->extension();
+            $validateData['file_krs'] = $request->file('file_krs')->storeAs('seminar', 'krs-' . $data->mahasiswa->nim . '.' . $ext);
+        }
+
+        Seminar::where('id', $data->id)
+            ->update($validateData);
+        return redirect(route('seminar.index'))->with('success', 'Data Berhasil Di Unggah');
+    }
 }

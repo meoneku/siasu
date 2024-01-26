@@ -87,7 +87,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ url('mahasiswa/home') }}" class="nav-link {{ ($menu === 'beranda' ? 'active' : '') }}">
+                            <a href="{{ url('mahasiswa/home') }}" class="nav-link {{ $menu === 'beranda' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-laptop-house"></i>
                                 <p>
                                     Beranda
@@ -159,7 +159,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link  {{ $menu === 'skripsi.semhas' ? 'active' : '' }}">
+                                    <a href="{{ route('semhas.index') }}" class="nav-link  {{ $menu === 'skripsi.semhas' ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Seminar Hasil</p>
                                     </a>
@@ -178,7 +178,7 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Penbdaftaran Yudisium</p>
+                                        <p>Pendaftaran Yudisium</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

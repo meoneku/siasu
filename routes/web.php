@@ -48,6 +48,7 @@ use App\Http\Controllers\Mahasiswa\LoginController as LoginMahasiswa;
 use App\Http\Controllers\Mahasiswa\Skripsi\JudulController as JudulSkripsi;
 use App\Http\Controllers\Mahasiswa\Skripsi\SeminarController as SeminarSkripsi;
 use App\Http\Controllers\VAController;
+use App\Http\Controllers\Mahasiswa\Skripsi\SemhasController as SemhasSkripsi;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,22 +86,22 @@ Route::get('/tes', [IndexController::class, 'tes'])->name('home.tes');
 
 //Layanan Page
 Route::get('/layanan', [IndexController::class, 'layanan'])->name('home.layanan.index');
-Route::get('/skripsi', [IndexController::class, 'skripsi'])->name('home.skripsi.index');
-Route::post('/skripsi', [SkripsiController::class, 'store'])->name('home.skripsi.store');
-Route::get('/seminar', [IndexController::class, 'seminar'])->name('home.seminar.index');
-Route::post('/seminar', [SeminarController::class, 'store'])->name('home.seminar.store');
-Route::get('/semhas', [IndexController::class, 'semhas'])->name('home.semhas.index');
-Route::post('/semhas', [SemhasController::class, 'store'])->name('home.semhas.store');
-Route::get('/kppi', [IndexController::class, 'kppi'])->name('home.kppi.index');
-Route::post('/kppi', [PiController::class, 'store'])->name('home.kppi.store');
-Route::get('/suratpi', [IndexController::class, 'suratpi'])->name('home.suratpi.index');
-Route::post('/suratpi', [SuratPIController::class, 'store'])->name('home.suratpi.store');
-Route::get('/suratobservasi', [IndexController::class, 'suratobservasi'])->name('home.suratobservasi.index');
-Route::post('/suratobservasi', [SuratObservasiController::class, 'store'])->name('home.suratobservasi.store');
-Route::get('/ambildata', [IndexController::class, 'ambildata'])->name('home.ambildata.index');
-Route::post('/ambildata', [SuratAmbilDataController::class, 'store'])->name('home.ambildata.store');
-Route::get('/suket', [IndexController::class, 'suket'])->name('home.suket.index');
-Route::post('/suket', [SuketController::class, 'store'])->name('home.suket.store');
+// Route::get('/skripsi', [IndexController::class, 'skripsi'])->name('home.skripsi.index');
+// Route::post('/skripsi', [SkripsiController::class, 'store'])->name('home.skripsi.store');
+// Route::get('/seminar', [IndexController::class, 'seminar'])->name('home.seminar.index');
+// Route::post('/seminar', [SeminarController::class, 'store'])->name('home.seminar.store');
+// Route::get('/semhas', [IndexController::class, 'semhas'])->name('home.semhas.index');
+// Route::post('/semhas', [SemhasController::class, 'store'])->name('home.semhas.store');
+// Route::get('/kppi', [IndexController::class, 'kppi'])->name('home.kppi.index');
+// Route::post('/kppi', [PiController::class, 'store'])->name('home.kppi.store');
+// Route::get('/suratpi', [IndexController::class, 'suratpi'])->name('home.suratpi.index');
+// Route::post('/suratpi', [SuratPIController::class, 'store'])->name('home.suratpi.store');
+// Route::get('/suratobservasi', [IndexController::class, 'suratobservasi'])->name('home.suratobservasi.index');
+// Route::post('/suratobservasi', [SuratObservasiController::class, 'store'])->name('home.suratobservasi.store');
+// Route::get('/ambildata', [IndexController::class, 'ambildata'])->name('home.ambildata.index');
+// Route::post('/ambildata', [SuratAmbilDataController::class, 'store'])->name('home.ambildata.store');
+// Route::get('/suket', [IndexController::class, 'suket'])->name('home.suket.index');
+// Route::post('/suket', [SuketController::class, 'store'])->name('home.suket.store');
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -285,6 +286,7 @@ Route::group(['middleware' => 'is_login'], function () {
     Route::get('webmin/seminar/penugasan/{seminar}', [SeminarController::class, 'penugasan'])->name('seminar.penugasan');
     Route::get('webmin/seminar/berita/{seminar}', [SeminarController::class, 'berita'])->name('seminar.berita');
     Route::get('webmin/seminar/jadwal', [SeminarController::class, 'jadwal'])->name('seminar.jadwal');
+    Route::get('webmin/seminar/pembayaran/{seminar}', [SeminarController::class, 'pembayaran'])->name('seminar.pembayaran');
 
     //Seminar Hasil Routes
     Route::get('webmin/semhas', [SemhasController::class, 'index'])->name('semhas.index');
@@ -441,7 +443,7 @@ Route::get('/mahasiswa/logout', [LoginMahasiswa::class, 'logout'])->name('mahasi
 //Mahasiswa Routes
 Route::group(['middleware' => 'is_mhs_login'], function () {
     Route::get('/mahasiswa/home', [MahasiswaHome::class, 'index'])->name('mahasiswa.beranda');
-    
+
     Route::get('/mahasiswa/skripsi/judul/{id}/formulir', [JudulSkripsi::class, 'cetakForm'])->name('judul.cetakForm');
     Route::get('/mahasiswa/skripsi/judul/{id}/bimbingan', [JudulSkripsi::class, 'cetakFormBimb'])->name('judul.cetakBimb');
     Route::get('/mahasiswa/skripsi/judul/{id}/surat', [JudulSkripsi::class, 'cetakSurat'])->name('judul.cetakSurat');
@@ -451,7 +453,17 @@ Route::group(['middleware' => 'is_mhs_login'], function () {
     Route::get('/mahasiswa/skripsi/seminar/{id}/brica', [SeminarSkripsi::class, 'cetakBrica'])->name('seminar.cetakBrica');
     Route::get('/mahasiswa/skripsi/seminar/{id}/bimbingan', [SeminarSkripsi::class, 'cetakPeng'])->name('seminar.cetakPeng');
     Route::get('/mahasiswa/skripsi/seminar/{id}/surat', [SeminarSkripsi::class, 'cetakSurat'])->name('seminar.cetakSurat');
+    Route::get('/mahasiswa/skripsi/seminar/unggah/{id}', [SeminarSkripsi::class, 'formUnggah'])->name('seminar.unggah');
+    Route::post('/mahasiswa/skripsi/seminar/unggah/{id}', [SeminarSkripsi::class, 'Unggah'])->name('seminar.updateUnggah');
     Route::resource('mahasiswa/skripsi/seminar', SeminarSkripsi::class);
+
+    Route::get('/mahasiswa/skripsi/semhas/{id}/formulir', [SemhasSkripsi::class, 'cetakForm'])->name('semhas.cetakForm');
+    Route::get('/mahasiswa/skripsi/semhas/{id}/brica', [SemhasSkripsi::class, 'cetakBrica'])->name('semhas.cetakBrica');
+    Route::get('/mahasiswa/skripsi/semhas/{id}/bimbingan', [SemhasSkripsi::class, 'cetakPeng'])->name('semhas.cetakPeng');
+    Route::get('/mahasiswa/skripsi/semhas/{id}/surat', [SemhasSkripsi::class, 'cetakSurat'])->name('semhas.cetakSurat');
+    Route::get('/mahasiswa/skripsi/semhas/unggah/{id}', [SemhasSkripsi::class, 'formUnggah'])->name('semhas.unggah');
+    Route::post('/mahasiswa/skripsi/semhas/unggah/{id}', [SemhasSkripsi::class, 'Unggah'])->name('semhas.updateUnggah');
+    Route::resource('mahasiswa/skripsi/semhas', SemhasSkripsi::class);
 });
 
 Route::get('uji', [UjiController::class, 'index'])->name('uji.index');

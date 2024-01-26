@@ -245,4 +245,17 @@ class SeminarController extends Controller
             'kaprodi'   => Dosen::where('jurusan_id', $request->jurusan)->where('jabatan', 'Kaprodi')->first()
         ]);
     }
+
+    public function pembayaran(Seminar $seminar)
+    {
+        if ($seminar->status_pembayaran == 'SDH') {
+            $data['status_pembayaran'] = 'BLM';
+        } else {
+            $data['status_pembayaran'] = 'SDH';
+        }
+
+        Seminar::where('id', $seminar->id)
+            ->update($data);
+        return redirect(url('webmin/seminar'))->with('success', 'Status Pembayaran Sudah Berhasil Di Rubah');
+    }
 }
