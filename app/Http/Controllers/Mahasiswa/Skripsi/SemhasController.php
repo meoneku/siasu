@@ -7,6 +7,7 @@ use App\Models\Semhas;
 use App\Models\Batch;
 use App\Models\VA;
 use App\Models\Dosen;
+use App\Models\Seminar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,14 +32,14 @@ class SemhasController extends Controller
     public function create()
     {
         $now = date('Y-m-d');
-        $batch = Batch::where('kegiatan_id', 5)->whereRaw('? between mulai and selesai', $now)->first();
+        $batch = Batch::where('kegiatan_id', 6)->whereRaw('? between mulai and selesai', $now)->first();
 
         return view('mahasiswa.skripsi.semhas.create', [
             'title'         => 'Pendaftaran Seminar Hasil',
             'menu'          => 'skripsi.semhas',
             'breadcumbs'    => array(['judul' => 'Beranda', 'link' => route('mahasiswa.beranda')], ['judul' => 'List Semhas', 'link' => route('semhas.index')], ['judul' => 'Daftar Semhas', 'link' => '']),
             'batch'         => $batch,
-            'semhas'        => Semhas::where([['mahasiswa_id', Auth::guard('mahasiswa')->user()->id], ['status', 5]])->first()
+            'seminar'       => Seminar::where([['mahasiswa_id', Auth::guard('mahasiswa')->user()->id], ['status', 5]])->first()
         ]);
     }
 

@@ -57,6 +57,8 @@
                                 <th>Nama</th>
                                 <th>Jurusan</th>
                                 <th>Tanggal Daftar</th>
+                                <th>Nomor VA</th>
+                                <th>Nominal</th>
                                 <th>Batch</th>
                                 <th>Status</th>
                                 <th></th>
@@ -68,7 +70,19 @@
                                     <td>{{ $semhas->firstItem() + $loop->index }}</td>
                                     <td>{{ $data->mahasiswa->nama }}</td>
                                     <td>{{ $data->mahasiswa->jurusan->jenjang }} {{ $data->mahasiswa->jurusan->jurusan }}</td>
-                                    <td>{{ \App\Helpers\IndoTanggal::tanggal($data->created_at) }}</td>
+                                    <td>{{ \App\Helpers\IndoTanggal::tanggal($data->created_at, false) }}</td>
+                                    <td>
+                                        @if ($data->status_pembayaran == 'SDH')
+                                            <button class="btn btn-sm btn-success">{{ $data->va }}</button>
+                                        @else
+                                            @if ($data->va == null or $data->va == '')
+                                                -
+                                            @else
+                                                <button class="btn btn-sm btn-danger">{{ $data->va }}</button>
+                                            @endif
+                                        @endif
+                                    </td>
+                                    <td>{{ number_format($data->nominal, 0, ',', '.') }}</td>
                                     <td>{{ $data->batch->kegiatan->nama }} - {{ $data->batch->nama }} - {{ $data->batch->tahun }}</td>
                                     <td>{!! App\Http\Controllers\SkripsiController::getStatusPendaftaran($data->status) !!}</td>
                                     <td>
@@ -92,6 +106,7 @@
                                                 {{-- @endif --}}
                                                 @if (Auth::guard('admin')->user()->role == 'root')
                                                     <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="/webmin/semhas/pembayaran/{{ $data->id }}"><i class="fas fa-file-invoice-dollar"></i> {{ $data->status_pembayaran === 'BLM' ? 'Telah Membayar' : 'Belum Membayar' }}</a>
                                                     <form action="/webmin/semhas/{{ $data->id }}" method="post" class="d-inline">
                                                         @method('delete')
                                                         @csrf

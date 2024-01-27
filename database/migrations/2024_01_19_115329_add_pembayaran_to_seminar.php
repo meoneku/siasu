@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('seminar', function (Blueprint $table) {
-            $table->string('va', 10)->nullable();
+            $table->string('va', 64)->nullable();
             $table->bigInteger('nominal');
             $table->string('status_pembayaran', 10)->default('BLM');
             $table->string('file_pembayaran', 255)->nullable();

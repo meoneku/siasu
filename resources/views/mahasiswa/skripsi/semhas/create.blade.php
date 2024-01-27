@@ -15,7 +15,7 @@
                     </div>
                 </div>
             @else
-                @if (empty($skripsi))
+                @if (empty($seminar))
                     <div class="card-body">
                         <div class="alert alert-danger" role="alert">
                             <h4 class="alert-heading">Kesalahan Pada Proses Pendaftaran Seminar</h4>
@@ -48,13 +48,13 @@
                             <div class="mb-3 mt-3 row">
                                 <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $semhas->mahasiswa->nama }}" readonly>
+                                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $seminar->mahasiswa->nama }}" readonly>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="nim" class="col-sm-2 col-form-label">NIM</label>
                                 <div class="col-sm-4">
-                                    <input type="number" class="form-control" id="nim" name="nim" value="{{ $semhas->mahasiswa->nim }}" readonly>
+                                    <input type="number" class="form-control" id="nim" name="nim" value="{{ $seminar->mahasiswa->nim }}" readonly>
                                     <input type="hidden" name="mahasiswa_id" id="mahasiswa_id" value="{{ Auth::guard('mahasiswa')->user()->id }}">
                                     <input type="hidden" name="batch_id" id="batch_id" value="{{ old('batch_id', $batch->id, '0') }}">
                                 </div>
@@ -62,13 +62,13 @@
                             <div class="mb-3 row">
                                 <label for="judul" class="col-sm-2 col-form-label">Judul Skripsi</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" id="judul" name="judul_skripsi">{{ $semhas->judul_skripsi }}</textarea>
+                                    <textarea class="form-control" id="judul" name="judul_skripsi">{{ $seminar->judul_skripsi }}</textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="lokasi" class="col-sm-2 col-form-label">Lokasi Penelitian</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="lokasi" name="lokasi_penelitian" value="{{ $semhas->lokasi_penelitian }}" required>
+                                    <input type="text" class="form-control" id="lokasi" name="lokasi_penelitian" value="{{ $seminar->lokasi_penelitian }}" required>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">

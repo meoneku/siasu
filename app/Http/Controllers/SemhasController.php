@@ -245,4 +245,17 @@ class SemhasController extends Controller
             'kaprodi'   => Dosen::where('jurusan_id', $request->jurusan)->where('jabatan', 'Kaprodi')->first()
         ]);
     }
+
+    public function pembayaran(Semhas $semhas)
+    {
+        if ($semhas->status_pembayaran == 'SDH') {
+            $data['status_pembayaran'] = 'BLM';
+        } else {
+            $data['status_pembayaran'] = 'SDH';
+        }
+
+        Semhas::where('id', $semhas->id)
+            ->update($data);
+        return redirect(url('webmin/semhas'))->with('success', 'Status Pembayaran Sudah Berhasil Di Rubah');
+    }
 }

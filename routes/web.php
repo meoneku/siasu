@@ -176,6 +176,9 @@ Route::group(['middleware' => 'is_login'], function () {
         Route::get('webmin/laporan/semhas/view', [LaporanController::class, 'viewSemhas'])->name('laporan.semhas.view');
 
         Route::get('/webmin/mahasiswa/addpassword', [MahasiswaHome::class, 'addPassword'])->name('system.AddPasswordMhs');
+
+        Route::get('webmin/seminar/pembayaran/{seminar}', [SeminarController::class, 'pembayaran'])->name('seminar.pembayaran');
+        Route::get('webmin/semhas/pembayaran/{seminar}', [SemhasController::class, 'pembayaran'])->name('semhas.pembayaran');
     });
 
     //Profil And Password Changes Routes
